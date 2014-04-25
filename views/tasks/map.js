@@ -9,7 +9,7 @@ function(doc) {
      doc.Mp.Tasks){
     var dMT  = doc.Mp.Tasks,
         dMD  = doc.Mp.Defaults,
-        name = "MP";
+        name = "Mp";
 
     for(var i = 0; i < dMT.length; i++){
 
