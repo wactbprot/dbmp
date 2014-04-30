@@ -1,6 +1,6 @@
 [
     {
-        "Action": "yamp_worker_wait",
+        "Action": "wait",
         "Comment": "Verzögert den Programmablauf um _longwait ms",
         "TaskName": "wait_long",
         "Value": {
@@ -8,7 +8,7 @@
         }
     },
     {
-        "Action": "yamp_worker_wait",
+        "Action": "wait",
         "Comment": "Verzögert den Programmablauf um _shortwait ms",
         "TaskName": "wait_short",
         "Value": {
