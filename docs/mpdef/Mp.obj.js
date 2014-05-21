@@ -18,28 +18,28 @@
       "NoOfRepeats": 1,
       "Recipe": [
         [
-          {"Taskname":"Mp-wait",
+          {"TaskName":"Mp-wait",
            "Replace":{
              "_waittime": 1000,
              "_waitfor" : "Waiting for Godot "}
           },
-          {"Taskname":"Mp-wait",
+          {"TaskName":"Mp-wait",
            "Replace":{
              "_waittime": 3000}
           },
-          {"Taskname":"Mp-wait",
+          {"TaskName":"Mp-wait",
            "Replace":{
              "_waittime": 500}
           }
         ],
         [
-          {"Taskname":"Mp-wait",
+          {"TaskName":"Mp-wait",
            "Replace":{
              "_waittime": 1000}
           }
         ],
         [
-          {"Taskname":"Mp-wait",
+          {"TaskName":"Mp-wait",
            "Replace":{
              "_waittime": 1000}
           }
@@ -63,27 +63,27 @@
       "NoOfRepeats": 1,
       "Recipe": [
         [
-          {"Taskname":"Mp-wait",
+          {"TaskName":"Mp-wait",
            "Replace":{
              "_waittime": 1000}
           },
-          {"Taskname":"Mp-wait",
+          {"TaskName":"Mp-wait",
            "Replace":{
              "_waittime": 3000}
           },
-          {"Taskname":"Mp-wait",
+          {"TaskName":"Mp-wait",
            "Replace":{
              "_waittime": 500}
           }
         ],
         [
-          {"Taskname":"Mp-wait",
+          {"TaskName":"Mp-wait",
            "Replace":{
              "_waittime": 1000}
           }
         ],
         [
-          {"Taskname":"Mp-wait",
+          {"TaskName":"Mp-wait",
            "Replace":{
              "_waittime": 1000}
           }
@@ -125,27 +125,27 @@
       ],
       "Recipe": [
   [
-          {"Taskname":"Mp-wait",
+          {"TaskName":"Mp-wait",
            "Replace":{
              "_waittime": 1000}
           },
-          {"Taskname":"Mp-wait",
+          {"TaskName":"Mp-wait",
            "Replace":{
              "_waittime": 3000}
           },
-          {"Taskname":"Mp-wait",
+          {"TaskName":"Mp-wait",
            "Replace":{
              "_waittime": 500}
           }
         ],
         [
-          {"Taskname":"Mp-wait",
+          {"TaskName":"Mp-wait",
            "Replace":{
              "_waittime": 1000}
           }
         ],
         [
-          {"Taskname":"Mp-wait",
+          {"TaskName":"Mp-wait",
            "Replace":{
              "_waittime": 1000}
           }
