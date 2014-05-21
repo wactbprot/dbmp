@@ -17,6 +17,7 @@ function(head, req) {
       var patt = new RegExp( j ,"g");
       if(tr && b[j]){
         strtask  = strtask.replace(patt, b[j]);
+        d[j]     = b[j];
       }else{
         strtask  = strtask.replace(patt, d[j]);
       }

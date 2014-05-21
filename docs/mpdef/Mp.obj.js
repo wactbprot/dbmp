@@ -35,13 +35,13 @@
         [
           {"TaskName":"Mp-wait",
            "Replace":{
-             "_waittime": 1000}
+             "_waittime": 550}
           }
         ],
         [
           {"TaskName":"Mp-wait",
            "Replace":{
-             "_waittime": 1000}
+             "_waittime": 605}
           }
         ]
       ],
@@ -65,11 +65,11 @@
         [
           {"TaskName":"Mp-wait",
            "Replace":{
-             "_waittime": 1000}
+             "_waittime": 3300}
           },
           {"TaskName":"Mp-wait",
            "Replace":{
-             "_waittime": 3000}
+             "_waittime": 3400}
           },
           {"TaskName":"Mp-wait",
            "Replace":{
@@ -79,13 +79,13 @@
         [
           {"TaskName":"Mp-wait",
            "Replace":{
-             "_waittime": 1000}
+             "_waittime": 400}
           }
         ],
         [
           {"TaskName":"Mp-wait",
            "Replace":{
-             "_waittime": 1000}
+             "_waittime": 800}
           }
         ]
       ],
