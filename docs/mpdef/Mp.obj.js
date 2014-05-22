@@ -19,38 +19,26 @@
             "Recipe": [
                 [
                     {
+                        "TaskName": "FM3_1T-device_init"
+                    },
+                    {
+                        "TaskName": "FM3_1T-range_init",
+                        "Replace": {
+                            "_range": "X1"
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_1T-slope_exec",
+                        "Replace": {
+                            "_prefix": "drift",
+                            "_docpath": "Calibration.Measurement.Values.Drift"
+                        }
+                    },
+                    {
                         "TaskName": "Mp-wait",
                         "Replace": {
                             "_waittime": 1000,
                             "_waitfor": "Waiting for Godot "
-                        }
-                    },
-                    {
-                        "TaskName": "Mp-wait",
-                        "Replace": {
-                            "_waittime": 3000
-                        }
-                    },
-                    {
-                        "TaskName": "Mp-wait",
-                        "Replace": {
-                            "_waittime": 500
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Mp-wait",
-                        "Replace": {
-                            "_waittime": 550
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Mp-wait",
-                        "Replace": {
-                            "_waittime": 605
                         }
                     }
                 ]
@@ -144,24 +132,6 @@
                 }
             ],
             "Recipe": [
-                [
-                    {
-                        "TaskName": "FM3_1T-device_init"
-                    },
-                    {
-                        "TaskName": "FM3_1T-range_init",
-                        "Replace": {
-                            "_range": "X1"
-                        }
-                    },
-                    {
-                        "TaskName": "FM3_1T-slope_exec",
-                        "Replace": {
-                            "_prefix": "drift",
-                            "_docpath": "Calibration.Measurement.Values.Drift"
-                        }
-                    }
-                ],
                 [
                     {
                         "TaskName": "Mp-wait",
