@@ -2,7 +2,7 @@ function(head, req) {
   var task, row, j,
       tr = (req.body === "undefined") ? false: true,
       b  = tr ? JSON.parse(req.body) :{};
-
+  log(tr)
   while(row = getRow()) {
     task = row.value;
   }
@@ -10,29 +10,32 @@ function(head, req) {
   if(task &&
      typeof task === "object"){
 
-    var d = JSON.parse(JSON.stringify(task.Defaults)); // internal defaults
-    delete task.Defaults
+    if(task.Defaults &&
+       typeof task === "object"){
 
-    var strtask = JSON.stringify(task)
+      var d = JSON.parse(JSON.stringify(task.Defaults)); // internal defaults
+      delete task.Defaults
 
-    if(typeof d === "object"){
-      for(j in d){
-        var patt = new RegExp( j ,"g");
+      var strtask = JSON.stringify(task)
 
-        if(tr && b[j]){
+      if(typeof d === "object"){
+        for(j in d){
+          var patt = new RegExp( j ,"g");
 
-          strtask  = strtask.replace(patt, b[j]);
-          d[j]     = b[j];
-        }else{
-          strtask  = strtask.replace(patt, d[j]);
+          if(tr && b[j]){
+            strtask  = strtask.replace(patt, b[j]);
+            d[j]     = b[j];
+          }else{
+            strtask  = strtask.replace(patt, d[j]);
+          }
+
+          strtask  = strtask.replace(/\n/g, "\\n");
+          strtask  = strtask.replace(/\r/g, "\\r");
         }
-
-        strtask  = strtask.replace(/\n/g, "\\n");
-        strtask  = strtask.replace(/\r/g, "\\r");
       }
-    }
-    task = JSON.parse(strtask);
-    task.Defaults = d;
+      task = JSON.parse(strtask);
+      task.Defaults = d;
+    } // Defaults
 
     send(JSON.stringify(task));
   }else{

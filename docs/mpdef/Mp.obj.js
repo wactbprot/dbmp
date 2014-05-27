@@ -19,6 +19,9 @@
       "Recipe": [
         [
           {
+            "TaskName": "CUCO-device_init"
+          },
+          {
             "TaskName": "FM3_1T-device_init"
           },
           {

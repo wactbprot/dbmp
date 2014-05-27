@@ -17,7 +17,7 @@ var tob,i,j;
 
     for(i = 0; i < t.length; i++){
 
-      var key  = name + "-" + t[i].TaskName.replace(/\s/g, "_");
+      var key  = (name + "-" + t[i].TaskName).replace(/\s/g, "_");
       var task = JSON.parse(JSON.stringify(t[i]))
 
       task.TaskName = key;
