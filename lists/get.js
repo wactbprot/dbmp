@@ -1,25 +1,22 @@
 function(head, req) {
-  var oktask,
-      butask,
-      mptask,
-      row,
-      j,
-      task,
-      tr      = (req.body === "undefined") ? false: true,
-      b       = tr ? JSON.parse(req.body) :{},
-      repl    = b.Replace,
-      isCuCo  = b.CuCo,
+  var oktask, butask, mptask, row, j, task, mptn, butn,
+      tr      = (req.body === "undefined") ? false : true,
+      b       = tr ? JSON.parse(req.body) : {},
       tn      = b.TaskName,
+      repl    = b.Replace,
+      id      = b.Id,
+      isCuCo  = b.CuCo || false,
       dn      = b.DeviceName,
       mn      = b.MpName,
-      mptn    = "",
-      butn    = "";
+      cn      = "CUCO";
 
-  if(dn) butn = tn.replace(dn,"CUCO")
+  tn = req.query.taskname ? JSON.parse(req.query.taskname) : tn;
+
+  if(dn)       butn = tn.replace(dn,cn)
   if(dn && mn) mptn = tn.replace(dn, mn)
 
-  while(row = getRow()) {
 
+  while(row = getRow()) {
     if(row.value.TaskName === tn) {
       oktask = row.value;
     }
@@ -33,9 +30,10 @@ function(head, req) {
     }
   }
 
-  if(!oktask){
-    if(!mptask){
-      if(!butask){
+  // Auswahl der richtigen Task
+  if(!oktask){ // die Verlangte task, wenn nicht vorhanden dann
+    if(!mptask){ // die Messprogramm Backup task wenn auch nicht
+      if(!butask){ //dann  universale Backup task zurück
       }else{
         task = butask;
       }
@@ -45,7 +43,7 @@ function(head, req) {
   }else{
     task = oktask;
   }
-
+  // Ersetzungen
   if(task &&
      typeof task === "object"){
 
@@ -60,24 +58,24 @@ function(head, req) {
       if(typeof d === "object"){
         for(j in d){
           var patt = new RegExp( j ,"g");
-
           if(tr && repl && repl[j]){
             strtask  = strtask.replace(patt, repl[j]);
-            d[j]     = b[j];
+            d[j]     = repl[j];
           }else{
             strtask  = strtask.replace(patt, d[j]);
           }
-
           strtask  = strtask.replace(/\n/g, "\\n");
           strtask  = strtask.replace(/\r/g, "\\r");
         }
       }
-      task = JSON.parse(strtask);
+      task          = JSON.parse(strtask);
       task.Defaults = d;
-    } // Defaults
-
-    send(JSON.stringify(task));
+    }
+    if(id){
+      task.Id = id;
+    }
   }else{
-    send(JSON.stringify({error:"no task found"}));
+    task = {error:"no task found"};
   }
+  send(JSON.stringify(task))
 }

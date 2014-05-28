@@ -9,11 +9,16 @@ function (doc, req) {
         dcpc    = dcp.Customer,
         dcmcuco = dcm.CalibrationObject[0];
 
-    res.Sign       = dc.Sign;
-    res.Year       = dc.Year;
-    res.Standard   = dc.Standard;
-    res.Customer   = dcpc.Name;
-    res.Device     = dcmcuco.Name;
+    if(dcpt && dcpc && dcmcuco){
+      res.Sign       = dc.Sign;
+      res.Year       = dc.Year;
+      res.Standard   = dc.Standard;
+      res.Customer   = dcpc.Name;
+      res.Device     = dcmcuco.Name;
+      res.ToDoType   = dcpt.Type
+    }else{
+      res.error  = "ToDo or Customer or Customer Gauge missing";
+    }
   }else{
     res.error  = "not a Calibration";
   }

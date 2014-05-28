@@ -175,6 +175,15 @@
       "Value": {
         "WaitTime": "_waittime"
       }
+    },
+    {
+      "Action": "device_init",
+      "Comment": "_waitfor  _waittime ms",
+      "TaskName": "wait",
+      "Value": {
+        "WaitTime": "_waittime"
+      }
     }
+
   ]
 }
