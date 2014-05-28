@@ -5,27 +5,28 @@ function(head, req) {
       tn      = b.TaskName,
       repl    = b.Replace,
       id      = b.Id,
-      isCuCo  = b.CuCo || false,
       dn      = b.DeviceName,
       mn      = b.MpName,
+      isCuCo  = b.CuCo,
       cn      = "CUCO";
 
   tn = req.query.taskname ? JSON.parse(req.query.taskname) : tn;
 
-  if(dn)       butn = tn.replace(dn,cn)
+  if(dn)       butn = tn.replace(dn, cn)
   if(dn && mn) mptn = tn.replace(dn, mn)
 
 
   while(row = getRow()) {
+
     if(row.value.TaskName === tn) {
       oktask = row.value;
+
     }
-    if(isCuCo &&
-       row.value.TaskName === mptn){
+    if(row.value.TaskName === mptn){
+
       mptask = row.value;
     }
-    if(isCuCo &&
-       row.value.TaskName === butn){
+    if(row.value.TaskName === butn){
       butask = row.value;
     }
   }
@@ -71,9 +72,12 @@ function(head, req) {
       task          = JSON.parse(strtask);
       task.Defaults = d;
     }
+
     if(id){
-      task.Id = id;
+      task.Id     = id;
+      task.MpName = mn;
     }
+    task.CuCo = isCuCo;
   }else{
     task = {error:"no task found"};
   }
