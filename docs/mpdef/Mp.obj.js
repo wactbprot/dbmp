@@ -1,35 +1,48 @@
 {
     "Name": "Mp",
     "Title": "ssmp",
+    "Exchange": {
+        "ctrlclient": {
+            "Name": "",
+            "Atime": ""
+        }
+    },
     "Container": [
         {
             "Ctrl": "unformed",
-            "Element": [
-                {
-                    "type": "div",
-                    "html": [
-                        {
-                            "type": "h3",
-                            "html": "Testify"
-                        }
-                    ]
-                }
-            ],
             "NoOfRepeats": 1,
             "Recipe": [
                 [
                     {
-                        "TaskName": "CUCO-customer_wait"
+                        "TaskName": "Mp-pressure_element",
+                        "Replace": {
+                            "_elemtype": "fill_offset",
+                            "_docpath": "Calibration.Measurement.AuxValues.Pressure"
+                        }
+                    },
+                    {
+                        "TaskName": "Mp-pressure_element",
+                        "Replace": {
+                            "_elemtype": "fill",
+                            "_docpath": "Calibration.Measurement.Values.Pressure"
+                        }
+                    },
+                    {
+                        "TaskName": "CUCO-pressure_element",
+                        "Replace": {
+                            "_elemtype": "ind_offset",
+                            "_docpath": "Calibration.Measurement.Values.Pressure"
+                        }
+                    },
+                    {
+                        "TaskName": "CUCO-pressure_element",
+                        "Replace": {
+                            "_elemtype": "ind",
+                            "_docpath": "Calibration.Measurement.Values.Pressure"
+                        }
                     },
                     {
                         "TaskName": "FM3_1T-device_init"
-                    },
-                    {
-                        "TaskName": "Mp-wait",
-                        "Replace": {
-                            "_waittime": 500,
-                            "_waitfor": "Waiting for Godot "
-                        }
                     }
                 ],
                 [
@@ -37,13 +50,6 @@
                         "TaskName": "FM3_1T-range_init",
                         "Replace": {
                             "_range": "X1"
-                        }
-                    },
-                    {
-                        "TaskName": "Mp-wait",
-                        "Replace": {
-                            "_waittime": 500,
-                            "_waitfor": "Waiting for Godot "
                         }
                     }
                 ],
@@ -61,17 +67,6 @@
         },
         {
             "Ctrl": "unformed",
-            "Element": [
-                {
-                    "type": "div",
-                    "html": [
-                        {
-                            "type": "h3",
-                            "html": "Testify"
-                        }
-                    ]
-                }
-            ],
             "NoOfRepeats": 1,
             "Recipe": [
                 [
@@ -96,7 +91,8 @@
     "Defaults": {
         "_waittime": 1000,
         "_waitfor": "Ready in",
-        "_waitunit": "ms"
+        "_waitunit": "ms",
+        "_docpath": ""
     },
     "Recipes": [
         {
@@ -150,11 +146,15 @@
             }
         },
         {
-            "Action": "wait",
-            "Comment": "_waitfor  _waittime ms",
-            "TaskName": "customer_wait",
+            "Action": "toexchange",
+            "Comment": "Add an element to the Exchange api",
+            "TaskName": "pressure_element",
             "Value": {
-                "WaitTime": "_waittime"
+                "DocPath": "_docpath",
+                "Type": "_elemtype",
+                "Unit": "mbar",
+                "Value": "",
+                "Comment": ""
             }
         }
     ]
