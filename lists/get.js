@@ -5,8 +5,8 @@ function(head, req) {
       tn      = b.TaskName,
       repl    = b.Replace,
       id      = b.Id,
-      dn      = b.DeviceName,
-      mn      = b.MpName,
+      dn      = b.DeviceName || "GenericDevice",
+      mn      = b.MpName     || "Mp",
       cuco    = b.CuCo,
       cn      = "CUCO";
 
@@ -44,6 +44,14 @@ function(head, req) {
           def[i] = repl[i];
         }
       }
+      // _mpname
+      // &
+      // _devicename
+      // steht _standardmäßig
+      // zur Verfügung
+      def["_mpname"]     = mn;
+      def["_devicename"] = dn;
+
       var strtask = JSON.stringify(task)
       for(j in def){
         var patt = new RegExp( j ,"g");
