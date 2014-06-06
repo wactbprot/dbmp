@@ -1,5 +1,5 @@
 function(head, req) {
-  var oktask, mptask, row, j, task, mptn, butn,
+  var oktask, mptask, row, i, j, task, mptn, butn,
       tr      = (req.body === "undefined") ? false : true,
       b       = tr ? JSON.parse(req.body) : {},
       tn      = b.TaskName,
@@ -7,7 +7,7 @@ function(head, req) {
       id      = b.Id,
       dn      = b.DeviceName,
       mn      = b.MpName,
-      cuco  = b.CuCo,
+      cuco    = b.CuCo,
       cn      = "CUCO";
 
   tn = req.query.taskname ? JSON.parse(req.query.taskname) : tn;
@@ -35,25 +35,26 @@ function(head, req) {
   if(task && typeof task === "object"){
     if(task.Defaults && typeof task.Defaults === "object"){
 
-      var d = JSON.parse(JSON.stringify(task.Defaults)); // internal defaults
+      var def = JSON.parse(JSON.stringify(task.Defaults)); // internal defaults
       delete task.Defaults
-
-      var strtask = JSON.stringify(task)
-
-      for(j in d){
-        var patt = new RegExp( j ,"g");
-        if(tr && repl && repl[j]){
-          strtask  = strtask.replace(patt, repl[j]);
-          d[j]     = repl[j];
-        }else{
-          strtask  = strtask.replace(patt, d[j]);
+      // Defaults um Replaces erweitern
+      // bzw. ersetzen
+      if(repl && typeof repl === "object"){
+        for(i in repl){
+          def[i] = repl[i];
         }
+      }
+      var strtask = JSON.stringify(task)
+      for(j in def){
+        var patt = new RegExp( j ,"g");
+
+        strtask  = strtask.replace(patt, def[j]);
         strtask  = strtask.replace(/\n/g, "\\n");
         strtask  = strtask.replace(/\r/g, "\\r");
       }
 
       task          = JSON.parse(strtask);
-      task.Defaults = d;
+      task.Defaults = def;
     }
 
     if(id && typeof id === "object"){
