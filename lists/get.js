@@ -1,14 +1,13 @@
 function(head, req) {
   var oktask, mptask, row, i, j, task, mptn, butn,
-      tr      = (req.body === "undefined") ? false : true,
-      b       = tr ? JSON.parse(req.body) : {},
-      tn      = b.TaskName,
+      tr      = (req.body === "undefined") ? false : true,// try replace
+      b       = tr ? JSON.parse(req.body) : {}, // body
+      tn      = b.TaskName, //
       repl    = b.Replace,
       id      = b.Id,
       dn      = b.DeviceName || "GenericDevice",
       mn      = b.MpName     || "Mp",
-      cuco    = b.CuCo,
-      cn      = "CUCO";
+      cuco    = b.CuCo; // is customer device?
 
   tn = req.query.taskname ? JSON.parse(req.query.taskname) : tn;
   if(dn && mn) mptn = tn.replace(dn, mn)

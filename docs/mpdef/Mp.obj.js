@@ -120,12 +120,8 @@
         "_waitfor": "Ready in",
         "_waitunit": "ms",
         "_docpath": "",
-        "_pressureunits": [
-            "mbar",
-            "Pa",
-            "kPa",
-            "Torr"
-        ]
+        "_pressureunits": "mbar,Pa,kPa,Torr"
+        
     },
     "Recipes": [
         {
