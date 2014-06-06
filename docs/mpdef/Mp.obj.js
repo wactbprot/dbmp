@@ -2,13 +2,25 @@
     "Name": "Mp",
     "Title": "ssmp",
     "Exchange": {
-        "ctrlclient": {
+        "ctrl_client": {
             "Name": "",
+            "Password": "",
             "Atime": ""
         }
     },
     "Container": [
         {
+            "Element": {
+                "ctrl_client": {
+                    "Name": {
+                        "type": "text",
+                        "required": true
+                    },
+                    "Atime": {
+                        "type": "integer"
+                    }
+                }
+            },
             "Ctrl": "unformed",
             "NoOfRepeats": 1,
             "Recipe": [
@@ -17,28 +29,32 @@
                         "TaskName": "Mp-pressure_element",
                         "Replace": {
                             "_elemtype": "fill_offset",
-                            "_docpath": "Calibration.Measurement.AuxValues.Pressure"
+                            "_docpath": "Calibration.Measurement.AuxValues.Pressure",
+                            "_container": 0
                         }
                     },
                     {
                         "TaskName": "Mp-pressure_element",
                         "Replace": {
                             "_elemtype": "fill",
-                            "_docpath": "Calibration.Measurement.Values.Pressure"
+                            "_docpath": "Calibration.Measurement.Values.Pressure",
+                            "_container": 0
                         }
                     },
                     {
                         "TaskName": "CUCO-pressure_element",
                         "Replace": {
                             "_elemtype": "ind_offset",
-                            "_docpath": "Calibration.Measurement.Values.Pressure"
+                            "_docpath": "Calibration.Measurement.Values.Pressure",
+                            "_container": 0
                         }
                     },
                     {
                         "TaskName": "CUCO-pressure_element",
                         "Replace": {
                             "_elemtype": "ind",
-                            "_docpath": "Calibration.Measurement.Values.Pressure"
+                            "_docpath": "Calibration.Measurement.Values.Pressure",
+                            "_container": 0
                         }
                     },
                     {
@@ -66,6 +82,17 @@
             "Title": "Container 1"
         },
         {
+            "Element": {
+                "ctrl_client": {
+                    "Name": {
+                        "type": "text",
+                        "required": true
+                    },
+                    "Atime": {
+                        "type": "integer"
+                    }
+                }
+            },
             "Ctrl": "unformed",
             "NoOfRepeats": 1,
             "Recipe": [
@@ -92,7 +119,13 @@
         "_waittime": 1000,
         "_waitfor": "Ready in",
         "_waitunit": "ms",
-        "_docpath": ""
+        "_docpath": "",
+        "_pressureunits": [
+            "mbar",
+            "Pa",
+            "kPa",
+            "Torr"
+        ]
     },
     "Recipes": [
         {
@@ -146,15 +179,44 @@
             }
         },
         {
-            "Action": "toexchange",
-            "Comment": "Add an element to the Exchange api",
+            "Action": "addElement",
+            "Comment": "Add an element to the Container _container Exchange api",
             "TaskName": "pressure_element",
+            "Container": "_container",
+            "Key": "_devicename-_elemtype",
             "Value": {
-                "DocPath": "_docpath",
-                "Type": "_elemtype",
-                "Unit": "mbar",
-                "Value": "",
-                "Comment": ""
+                "Caption": {
+                    "exchange": false,
+                    "required": false,
+                    "value": "_caption"
+                },
+                "DocPath": {
+                    "exchange": true,
+                    "required": true,
+                    "value": "_docpath"
+                },
+                "Type": {
+                    "exchange": true,
+                    "required": true,
+                    "value": "_elemtype",
+                    "type": "text"
+                },
+                "Unit": {
+                    "exchange": true,
+                    "required": true,
+                    "value": "mbar",
+                    "options": "_pressureunits"
+                },
+                "Value": {
+                    "exchange": true,
+                    "required": true,
+                    "type": "number"
+                },
+                "Comment": {
+                    "exchange": true,
+                    "required": false,
+                    "type": "text"
+                }
             }
         }
     ]
