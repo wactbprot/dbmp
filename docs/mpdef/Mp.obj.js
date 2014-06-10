@@ -6,7 +6,12 @@
             "Name": "",
             "Password": "",
             "Atime": ""
-        }
+        },
+      "target_fill": {
+        "Value": null,
+        "Unit": "mbar"
+      }
+
     },
     "Container": [
         {
@@ -19,8 +24,7 @@
                     "Atime": {
                         "type": "integer"
                     }
-                }
-            },
+                }            },
             "Ctrl": "unformed",
             "NoOfRepeats": 1,
             "Recipe": [
@@ -60,23 +64,6 @@
                     {
                         "TaskName": "FM3_1T-device_init"
                     }
-                ],
-                [
-                    {
-                        "TaskName": "FM3_1T-range_init",
-                        "Replace": {
-                            "_range": "X1"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "FM3_1T-slope_exec",
-                        "Replace": {
-                            "_prefix": "lw",
-                            "_docpath": "Calibration.Measurement.AuxValues.Conductance"
-                        }
-                    }
                 ]
             ],
             "Title": "Container 1"
@@ -98,16 +85,54 @@
             "Recipe": [
                 [
                     {
-                        "TaskName": "FM3_1T-slope_exec",
+                        "TaskName": "Mp-remove_element",
                         "Replace": {
-                            "_prefix": "lw",
-                            "_docpath": "Calibration.Measurement.AuxValues.Conductance"
+                            "_container": 0,
+                            "_devicename": "Mp",
+                            "_elemtype": "fill"
                         }
                     }
+                ],
+              [
+                        {
+                            "TaskName": "FM3_1T-slope_exec",
+                            "Replace": {
+                                "_prefix": "lw",
+                                "_docpath": "Calibration.Measurement.AuxValues.Conductance"
+                            }
+                        }
+
                 ]
             ],
             "Title": "Container 2"
+        },
+        {
+            "Element": {
+                "ctrl_client": {
+                    "Name": {
+                        "type": "text",
+                        "required": true
+                    },
+                    "Atime": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "Ctrl": "unformed",
+            "NoOfRepeats": 1,
+            "Recipe": [
+              [
+                {
+                  "TaskName": "Mp-select_recipe",
+                        "Replace": {
+                          "_recipeclass": "range_ini"
+                        }
+                }
+              ]
+            ],
+            "Title": "Container 3"
         }
+
     ],
     "Date": [
         {
@@ -120,49 +145,89 @@
         "_waitfor": "Ready in",
         "_waitunit": "ms",
         "_docpath": "",
-        "_pressureunits": "mbar,Pa,kPa,Torr"
-        
+        "_pressureunits": "mbar,Pa,kPa,Torr",
+        "_recipeclass": "ini_range"
     },
     "Recipes": [
         {
             "Conditions": [
                 {
-                    "ReadFrom": "token_1",
-                    "Methode": "LT",
+                    "ReadFrom": "target_fill",
+                    "Methode": "lt",
                     "Params": [
-                        "value_1",
-                        0.0001
+                        "Value",
+                        0.1
                     ]
                 },
                 {
-                    "ReadFrom": "token_1",
-                    "Methode": "GT",
+                    "ReadFrom": "target_fill",
+                    "Methode": "gt",
                     "Params": [
-                        "value_1",
-                        1e-11
+                        "Value",
+                        0.001
+                    ]
+                },
+                {
+                    "ReadFrom": "target_fill",
+                    "Methode": "eq",
+                    "Params": [
+                        "Unit",
+                        "mbar"
                     ]
                 }
             ],
             "Recipe": [
                 [
                     {
-                        "TaskName": "Mp-wait",
+                        "TaskName": "FM3_1T-range_init",
                         "Replace": {
-                            "_waittime": 1000
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Mp-wait",
-                        "Replace": {
-                            "_waittime": 1000
+                            "_range": "X0.1"
                         }
                     }
                 ]
             ],
-            "RecipeClass": "choose",
-            "ShortDescr": "Warten\n"
+            "RecipeClass": "ini_range",
+            "ShortDescr": "Sets the Range depending on pfill\n"
+        },
+        {
+            "Conditions": [
+                {
+                    "ReadFrom": "target_fill",
+                    "Methode": "lt",
+                    "Params": [
+                        "Value",
+                        1.3
+                    ]
+                },
+                {
+                    "ReadFrom": "target_fill",
+                    "Methode": "gt",
+                    "Params": [
+                        "Value",
+                        0.1
+                    ]
+                },
+                {
+                    "ReadFrom": "target_fill",
+                    "Methode": "eq",
+                    "Params": [
+                        "Unit",
+                        "mbar"
+                    ]
+                }
+            ],
+            "Recipe": [
+                [
+                    {
+                        "TaskName": "FM3_1T-range_init",
+                        "Replace": {
+                            "_range": "X1"
+                        }
+                    }
+                ]
+            ],
+            "RecipeClass": "ini_range",
+            "ShortDescr": "Sets the Range depending on pfill\n"
         }
     ],
     "Tasks": [
@@ -172,6 +237,14 @@
             "TaskName": "wait",
             "Value": {
                 "WaitTime": "_waittime"
+            }
+        },
+        {
+            "Action": "select",
+            "Comment": "selects recipes",
+            "TaskName": "select_recipe",
+            "Value": {
+                "RecipeClass": "_recipeclass"
             }
         },
         {
@@ -214,6 +287,13 @@
                     "type": "text"
                 }
             }
+        },
+        {
+            "Action": "rmElement",
+            "Comment": "Remove an Element from Elements and Exchange",
+            "TaskName": "remove_element",
+            "Container": "_container",
+            "Key": "_devicename-_elemtype"
         }
     ]
 }
