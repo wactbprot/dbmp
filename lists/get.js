@@ -59,10 +59,9 @@ function(head, req) {
         var patt = new RegExp( j ,"g");
 
         if(Object.prototype.toString.call( def[j] ) === '[object Array]'){
-          strtask = strtask
-              .replace(patt, JSON.stringify(def[j]))
-              .replace(/\"\[/g, "\[")
-              .replace(/\]\"/g, "\]");
+          strtask = strtask.replace(patt, JSON.stringify(def[j]))
+                    .replace(/\"\[/g, "\[")
+                    .replace(/\]\"/g, "\]");
         }else{
           strtask  = strtask.replace(patt, def[j]);
         }

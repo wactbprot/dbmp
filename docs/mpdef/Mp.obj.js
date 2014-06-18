@@ -34,6 +34,7 @@
                         "Replace": {
                             "_elemtype": "fill_offset",
                             "_docpath": "Calibration.Measurement.AuxValues.Pressure",
+                            "_caption": "offset of filling pressure",
                             "_container": 0
                         }
                     },
@@ -42,6 +43,7 @@
                         "Replace": {
                             "_elemtype": "fill",
                             "_docpath": "Calibration.Measurement.Values.Pressure",
+                            "_caption": "filling pressure",
                             "_container": 0
                         }
                     },
@@ -50,6 +52,7 @@
                         "Replace": {
                             "_elemtype": "ind_offset",
                             "_docpath": "Calibration.Measurement.Values.Pressure",
+                            "_caption": "offset of indicated pressure",
                             "_container": 0
                         }
                     },
@@ -58,6 +61,7 @@
                         "Replace": {
                             "_elemtype": "ind",
                             "_docpath": "Calibration.Measurement.Values.Pressure",
+                            "_caption": "indicated pressure",
                             "_container": 0
                         }
                     },
