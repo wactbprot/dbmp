@@ -36,6 +36,8 @@ function(head, req) {
 
       var def = JSON.parse(JSON.stringify(task.Defaults)); // internal defaults
       delete task.Defaults
+
+
       // Defaults um Replaces erweitern
       // bzw. ersetzen
       if(repl && typeof repl === "object"){
@@ -51,13 +53,23 @@ function(head, req) {
       def["_mpname"]     = mn;
       def["_devicename"] = dn;
 
-      var strtask = JSON.stringify(task)
+      var strtask = JSON.stringify(task);
       for(j in def){
+
         var patt = new RegExp( j ,"g");
 
-        strtask  = strtask.replace(patt, def[j]);
+        if(Object.prototype.toString.call( def[j] ) === '[object Array]'){
+          strtask = strtask
+              .replace(patt, JSON.stringify(def[j]))
+              .replace(/\"\[/g, "\[")
+              .replace(/\]\"/g, "\]");
+        }else{
+          strtask  = strtask.replace(patt, def[j]);
+        }
         strtask  = strtask.replace(/\n/g, "\\n");
         strtask  = strtask.replace(/\r/g, "\\r");
+
+
       }
 
       task          = JSON.parse(strtask);

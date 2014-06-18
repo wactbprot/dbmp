@@ -7,11 +7,10 @@
             "Password": "",
             "Atime": ""
         },
-      "target_fill": {
-        "Value": null,
-        "Unit": "mbar"
-      }
-
+        "target_fill": {
+            "Value": null,
+            "Unit": "mbar"
+        }
     },
     "Container": [
         {
@@ -24,7 +23,8 @@
                     "Atime": {
                         "type": "integer"
                     }
-                }            },
+                }
+            },
             "Ctrl": "unformed",
             "NoOfRepeats": 1,
             "Recipe": [
@@ -93,15 +93,14 @@
                         }
                     }
                 ],
-              [
-                        {
-                            "TaskName": "FM3_1T-slope_exec",
-                            "Replace": {
-                                "_prefix": "lw",
-                                "_docpath": "Calibration.Measurement.AuxValues.Conductance"
-                            }
+                [
+                    {
+                        "TaskName": "FM3_1T-slope_exec",
+                        "Replace": {
+                            "_prefix": "lw",
+                            "_docpath": "Calibration.Measurement.AuxValues.Conductance"
                         }
-
+                    }
                 ]
             ],
             "Title": "Container 2"
@@ -121,18 +120,17 @@
             "Ctrl": "unformed",
             "NoOfRepeats": 1,
             "Recipe": [
-              [
-                {
-                  "TaskName": "Mp-select_recipe",
+                [
+                    {
+                        "TaskName": "Mp-select_recipe",
                         "Replace": {
-                          "_recipeclass": "range_ini"
+                            "_recipeclass": "range_init"
                         }
-                }
-              ]
+                    }
+                ]
             ],
             "Title": "Container 3"
         }
-
     ],
     "Date": [
         {
@@ -145,35 +143,32 @@
         "_waitfor": "Ready in",
         "_waitunit": "ms",
         "_docpath": "",
-        "_pressureunits": "mbar,Pa,kPa,Torr",
-        "_recipeclass": "ini_range"
+        "_pressureunits": [
+            "mbar",
+            "Pa",
+            "kPa",
+            "Torr",
+            "mmHg"
+        ],
+        "_recipeclass": "range_init"
     },
     "Recipes": [
         {
             "Conditions": [
                 {
-                    "ReadFrom": "target_fill",
+                    "ExchangePath": "target_fill.Value",
                     "Methode": "lt",
-                    "Params": [
-                        "Value",
-                        0.1
-                    ]
+                    "Value": 0.13
                 },
                 {
-                    "ReadFrom": "target_fill",
+                    "ExchangePath": "target_fill.Value",
                     "Methode": "gt",
-                    "Params": [
-                        "Value",
-                        0.001
-                    ]
+                    "Value": 0.01
                 },
                 {
-                    "ReadFrom": "target_fill",
+                    "ExchangePath": "target_fill.Unit",
                     "Methode": "eq",
-                    "Params": [
-                        "Unit",
-                        "mbar"
-                    ]
+                    "Value": "mbar"
                 }
             ],
             "Recipe": [
@@ -181,39 +176,38 @@
                     {
                         "TaskName": "FM3_1T-range_init",
                         "Replace": {
-                            "_range": "X0.1"
+                            "_range": "X0.01"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Mp-wait",
+                        "Replace": {
+                            "_waittime": 1000
                         }
                     }
                 ]
             ],
-            "RecipeClass": "ini_range",
+            "RecipeClass": "range_init",
             "ShortDescr": "Sets the Range depending on pfill\n"
         },
         {
             "Conditions": [
                 {
-                    "ReadFrom": "target_fill",
+                    "ExchangePath": "target_fill.Value",
                     "Methode": "lt",
-                    "Params": [
-                        "Value",
-                        1.3
-                    ]
+                    "Value": 1.3
                 },
                 {
-                    "ReadFrom": "target_fill",
+                    "ExchangePath": "target_fill.Value",
                     "Methode": "gt",
-                    "Params": [
-                        "Value",
-                        0.1
-                    ]
+                    "Value": 0.1
                 },
                 {
-                    "ReadFrom": "target_fill",
+                    "ExchangePath": "target_fill.Unit",
                     "Methode": "eq",
-                    "Params": [
-                        "Unit",
-                        "mbar"
-                    ]
+                    "Value": "mbar"
                 }
             ],
             "Recipe": [
@@ -224,9 +218,17 @@
                             "_range": "X1"
                         }
                     }
+                ],
+                [
+                    {
+                        "TaskName": "Mp-wait",
+                        "Replace": {
+                            "_waittime": 1000
+                        }
+                    }
                 ]
             ],
-            "RecipeClass": "ini_range",
+            "RecipeClass": "range_init",
             "ShortDescr": "Sets the Range depending on pfill\n"
         }
     ],
