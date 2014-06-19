@@ -10,6 +10,15 @@
         "target_fill": {
             "Value": null,
             "Unit": "mbar"
+        },
+        "pfill_ok": {
+            "Value": false
+        },
+        "got_time": {
+            "Value": false
+        },
+        "wait_time": {
+            "Value": 1000
         }
     },
     "Container": [
@@ -134,6 +143,32 @@
                 ]
             ],
             "Title": "Container 3"
+        },
+        {
+            "Element": {
+                "ctrl_client": {
+                    "Name": {
+                        "type": "text",
+                        "required": true
+                    },
+                    "Atime": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "Ctrl": "unformed",
+            "NoOfRepeats": 1,
+            "Recipe": [
+                [
+                    {
+                        "TaskName": "Mp-cond_wait",
+                        "Replace": {
+                            "_waittime": 1000
+                        }
+                    }
+                ]
+            ],
+            "Title": "Container 4"
         }
     ],
     "Date": [
@@ -243,6 +278,16 @@
             "TaskName": "wait",
             "Value": {
                 "WaitTime": "_waittime"
+            }
+        },
+        {
+            "Action": "wait",
+            "Comment": "_waitfor  _waittime ms",
+            "TaskName": "cond_wait",
+            "Exchange": "wait_time.Value",
+            "RunIf": "got_time.Value",
+            "Value": {
+                "WaitTime": "wait_time.Value"
             }
         },
         {
