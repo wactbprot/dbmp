@@ -159,14 +159,23 @@
             "Ctrl": "unformed",
             "NoOfRepeats": 1,
             "Recipe": [
-                [
-                    {
-                        "TaskName": "Mp-cond_wait",
-                        "Replace": {
-                            "_waittime": 1000
+              [
+                {
+                  "TaskName": "Mp-cond_wait",
+                  "Replace": {
+                    "_waittime": 1000
+                  }
+                }
+              ],
+              [
+                {
+                  "TaskName": "FM3_1T-slope_exec",
+                  "Replace": {
+                    "_prefix": "lw",
+                    "_docpath": "Calibration.Measurement.AuxValues.Conductance"
                         }
                     }
-                ]
+              ]
             ],
             "Title": "Container 4"
         }
@@ -284,7 +293,7 @@
             "Action": "wait",
             "Comment": "_waitfor  _waittime ms",
             "TaskName": "cond_wait",
-            "Exchange": "wait_time.Value",
+            "FromExchange": "wait_time.Value",
             "RunIf": "got_time.Value",
             "Value": {
                 "WaitTime": "wait_time.Value"

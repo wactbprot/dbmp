@@ -73,6 +73,7 @@
             "Wait": "_t_d",
             "LogPriority": "3",
             "DocPath": "_docpath",
+            "StopIf":"slope_ok.Value",
             "PostProcessing": [
                 "var _D = new Date(),",
                 "_vec = _x.map(_.extractMKSCDG).map(parseFloat),",
@@ -85,7 +86,8 @@
                 "_.vlRes('_prefix_R',        _res.R,      '1'),",
                 "_.vlRes('_prefix_N',        _res.remainN,'1'),",
                 "_.vlRes('_prefix_t_N', _D.getTime().toString(),  'ms')],",
-                "RawData =_x;"
+                "RawData =_x;",
+              "var ToExchange={'_prefix_slope_x.Value':_res.bx}"
             ]
         }
     ],
