@@ -358,5 +358,6 @@
             "Key": "_devicename-_elemtype"
         }
     ],
-    "Description": "ssmp test definition"
+    "Description": "ssmp test definition",
+    "Standard":"CE3"
 }
