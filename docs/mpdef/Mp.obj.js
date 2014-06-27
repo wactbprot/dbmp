@@ -316,8 +316,8 @@
       "Container": "_container",
       "Key": "_devicename-_elemtype",
       "Value": {
+        "DisplayAs":"pressureForm",
         "Caption": {
-
           "required": false,
           "value": "_caption"
         },
