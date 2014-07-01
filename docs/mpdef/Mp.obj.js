@@ -8,6 +8,27 @@
         "CUCO-*-ind_offset",
         "CUCO-*-ind"
       ],
+      "Description":"testdescr container 0",
+      "Ctrl": "unformed",
+      "NoOfRepeats": 1,
+      "Definition": [
+        [
+          {
+            "TaskName": "Mp-get_calib_select"
+          }
+        ]
+      ],
+      "Title": "Container 0"
+    },
+    {
+      "Element": [
+        "Stime.Value",
+        "Stime.Unit",
+        "target_fill.Value",
+        "CUCO-*-ind_offset",
+        "CUCO-*-ind"
+      ],
+      "Description":"testdescr container 1",
       "Ctrl": "unformed",
       "NoOfRepeats": 1,
       "Definition": [
@@ -17,8 +38,7 @@
             "Replace": {
               "_elemtype": "fill_offset",
               "_docpath": "Calibration.Measurement.AuxValues.Pressure",
-              "_caption": "offset of filling pressure",
-              "_container": 0
+              "_caption": "offset of filling pressure"
             }
           },
           {
@@ -26,8 +46,7 @@
             "Replace": {
               "_elemtype": "fill",
               "_docpath": "Calibration.Measurement.Values.Pressure",
-              "_caption": "filling pressure",
-              "_container": 0
+              "_caption": "filling pressure"
             }
           },
           {
@@ -35,8 +54,7 @@
             "Replace": {
               "_elemtype": "ind_offset",
               "_docpath": "Calibration.Measurement.Values.Pressure",
-              "_caption": "offset of indicated pressure",
-              "_container": 0
+              "_caption": "offset of indicated pressure"
             }
           },
           {
@@ -44,8 +62,7 @@
             "Replace": {
               "_elemtype": "ind",
               "_docpath": "Calibration.Measurement.Values.Pressure",
-              "_caption": "indicated pressure",
-              "_container": 0
+              "_caption": "indicated pressure"
             }
           },
           {
@@ -61,6 +78,7 @@
         "Stime.Unit",
         "target_fill.Value"
       ],
+      "Description":"testdescr container 2",
       "Ctrl": "unformed",
       "NoOfRepeats": 1,
       "Definition": [
@@ -98,6 +116,7 @@
           }
         }
       },
+      "Description":"testdescr container 3",
       "Ctrl": "unformed",
       "NoOfRepeats": 1,
       "Definition": [
@@ -124,6 +143,7 @@
           }
         }
       },
+      "Description":"testdescr container 4",
       "Ctrl": "unformed",
       "NoOfRepeats": 1,
       "Definition": [
@@ -313,7 +333,6 @@
       "Action": "addElement",
       "Comment": "Add an element to the Container _container Exchange api",
       "TaskName": "pressure_element",
-      "Container": "_container",
       "Key": "_devicename-_elemtype",
       "Value": {
         "DisplayAs":"pressureForm",
@@ -354,10 +373,17 @@
       "Action": "rmElement",
       "Comment": "Remove an Element from Elements and Exchange",
       "TaskName": "remove_element",
-      "Container": "_container",
       "Key": "_devicename-_elemtype"
+    },
+    {
+      "Action": "getList",
+      "Comment": "Remove an Element from Elements and Exchange",
+      "TaskName": "get_calib_select",
+      "ViewName":"calibrations",
+      "ListName":"select",
+      "ExchangePath":"Documents"
     }
-  ],
+ ],
   "Description": "ssmp test definition",
   "Standard":"CE3"
 }
