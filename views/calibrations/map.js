@@ -14,12 +14,14 @@ function(doc) {
         dcmcuco = dcm.CalibrationObject[0];
 
     if(dcpt && dcpc && dcmcuco){
-      emit(dc.Standard + "-" + dc.Year,{Sign     : dc.Sign,
-                                        Year     : dc.Year,
-                                        Standard : dc.Standard,
-                                        Customer : dcpc.Name,
-                                        Device   : dcmcuco.Name,
-                                        ToDoType : dcpt.Type}
+      emit(dc.Standard + "-" + dc.Year,{
+        Id       : doc._id,
+        Sign     : dc.Sign,
+        Year     : dc.Year,
+        Standard : dc.Standard,
+        Customer : dcpc.Name,
+        Device   : dcmcuco.Name,
+        ToDoType : dcpt.Type}
           )
     }
   }
