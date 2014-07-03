@@ -7,7 +7,8 @@ function(head, req) {
       id      = b.Id,
       dn      = b.DeviceName || "GenericDevice",
       mn      = b.MpName     || "Mp",
-      cuco    = b.CuCo; // is customer device?
+      cuco    = b.CuCo, // is customer device?
+      d       = new Date();
 
   tn = req.query.taskname ? JSON.parse(req.query.taskname) : tn;
   if(dn && mn) mptn = tn.replace(dn, mn)
@@ -52,6 +53,7 @@ function(head, req) {
       // zur Verfügung
       def["_mpname"]     = mn;
       def["_devicename"] = dn;
+      def["_year"]       = d.getFullYear();
 
       var strtask = JSON.stringify(task);
       for(j in def){

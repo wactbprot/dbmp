@@ -41,6 +41,6 @@ Als Ersetzungsstrings stehen immer:
 
 * ```_mpname```: der Messprogrammname der (default: Mp)
 * ```_devicename```: der Gerätename (Name des CalibrationObjects, ...) (default: GenericDevice)
-* ...
+* ```_year```: das aktuelle Jahr im YYYY Format
 
 zur Verfügung.
