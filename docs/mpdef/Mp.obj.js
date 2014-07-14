@@ -2,11 +2,7 @@
     "Container": [
         {
             "Element": [
-                "Stime.Value",
-                "Stime.Unit",
-                "target_fill.Value",
-                "CUCO-*-ind_offset",
-                "CUCO-*-ind"
+                "Documents"
             ],
             "Description": "testdescr container 0",
             "Ctrl": "unformed",
@@ -14,7 +10,10 @@
             "Definition": [
                 [
                     {
-                        "TaskName": "Mp-get_calib_select"
+                        "TaskName": "Mp-get_calib_select",
+                        "Replace": {
+                            "_standard": "CE3"
+                        }
                     }
                 ]
             ],
@@ -22,9 +21,8 @@
         },
         {
             "Element": [
-                "Stime.Value",
-                "Stime.Unit",
-                "target_fill.Value",
+                "Stime",
+                "target_fill",
                 "CUCO-*-ind_offset",
                 "CUCO-*-ind"
             ],
@@ -74,9 +72,8 @@
         },
         {
             "Element": [
-                "Stime.Value",
-                "Stime.Unit",
-                "target_fill.Value"
+                "Stime",
+                "target_fill"
             ],
             "Description": "testdescr container 2",
             "Ctrl": "unformed",
@@ -334,24 +331,27 @@
             "TaskName": "pressure_element",
             "Key": "_devicename-_elemtype",
             "Value": {
-                "DisplayAs": "pressureForm",
+                "DisplayAs": "section",
                 "Caption": {
                     "required": false,
-                    "value": "_caption"
+                    "value": "_caption",
+                    "type": "string"
                 },
                 "DocPath": {
                     "required": true,
-                    "value": "_docpath"
+                    "value": "_docpath",
+                    "type": "string"
                 },
                 "Type": {
                     "required": true,
                     "value": "_elemtype",
-                    "type": "text"
+                    "type": "string"
                 },
                 "Unit": {
                     "required": true,
                     "value": "mbar",
-                    "options": "_pressureunits"
+                    "options": "_pressureunits",
+                    "type": "string"
                 },
                 "Value": {
                     "required": true,
@@ -359,7 +359,7 @@
                 },
                 "Comment": {
                     "required": false,
-                    "type": "text"
+                    "type": "string"
                 }
             }
         },
@@ -375,6 +375,9 @@
             "TaskName": "get_calib_select",
             "ViewName": "calibrations",
             "ListName": "select",
+            "Params": {
+                "key": "_standard-_year"
+            },
             "ExchangePath": "Documents"
         }
     ],
