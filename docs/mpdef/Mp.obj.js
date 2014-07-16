@@ -35,36 +35,42 @@
                         "TaskName": "Mp-pressure_element",
                         "Replace": {
                             "_elemtype": "fill_offset",
-                            "_docpath": "Calibration.Measurement.AuxValues.Pressure",
-                            "_caption": "offset of filling pressure"
+                            "_caption": "offset of filling pressure",
+                            "_docpath": "Calibration.Measurement.AuxValues.Conductance"
                         }
                     },
                     {
                         "TaskName": "Mp-pressure_element",
                         "Replace": {
                             "_elemtype": "fill",
-                            "_docpath": "Calibration.Measurement.Values.Pressure",
-                            "_caption": "filling pressure"
+                            "_caption": "filling pressure",
+                            "_docpath": "Calibration.Measurement.AuxValues.Conductance"
                         }
                     },
                     {
                         "TaskName": "CUCO-pressure_element",
                         "Replace": {
                             "_elemtype": "ind_offset",
-                            "_docpath": "Calibration.Measurement.Values.Pressure",
-                            "_caption": "offset of indicated pressure"
+                            "_caption": "offset of indicated pressure",
+                            "_docpath": "Calibration.Measurement.AuxValues.Conductance"
                         }
                     },
                     {
                         "TaskName": "CUCO-pressure_element",
                         "Replace": {
                             "_elemtype": "ind",
-                            "_docpath": "Calibration.Measurement.Values.Pressure",
-                            "_caption": "indicated pressure"
+                            "_caption": "indicated pressure",
+                            "_docpath": "Calibration.Measurement.AuxValues.Conductance"
                         }
-                    },
+                    }
+                ],
+                [
                     {
-                        "TaskName": "FM3_1T-device_init"
+                        "TaskName": "CUCO-read_element",
+                        "Replace": {
+                            "_elemtype": "ind_offset",
+                            "_docpath": "Calibration.Measurement.Values.Pressure"
+                        }
                     }
                 ]
             ],
@@ -326,48 +332,49 @@
             }
         },
         {
+            "Action": "readElement",
+            "Comment": "Reads values under the given exchange point.",
+            "TaskName": "read_element",
+            "DocPath": "_docpath",
+            "Key": "_devicename-_elemtype"
+        },
+        {
             "Action": "addElement",
             "Comment": "Add an element to the Container _container Exchange api",
             "TaskName": "pressure_element",
             "Key": "_devicename-_elemtype",
             "Value": {
                 "DisplayAs": "section",
+                "ReadOut": false,
                 "Caption": {
                     "required": false,
                     "value": "_caption",
                     "type": "string"
                 },
-                "DocPath": {
-                    "required": true,
-                    "value": "_docpath",
-                    "type": "string"
-                },
                 "Type": {
                     "required": true,
                     "value": "_elemtype",
-                    "type": "string"
+                    "type": "string",
+                    "save": true
                 },
                 "Unit": {
                     "required": true,
                     "value": "mbar",
                     "options": "_pressureunits",
-                    "type": "string"
+                    "type": "string",
+                    "save": true
                 },
                 "Value": {
                     "required": true,
-                    "type": "number"
+                    "type": "number",
+                    "save": true
                 },
                 "Comment": {
                     "required": false,
-                    "type": "string"
+                    "type": "string",
+                    "save": true
                 }
             }
-        },
-        {
-            "Action": "rmElement",
-            "Comment": "Remove an Element from Elements and Exchange",
-            "TaskName": "remove_element",
-            "Key": "_devicename-_elemtype"
         },
         {
             "Action": "getList",
