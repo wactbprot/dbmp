@@ -38,7 +38,9 @@
                             "_caption": "offset of indicated pressure",
                             "_docpath": "Calibration.Measurement.AuxValues.Conductance"
                         }
-                    },
+                    }
+                ],
+                [
                     {
                         "TaskName": "CUCO-pressure_element",
                         "Replace": {
