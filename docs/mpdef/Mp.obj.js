@@ -5,7 +5,7 @@
                 "Documents"
             ],
             "Description": "testdescr container 0",
-            "Ctrl": "unformed",
+            "Ctrl": "load;run",
             "NoOfRepeats": 1,
             "Definition": [
                 [
@@ -27,26 +27,10 @@
                 "CUCO-*-ind"
             ],
             "Description": "testdescr container 1",
-            "Ctrl": "unformed",
+            "Ctrl": "ready",
             "NoOfRepeats": 1,
             "Definition": [
                 [
-                    {
-                        "TaskName": "Mp-pressure_element",
-                        "Replace": {
-                            "_elemtype": "fill_offset",
-                            "_caption": "offset of filling pressure",
-                            "_docpath": "Calibration.Measurement.AuxValues.Conductance"
-                        }
-                    },
-                    {
-                        "TaskName": "Mp-pressure_element",
-                        "Replace": {
-                            "_elemtype": "fill",
-                            "_caption": "filling pressure",
-                            "_docpath": "Calibration.Measurement.AuxValues.Conductance"
-                        }
-                    },
                     {
                         "TaskName": "CUCO-pressure_element",
                         "Replace": {
@@ -82,7 +66,7 @@
                 "target_fill"
             ],
             "Description": "testdescr container 2",
-            "Ctrl": "unformed",
+            "Ctrl": "ready",
             "NoOfRepeats": 1,
             "Definition": [
                 [
@@ -120,7 +104,7 @@
                 }
             },
             "Description": "testdescr container 3",
-            "Ctrl": "unformed",
+            "Ctrl": "ready",
             "NoOfRepeats": 1,
             "Definition": [
                 [
@@ -147,7 +131,7 @@
                 }
             },
             "Description": "testdescr container 4",
-            "Ctrl": "unformed",
+            "Ctrl": "ready",
             "NoOfRepeats": 1,
             "Definition": [
                 [
@@ -345,7 +329,7 @@
             "Key": "_devicename-_elemtype",
             "Value": {
                 "DisplayAs": "section",
-                "ReadOut": false,
+                "Ready": false,
                 "Caption": {
                     "required": false,
                     "value": "_caption",
