@@ -10,9 +10,17 @@
             "Definition": [
                 [
                     {
+                        "TaskName": "FM3_10T-device_ini",
+                        "Replace": {
+                            "@exchpath": "FM3_10T_ini_ok.Value.value"
+                        }
+                    }
+                ],
+                [
+                    {
                         "TaskName": "FM3_1T-device_ini",
                         "Replace": {
-                            "_exchpath": "FM3_1T_ini_ok.Value.value"
+                            "@exchpath": "FM3_1T_ini_ok.Value.value"
                         }
                     }
                 ],
@@ -20,8 +28,17 @@
                     {
                         "TaskName": "FM3_1T-set_range",
                         "Replace": {
-                            "_range": "X1",
-                            "_exchpath": "FM3_1T_range_ok.Value.value"
+                            "@range": "X1",
+                            "@exchpath": "FM3_1T_range_ok.Value.value"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "FM3_10T-set_range",
+                        "Replace": {
+                            "@range": "X1",
+                            "@exchpath": "FM3_10T_range_ok.Value.value"
                         }
                     }
                 ]
@@ -35,7 +52,17 @@
                 "value": false
             }
         },
+        "FM3_10T_ini_ok": {
+            "Value": {
+                "value": false
+            }
+        },
         "FM3_1T_range_ok": {
+            "Value": {
+                "value": false
+            }
+        },
+        "FM3_10T_range_ok": {
             "Value": {
                 "value": false
             }

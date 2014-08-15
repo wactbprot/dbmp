@@ -12,7 +12,7 @@
                     {
                         "TaskName": "Mp-get_calib_select",
                         "Replace": {
-                            "_standard": "CE3"
+                            "@standard": "CE3"
                         }
                     }
                 ]
@@ -34,9 +34,9 @@
                     {
                         "TaskName": "CUCO-pressure_element",
                         "Replace": {
-                            "_elemtype": "ind_offset",
-                            "_caption": "offset of indicated pressure",
-                            "_docpath": "Calibration.Measurement.AuxValues.Conductance"
+                            "@elemtype": "ind_offset",
+                            "@caption": "offset of indicated pressure",
+                            "@docpath": "Calibration.Measurement.AuxValues.Conductance"
                         }
                     }
                 ],
@@ -44,9 +44,9 @@
                     {
                         "TaskName": "CUCO-pressure_element",
                         "Replace": {
-                            "_elemtype": "ind",
-                            "_caption": "indicated pressure",
-                            "_docpath": "Calibration.Measurement.AuxValues.Conductance"
+                            "@elemtype": "ind",
+                            "@caption": "indicated pressure",
+                            "@docpath": "Calibration.Measurement.AuxValues.Conductance"
                         }
                     }
                 ],
@@ -54,8 +54,8 @@
                     {
                         "TaskName": "CUCO-read_element",
                         "Replace": {
-                            "_elemtype": "ind_offset",
-                            "_docpath": "Calibration.Measurement.Values.Pressure"
+                            "@elemtype": "ind_offset",
+                            "@docpath": "Calibration.Measurement.Values.Pressure"
                         }
                     }
                 ]
@@ -75,18 +75,9 @@
                     {
                         "TaskName": "Mp-remove_element",
                         "Replace": {
-                            "_container": 0,
-                            "_devicename": "Mp",
-                            "_elemtype": "fill"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "FM3_1T-slope_exec",
-                        "Replace": {
-                            "_prefix": "lw",
-                            "_docpath": "Calibration.Measurement.AuxValues.Conductance"
+                            "@container": 0,
+                            "@devicename": "Mp",
+                            "@elemtype": "fill"
                         }
                     }
                 ]
@@ -113,7 +104,7 @@
                     {
                         "TaskName": "Mp-select_recipe",
                         "Replace": {
-                            "_recipeclass": "range_init"
+                            "@recipeclass": "range_init"
                         }
                     }
                 ]
@@ -140,7 +131,7 @@
                     {
                         "TaskName": "Mp-cond_wait",
                         "Replace": {
-                            "_waittime": 1000
+                            "@waittime": 1000
                         }
                     }
                 ],
@@ -148,8 +139,8 @@
                     {
                         "TaskName": "FM3_1T-slope_exec",
                         "Replace": {
-                            "_prefix": "lw",
-                            "_docpath": "Calibration.Measurement.AuxValues.Conductance"
+                            "@prefix": "lw",
+                            "@docpath": "Calibration.Measurement.AuxValues.Conductance"
                         }
                     }
                 ]
@@ -164,18 +155,18 @@
         }
     ],
     "Defaults": {
-        "_waittime": 1000,
-        "_waitfor": "Ready in",
-        "_waitunit": "ms",
-        "_docpath": "",
-        "_pressureunits": [
+        "@waittime": 1000,
+        "@waitfor": "Ready in",
+        "@waitunit": "ms",
+        "@docpath": "",
+        "@pressureunits": [
             "mbar",
             "Pa",
             "kPa",
             "Torr",
             "mmHg"
         ],
-        "_recipeclass": "range_init"
+        "@recipeclass": "range_init"
     },
     "Exchange": {
         "Stime": {
@@ -232,9 +223,9 @@
             "Definition": [
                 [
                     {
-                        "TaskName": "FM3_1T-range_init",
+                        "TaskName": "FM3_1T-set_range",
                         "Replace": {
-                            "_range": "X0.01"
+                            "@range": "X0.01"
                         }
                     }
                 ],
@@ -242,7 +233,7 @@
                     {
                         "TaskName": "Mp-wait",
                         "Replace": {
-                            "_waittime": 1000
+                            "@waittime": 1000
                         }
                     }
                 ]
@@ -271,9 +262,9 @@
             "Definition": [
                 [
                     {
-                        "TaskName": "FM3_1T-range_init",
+                        "TaskName": "FM3_1T-set_range",
                         "Replace": {
-                            "_range": "X1"
+                            "@range": "X1"
                         }
                     }
                 ],
@@ -281,7 +272,7 @@
                     {
                         "TaskName": "Mp-wait",
                         "Replace": {
-                            "_waittime": 1000
+                            "@waittime": 1000
                         }
                     }
                 ]
@@ -293,15 +284,15 @@
     "Tasks": [
         {
             "Action": "wait",
-            "Comment": "_waitfor  _waittime ms",
+            "Comment": "@waitfor  @waittime ms",
             "TaskName": "wait",
             "Value": {
-                "WaitTime": "_waittime"
+                "WaitTime": "@waittime"
             }
         },
         {
             "Action": "wait",
-            "Comment": "_waitfor  _waittime ms",
+            "Comment": "@waitfor  @waittime ms",
             "TaskName": "cond_wait",
             "FromExchange": "wait_time.Value",
             "RunIf": "got_time.Value",
@@ -314,39 +305,39 @@
             "Comment": "selects recipes",
             "TaskName": "select_recipe",
             "Value": {
-                "RecipeClass": "_recipeclass"
+                "RecipeClass": "@recipeclass"
             }
         },
         {
             "Action": "readElement",
             "Comment": "Reads values under the given exchange point.",
             "TaskName": "read_element",
-            "DocPath": "_docpath",
-            "Key": "_devicename-_elemtype"
+            "DocPath": "@docpath",
+            "Key": "@devicename-@elemtype"
         },
         {
             "Action": "addElement",
-            "Comment": "Add an element to the Container _container Exchange api",
+            "Comment": "Add an element to the Exchange api",
             "TaskName": "pressure_element",
-            "Key": "_devicename-_elemtype",
+            "Key": "@devicename-@elemtype",
             "Value": {
                 "DisplayAs": "section",
                 "Ready": false,
                 "Caption": {
                     "required": false,
-                    "value": "_caption",
+                    "value": "@caption",
                     "type": "string"
                 },
                 "Type": {
                     "required": true,
-                    "value": "_elemtype",
+                    "value": "@elemtype",
                     "type": "string",
                     "save": true
                 },
                 "Unit": {
                     "required": true,
                     "value": "mbar",
-                    "options": "_pressureunits",
+                    "options": "@pressureunits",
                     "type": "string",
                     "save": true
                 },
@@ -369,7 +360,7 @@
             "ViewName": "calibrations",
             "ListName": "select",
             "Params": {
-                "key": "_standard-_year"
+                "key": "@standard-@year"
             },
             "ExchangePath": "Documents"
         }
