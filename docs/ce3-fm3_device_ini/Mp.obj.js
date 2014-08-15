@@ -10,16 +10,64 @@
             "Definition": [
                 [
                     {
-                        "TaskName": "FM3_10T-device_ini",
+                        "TaskName": "FM3_1T-send_cmd",
                         "Replace": {
-                            "@exchpath": "FM3_10T_ini_ok.Value.value"
+                            "@cmdstr": ":digit 5.5",
+                            "@exchpath": "FM3_1T_ini_ok.Value.value"
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_10T-send_cmd",
+                        "Replace": {
+                            "@cmdstr": ":digit 5.5",
+                            "@exchpath": "FM3_1T_ini_ok.Value.value"
                         }
                     }
                 ],
                 [
                     {
-                        "TaskName": "FM3_1T-device_ini",
+                        "TaskName": "FM3_1T-send_cmd",
                         "Replace": {
+                            "@cmdstr": ":sens:scan(@1):puni MBAR",
+                            "@exchpath": "FM3_1T_ini_ok.Value.value"
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_10T-send_cmd",
+                        "Replace": {
+                            "@cmdstr": ":sens:scan(@1):puni MBAR",
+                            "@exchpath": "FM3_1T_ini_ok.Value.value"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "FM3_1T-send_cmd",
+                        "Replace": {
+                            "@cmdstr": ":sens:scan(@1):aver 1",
+                            "@exchpath": "FM3_1T_ini_ok.Value.value"
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_10T-send_cmd",
+                        "Replace": {
+                            "@cmdstr": ":sens:scan(@1):aver 1",
+                            "@exchpath": "FM3_1T_ini_ok.Value.value"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "FM3_1T-send_cmd",
+                        "Replace": {
+                            "@cmdstr": ":sens:func pres",
+                            "@exchpath": "FM3_1T_ini_ok.Value.value"
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_10T-send_cmd",
+                        "Replace": {
+                            "@cmdstr": ":sens:func pres",
                             "@exchpath": "FM3_1T_ini_ok.Value.value"
                         }
                     }
