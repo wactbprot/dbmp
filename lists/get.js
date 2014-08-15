@@ -51,9 +51,9 @@ function(head, req) {
       // _devicename
       // steht _standardmäßig
       // zur Verfügung
-      def["_mpname"]     = mn;
-      def["_devicename"] = dn;
-      def["_year"]       = d.getFullYear();
+      def["@mpname"]     = mn;
+      def["@devicename"] = dn;
+      def["@year"]       = d.getFullYear();
 
       var strtask = JSON.stringify(task);
       for(j in def){

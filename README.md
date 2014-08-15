@@ -39,8 +39,8 @@ http://localhost:5984/nmp_db/_design/dbmp/_view/tasks
 
 Als Ersetzungsstrings stehen immer:
 
-* ```_mpname```: der Messprogrammname der (default: Mp)
-* ```_devicename```: der Gerätename (Name des CalibrationObjects, ...) (default: GenericDevice)
-* ```_year```: das aktuelle Jahr im YYYY Format
+* ```@mpname```: der Messprogrammname der (default: Mp)
+* ```@devicename```: der Gerätename (Name des CalibrationObjects, ...) (default: GenericDevice)
+* ```@year```: das aktuelle Jahr im YYYY Format
 
 zur Verfügung.
