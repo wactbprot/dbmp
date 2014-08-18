@@ -7,8 +7,9 @@ function(doc) {
  */
 var tob,i,j;
 
-  if(doc.Mp) tob = doc.Mp;
+  if(doc.Mp)                tob = doc.Mp;
   if(doc.CalibrationObject) tob = doc.CalibrationObject;
+  if(doc.AuxObject)         tob = doc.AuxObject;
 
   if(tob && tob.Tasks){
     var t    = tob.Tasks,
