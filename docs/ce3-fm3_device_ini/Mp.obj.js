@@ -10,6 +10,38 @@
             "Definition": [
                 [
                     {
+                        "TaskName": "FM3_1T-is_ready",
+                        "Replace": {
+                            "@exchpath": "FM3_1T_is_ready.Value.value"
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_10T-is_ready",
+                        "Replace": {
+                            "@exchpath": "FM3_10T_is_ready.Value.value"
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_1000T-is_ready",
+                        "Replace": {
+                            "@exchpath": "FM3_1000T_is_ready.Value.value"
+                        }
+                    },
+                    {
+                        "TaskName": "Corvus_1-is_ready",
+                        "Replace": {
+                            "@exchpath": "Corvus_1_is_ready.Value.value"
+                        }
+                    },
+                    {
+                        "TaskName": "Corvus_2-is_ready",
+                        "Replace": {
+                            "@exchpath": "Corvus_2_is_ready.Value.value"
+                        }
+                    }
+                ],
+                [
+                    {
                         "TaskName": "FM3_1T-send_cmd",
                         "Replace": {
                             "@cmdstr": ":digit 5.5",
@@ -20,7 +52,14 @@
                         "TaskName": "FM3_10T-send_cmd",
                         "Replace": {
                             "@cmdstr": ":digit 5.5",
-                            "@exchpath": "FM3_1T_ini_ok.Value.value"
+                            "@exchpath": "FM3_10T_ini_ok.Value.value"
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_1000T-send_cmd",
+                        "Replace": {
+                            "@cmdstr": ":digit 5.5",
+                            "@exchpath": "FM3_1000T_ini_ok.Value.value"
                         }
                     }
                 ],
@@ -36,7 +75,14 @@
                         "TaskName": "FM3_10T-send_cmd",
                         "Replace": {
                             "@cmdstr": ":sens:scan(@1):puni MBAR",
-                            "@exchpath": "FM3_1T_ini_ok.Value.value"
+                            "@exchpath": "FM3_10T_ini_ok.Value.value"
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_1000T-send_cmd",
+                        "Replace": {
+                            "@cmdstr": ":sens:scan(@1):puni MBAR",
+                            "@exchpath": "FM3_1000T_ini_ok.Value.value"
                         }
                     }
                 ],
@@ -52,7 +98,14 @@
                         "TaskName": "FM3_10T-send_cmd",
                         "Replace": {
                             "@cmdstr": ":sens:scan(@1):aver 1",
-                            "@exchpath": "FM3_1T_ini_ok.Value.value"
+                            "@exchpath": "FM3_10T_ini_ok.Value.value"
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_1000T-send_cmd",
+                        "Replace": {
+                            "@cmdstr": ":sens:scan(@1):aver 1",
+                            "@exchpath": "FM3_1000T_ini_ok.Value.value"
                         }
                     }
                 ],
@@ -68,25 +121,37 @@
                         "TaskName": "FM3_10T-send_cmd",
                         "Replace": {
                             "@cmdstr": ":sens:func pres",
-                            "@exchpath": "FM3_1T_ini_ok.Value.value"
+                            "@exchpath": "FM3_10T_ini_ok.Value.value"
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_1000T-send_cmd",
+                        "Replace": {
+                            "@cmdstr": ":sens:func pres",
+                            "@exchpath": "FM3_1000T_ini_ok.Value.value"
                         }
                     }
                 ],
                 [
                     {
-                        "TaskName": "FM3_1T-set_range",
+                        "TaskName": "FM3_1T-send_cmd",
                         "Replace": {
-                            "@range": "X1",
+                            "@cmdstr": ":sens:scan(@1):gain X1",
                             "@exchpath": "FM3_1T_range_ok.Value.value"
                         }
-                    }
-                ],
-                [
+                    },
                     {
-                        "TaskName": "FM3_10T-set_range",
+                        "TaskName": "FM3_10T-send_cmd",
                         "Replace": {
-                            "@range": "X1",
+                            "@cmdstr": ":sens:scan(@1):gain X1",
                             "@exchpath": "FM3_10T_range_ok.Value.value"
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_1000T-send_cmd",
+                        "Replace": {
+                            "@cmdstr": ":sens:scan(@1):gain X1",
+                            "@exchpath": "FM3_1000T_range_ok.Value.value"
                         }
                     }
                 ]
@@ -95,6 +160,31 @@
         }
     ],
     "Exchange": {
+        "FM3_1T_is_ready": {
+            "Value": {
+                "value": false
+            }
+        },
+        "FM3_10T_is_ready": {
+            "Value": {
+                "value": false
+            }
+        },
+        "FM3_1000T_is_ready": {
+            "Value": {
+                "value": false
+            }
+        },
+        "Corvus_1_is_ready": {
+            "Value": {
+                "value": false
+            }
+        },
+        "Corvus_2_is_ready": {
+            "Value": {
+                "value": false
+            }
+        },
         "FM3_1T_ini_ok": {
             "Value": {
                 "value": false
@@ -105,12 +195,22 @@
                 "value": false
             }
         },
+        "FM3_1000T_ini_ok": {
+            "Value": {
+                "value": false
+            }
+        },
         "FM3_1T_range_ok": {
             "Value": {
                 "value": false
             }
         },
         "FM3_10T_range_ok": {
+            "Value": {
+                "value": false
+            }
+        },
+        "FM3_1000T_range_ok": {
             "Value": {
                 "value": false
             }

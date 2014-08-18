@@ -31,36 +31,36 @@
         "@t_d": "500",
         "@N_d": "10",
         "@acc": "VXI11",
-        "@CR": "\n",
+        "@cmdstr": ":meas:func",
         "@range": "X1",
         "@prefix": "drift",
         "@docpath": "Calibration.Measurement.Values.Drift"
     },
     "Tasks": [
         {
-            "TaskName": "device_ini",
-            "Comment": "Gerät initiieren",
+            "TaskName": "is_ready",
+            "Comment": "Testet ob das Gerät ansprechbar ist",
             "Action": "@acc",
             "Host": "@host",
             "Device": "@device",
             "LogPriority": "3",
-            "Value": ":digit 5.5@CR:sens:scan(@1):puni @unt@CR:sens:scan(@1):aver 1@CR:sens:func pres@CR*OPC?@CR",
+            "Value": "*IDN?",
             "PostProcessing": [
-                "var ok = _x == 1 ,",
+                "var ok = _x == 'MKS Instruments MKS670BD81 0 1.2',",
                 "ToExchange={'@exchpath':ok};"
             ]
         },
         {
-            "TaskName": "set_range",
-            "Comment": "Initialize Range _range",
+            "TaskName": "send_cmd",
+            "Comment": "Sendet @cmdstr an das Gerät. Es gibt keine Rückantwort; deshalb wird auf null getestet",
             "Action": "@acc",
             "Host": "@host",
             "Device": "@device",
+            "VxiTimeout": 0,
             "LogPriority": "3",
-            "Value": ":sens:scan(@1):gain @range@CR:meas:func@CR*OPC?@CR",
+            "Value": "@cmdstr",
             "PostProcessing": [
-                "var ok = _x == 1,",
-                "ToExchange={'@exchpath':ok};"
+                "ToExchange={'@exchpath':_x == null};"
             ]
         }
     ],

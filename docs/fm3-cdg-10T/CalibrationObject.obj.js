@@ -212,33 +212,33 @@
         "@unt": "mbar",
         "@acc": "VXI11",
         "@range": "X1",
-        "@CR": "\r"
+        "@cmdstr": ":funv:meas"
     },
     "Tasks": [
         {
-            "TaskName": "device_ini",
-            "Comment": "Initialisierung des Geräts",
+            "TaskName": "is_ready",
+            "Comment": "Testet ob das Gerät ansprechbar ist",
             "Action": "@acc",
             "Host": "@host",
-            "LogPriority": "3",
             "Device": "@device",
-            "Value": ":digit 5.5@CR:sens:scan(@1):puni @unt@CR:sens:scan(@1):aver 1@CR:sens:func pres@CR*OPC?@CR",
+            "LogPriority": "3",
+            "Value": "*IDN?",
             "PostProcessing": [
-                "var ok = _x == 1,",
+                "var ok = _x == 'MKS INSTRUMENTS INC, MODEL 670, 0, SW Version 1.00',",
                 "ToExchange={'@exchpath':ok};"
             ]
         },
         {
-            "TaskName": "set_range",
-            "Comment": "Stell die Range @range ein",
+            "TaskName": "send_cmd",
+            "Comment": "Sendet @cmdstr an das Gerät. Es gibt keine Rückantwort; deshalb wird auf null getestet",
             "Action": "@acc",
             "Host": "@host",
-            "LogPriority": "3",
             "Device": "@device",
-            "Value": ":sens:scan(@1):gain @range@CR*OPC?@CR",
+            "VxiTimeout": 0,
+            "LogPriority": "3",
+            "Value": "@cmdstr",
             "PostProcessing": [
-                "var ok = _x == 1,",
-                "ToExchange={'@exchpath':ok};"
+                "var ToExchange={'@exchpath':_x == null};"
             ]
         }
     ],
