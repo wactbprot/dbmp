@@ -31,13 +31,25 @@ function(head, req) {
   }else{
     task = oktask;
   }
-  // Ersetzungen
-  if(task && typeof task === "object"){
+
+
+  if(task){
+
+    // Metatasks mit Use
+    if(b.Use){
+
+      for(var ks in b.Use){ // k ist z.B. Value
+        // plural --> singular
+        var k = ks.replace(/[s]$/,"");
+        task[k] = task[ks][b.Use[ks]];
+      }
+    }
+
+    // Defaults Ersetzungen
     if(task.Defaults && typeof task.Defaults === "object"){
 
       var def = JSON.parse(JSON.stringify(task.Defaults)); // internal defaults
       delete task.Defaults
-
 
       // Defaults um Replaces erweitern
       // bzw. ersetzen

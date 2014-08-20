@@ -11,8 +11,8 @@ var tob,i,j;
   if(doc.CalibrationObject) tob = doc.CalibrationObject;
   if(doc.AuxObject)         tob = doc.AuxObject;
 
-  if(tob && tob.Tasks){
-    var t    = tob.Tasks,
+  if(tob && tob.Task){
+    var t    = tob.Task,
         d    = tob.Defaults,
         name = tob.Name;
 

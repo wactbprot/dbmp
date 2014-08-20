@@ -1,5 +1,4 @@
 {
-    "Comment": "Neue Temperaturfuehler fuer CE3 an Agilent Scanner und neue PT100, liefert seit 27.10.11 Unsicherheit für CE3/FM3",
     "Constants": [
         {
             "Type": "useDev",
@@ -102,5 +101,8 @@
             "Unit": "K",
             "Comment": "experimentelle Streuung bei der Kalib."
         }
-    ]
+    ],
+    "History": {
+        "2011-10-27": "Neue Temperaturfuehler fuer CE3 an Agilent Scanner und neue PT100, liefert seit 27.10.11 Unsicherheit für CE3/FM3"
+    }
 }

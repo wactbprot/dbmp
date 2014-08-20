@@ -31,12 +31,10 @@
         "@t_d": "500",
         "@N_d": "10",
         "@acc": "VXI11",
-        "@cmdstr": ":meas:func",
-        "@range": "X1",
         "@prefix": "drift",
         "@docpath": "Calibration.Measurement.Values.Drift"
     },
-    "Tasks": [
+    "Task": [
         {
             "TaskName": "is_ready",
             "Comment": "Testet ob das Gerät ansprechbar ist",
@@ -51,14 +49,23 @@
             ]
         },
         {
-            "TaskName": "send_cmd",
-            "Comment": "Sendet @cmdstr an das Gerät. Es gibt keine Rückantwort; deshalb wird auf null getestet",
+            "TaskName": "device_ini",
+            "Comment": "Task klammert alle ini strungs und führt per default die digit einstellung durch.",
             "Action": "@acc",
             "Host": "@host",
             "Device": "@device",
             "VxiTimeout": 0,
             "LogPriority": "3",
-            "Value": "@cmdstr",
+            "Values": {
+                "unit_mbar": ":sens:scan(@1):puni MBAR",
+                "no_aver": ":sens:scan(@1):aver 1",
+                "high_res": ":digit 5.5",
+                "meas_p": ":sens:func pres",
+                "high_range": ":sens:scan(@1):gain X1",
+                "med_range": ":sens:scan(@1):gain X0.1",
+                "low_range": ":sens:scan(@1):gain X0.01"
+            },
+            "Value": ":digit 5.5",
             "PostProcessing": [
                 "ToExchange={'@exchpath':_x == null};"
             ]
