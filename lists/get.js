@@ -32,16 +32,16 @@ function(head, req) {
     task = oktask;
   }
 
-
   if(task){
-
     // Metatasks mit Use
     if(b.Use){
 
-      for(var ks in b.Use){ // k ist z.B. Value
+      for(var ks in b.Use){ // ks ist z.B. Values
         // plural --> singular
-        var k = ks.replace(/[s]$/,"");
-        task[k] = task[ks][b.Use[ks]];
+        if(task[ks]){
+          var k = ks.replace(/[s]$/,"");  // k ist dann Value
+          task[k] = task[ks][b.Use[ks]];
+        }
       }
     }
 
