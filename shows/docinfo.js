@@ -17,7 +17,7 @@ function (doc, req) {
       res.Device     = dcmcuco.Name;
       res.ToDoType   = dcpt.Type
     }else{
-      res.error  = "ToDo or Customer or Customer Gauge missing";
+      res.warn  = "ToDo or Customer or Customer Gauge missing";
     }
   }else{
     res.error  = "not a Calibration";
