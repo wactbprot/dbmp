@@ -9,20 +9,18 @@ function(doc) {
     var dc      = doc.Calibration,
         dcm     = dc.Measurement,
         dcp     = dc.Presettings,
-        dcpt    = dcp.ToDo,
-        dcpc    = dcp.Customer,
-        dcmcuco = dcm.CalibrationObject[0];
+        dcpt    = dcp.ToDo     ||{},
+        dcpc    = dcp.Customer ||{},
+        dcmcuco = dcm.CalibrationObject[0] ||{};
 
-    if(dcpt && dcpc && dcmcuco){
+
       emit(dc.Standard + "-" + dc.Year,{
-        Id       : doc._id,
-        Sign     : dc.Sign,
-        Year     : dc.Year,
-        Standard : dc.Standard,
-        Customer : dcpc.Name,
-        Device   : dcmcuco.Name,
-        ToDoType : dcpt.Type}
-          )
-    }
+        Id       : doc._id ,
+        Sign     : dc.Sign       || "__sign__",
+        Year     : dc.Year       || "__year__",
+        Standard : dc.Standard   || "__standard__",
+        Customer : dcpc.Name     || "__customer_name__",
+        Device   : dcmcuco.Name  || "__device_name__",
+        ToDoType : dcpt.Type     || "__todo_type__" });
   }
 }
