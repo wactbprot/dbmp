@@ -1,5 +1,5 @@
 function (doc, req) {
-  var res = {};
+  var res = {DocInfo:true};
 
   if(doc && doc.Calibration){
     var dc      = doc.Calibration,
