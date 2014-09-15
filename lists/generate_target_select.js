@@ -59,12 +59,12 @@ function(head, req) {
     var cv = all[j];
     if(cv != ov){
       ov = cv;
-      values.push( cv.toExponential())
+      values.push( {value:cv, display:cv.toExponential() + " " + unit})
     }
   }
   var ro = {Unit:{value:unit},
-            Value:{value:null,
-                   options:values}}
+            targetPressure:{value:values[0].value,
+                            options:values}}
 
 
 
