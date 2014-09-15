@@ -64,12 +64,13 @@ function(head, req) {
 
 	if(cv != ov){
 	    ov = cv;
-	    values.push({"value":cv, "display":"" + cv.toExponential()})
+	    values.push({"value":cv, "display":"" + cv.toExponential() + " " + unit})
 	}
     }
 
     //
-  ro.unit    = unit;
+
+ 
   ro.options = values;
   return JSON.stringify(ro);
 }
