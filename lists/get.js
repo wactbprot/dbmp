@@ -4,7 +4,7 @@ function(head, req) {
       b       = tr ? JSON.parse(req.body) : {}, // body
       tn      = b.TaskName, //
       repl    = b.Replace,
-      id      = b.Id,
+      idArr   = b.Id,
       dn      = b.DeviceName || "GenericDevice",
       mn      = b.MpName     || "Mp",
       cuco    = b.CuCo, // is customer device?
@@ -59,6 +59,7 @@ function(head, req) {
     def["@mpname"]     = mn;
     def["@devicename"] = dn;
     def["@year"]       = d.getFullYear();
+    def["@cdids"]      = idArr;
 
 
     // Defaults um Replaces erweitern
@@ -86,8 +87,8 @@ function(head, req) {
     task          = JSON.parse(strtask);
     task.Defaults = def;
 
-    if(id && typeof id === "object"){
-      task.Id     = id;
+    if(idArr && typeof idArr === "object"){
+      task.Id     = idArr;
     }
 
     task.CuCo = cuco;
