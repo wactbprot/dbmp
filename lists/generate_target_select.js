@@ -16,10 +16,7 @@ function(head, req) {
       all     = [],
       values  = [],
       noOfVal = 0,
-      cnt     = 0,
-      ro     = {
-        "DisplayAs":"singleSelectBox"
-      };
+      cnt     = 0;
 
   start(share.startJSON);
 
@@ -57,20 +54,20 @@ function(head, req) {
 
     all.sort(function(a,b){return a-b;});
 
-    var ov = 0;
-
-    for(var j = 0; j < all.length; j++){
-	var cv = all[j];
-
-	if(cv != ov){
-	    ov = cv;
-	    values.push({"value":cv, "display":"" + cv.toExponential() + " " + unit})
-	}
+  var ov = 0;
+  for(var j = 0; j < all.length; j++){
+    var cv = all[j];
+    if(cv != ov){
+      ov = cv;
+      values.push( cv.toExponential())
     }
+  }
+  var ro = {Unit:{value:unit},
+            Value:{value:null,
+                   options:values}}
 
-    //
 
- 
-  ro.options = values;
+
+
   return JSON.stringify(ro);
 }
