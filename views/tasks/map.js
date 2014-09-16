@@ -10,15 +10,12 @@ function(doc) {
   if(doc.CalibrationObject) tob = doc.CalibrationObject;
   if(doc.AuxObject) tob = doc.AuxObject;
   if(tob && tob.Task){
-    var t = tob.Task,
-        d = tob.Defaults,
-        name = tob.Name;
-    for(i = 0; i < t.length; i++){
-      var key = (name + "-" + t[i].TaskName).replace(/\s/g, "_");
-      var task = JSON.parse(JSON.stringify(t[i]))
-      task.TaskName = key;
-      task.Defaults = d;
-      emit(key, task)
+    var tasks = tob.Task;
+    for(i = 0; i < tasks.length; i++){
+      var task = tasks[i];
+      for(var key in task){
+        emit(key, JSON.stringify(task[key]))
+      }
     }
   }
 }

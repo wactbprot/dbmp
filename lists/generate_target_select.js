@@ -8,6 +8,7 @@
 function(head, req) {
 
   var share  = require("lib/vl/share"),
+      ro,
       r,rv,rvt,
       quant   = "",
       chk     = "",
@@ -51,23 +52,27 @@ function(head, req) {
 	}// todo
         cnt++;
     }//while
-
+  if(all.length > 0){
     all.sort(function(a,b){return a-b;});
 
-  var ov = 0;
-  for(var j = 0; j < all.length; j++){
-    var cv = all[j];
-    if(cv != ov){
-      ov = cv;
-      values.push( {value:cv, display:cv.toExponential() + " " + unit})
+    var ov = 0;
+    for(var j = 0; j < all.length; j++){
+      var cv = all[j];
+      if(cv != ov){
+        ov = cv;
+        values.push( {value:cv, display:cv.toExponential() + " " + unit})
+      }
     }
+   ro = {Unit:{value:unit},
+         targetPressure:{value:values[0].value,
+                              options:values}}
+
+
+
+  }else{
+    ro = {Unit:{value:""},
+          targetPressure:{value:"",
+                          options:[]}}
   }
-  var ro = {Unit:{value:unit},
-            targetPressure:{value:values[0].value,
-                            options:values}}
-
-
-
-
   return JSON.stringify(ro);
 }
