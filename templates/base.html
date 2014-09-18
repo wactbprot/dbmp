@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>{{Mp.Name}}</title>
+</head>
+<body>
+  <header>
+    <h1>Definition</h1>
+  </header>
+  
+  <main id='content'>
+    MP-Name: {{Mp.Name}}
+    <h4>Container/Step</h4>
+    
+    <input id='container'>
+      
+    
+    <input id='step'>
+        
+    <h4>Task</h4>
+    <input id='task'>
+    
+    <h4>Use</h4>    
+    <input id='use'>
+    
+    
+    <h4>Replace</h4>    
+    <input id='replace'>    
+    
+  
+  </main> 
+  <footer>
+  </footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="../../js/definition.js">
+  </script>
+  <script type="text/javascript">
+    var mpid = '{{_id}}';
+    $( document ).ready(
+    go(mpid)
+    )
+  </script>
+
+</body>
+</html>
