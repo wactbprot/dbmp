@@ -29,11 +29,12 @@ function(doc) {
         var task = JSON.stringify(t[i]);
 
         var rs = task.match(/\@[a-z]{1,20}/g);
+
         if(rs){
           for(j =0; j < rs.length; j++){
             k = rs[j]
             v = d[k]
-            emit(tn, {key:k, value:v})
+            emit([tn,k,v], 1)
           }
         }
       }

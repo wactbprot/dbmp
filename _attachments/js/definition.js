@@ -47,39 +47,43 @@ $(document).ready(function() {
     console.log(D.get())
   })
 
-  var s = "document"
-    , u ="_list/html_select/mpdocs";
+  // Pfad
+  get_replace("document"
+             , "_list/html_select/mpdocs"
+             , function(){
+                 D.set("document")
 
-  get_replace(s, u, function(){
-    D.set("document")
-    var s = "container"
-      , u =  "_list/html_select/container?key=\"" + D.get("document") + "\"";
-    get_replace(s, u , function(){
-      D.set("container")
-    });
-  });
+                 get_replace("container"
+                            , "_list/html_select/container?key=\""
+                            + D.get("document")
+                            + "\""
+                            , function(){
+                                D.set("container")
+                              });
+               });
+  // Inhalt
+  get_replace("task"
+             , "_list/html_select/task_select"
+             , function(){
+                 D.set("task");
 
-  s = "task";
-  u = "_list/html_select/task_select";
-  get_replace(s, u, function(){
-    D.set("task");
-    var s = "use_key"
-      , u =  "_list/html_select/task_use_key?key=\"" + D.get("task") + "\"";
-    get_replace(s, u , function(){
-      D.set("use_key")
-      var s = "use_value"
-        , u =  "_list/html_select/task_use_value?key=\""
-            + D.get("task")
-            + "_"
-            + D.get("use_key")
-            + "\"";
-      get_replace(s, u , function(){
-        D.set("use_value");
-        var s = "replace"
-          , u = "_list/html_inputs/task_replace?key=\"" + D.get("task") + "\"";
-        get_append(s,u)
-      });
-    });
-  });
+                 get_append("replace"
+              ,"_list/html_inputs/task_replace?key=\"" + D.get("task") + "\"")
+
+                 get_replace("use_key"
+                            , "_list/html_select/task_use_key?key=\"" + D.get("task") + "\""
+                            , function(){
+                                D.set("use_key")
+                                get_replace("use_value"
+                                           , "_list/html_select/task_use_value?key=\""
+                                           + D.get("task")
+                                           + "_"
+                                           + D.get("use_key")
+                                           + "\""
+                                           , function(){
+                                               D.set("use_value");
+                                             });
+                              });
+               });
 
 });
