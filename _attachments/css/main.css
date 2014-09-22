@@ -1,4 +1,10 @@
-.a {  
+body {
+    
+    line-height: 1;
+}
+
+.a { 
+    background: lightgrey;
     float: left;
     min-width: 45%;
     max-width: 50%;
@@ -10,6 +16,7 @@
     overflow: scroll; 
 }
 .b {  
+    background: lightgrey;
     float: left;
     min-width: 45%;
     max-width: 50%;
@@ -21,6 +28,7 @@
     overflow: scroll; 
 }
 .c {  
+    background: lightgrey;
     float: left;
     min-width: 45%;
     max-width: 50%;
@@ -32,6 +40,7 @@
     overflow: scroll; 
 }
 .d {  
+    background: lightgrey;
     float: left;
     min-width: 45%;
     max-width: 50%;
