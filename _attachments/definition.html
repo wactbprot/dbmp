@@ -9,26 +9,40 @@
     <header >
       <h1>Definition</h1>
     </header>
+    
+    <section class='b'>
+      <h4>What</h4>
+      <label>Taskname:</label><select id='task'></select><br>
+      
+      
+      <label>Key: </label><select id='use_key'></select>
+      <label>Value:</label><select id='use_value'></select>
+    </section>     
 
-    <h4>Document</h4>
-    <select id='document'></select>
+    <section class='a'>
+      <h4>Where</h4>
+      <label>Dokument:</label><select id='document'></select><br>
 
-    <h4>Container</h4>
-    <select id='container'></select>
+      <label>Container:</label> <select id='container'></select>
+      <label>Schritt:</label> <select id='step'></select>
+    </section>
+    
+    <section class='c'>
+      <h4>Replace</h4>
+      <p id='replace'></p>
+      <button id='replace_ready'>ok</button>
+    </section>
+    
+    <section class='d'>
+      <h4>Write</h4>
+      <textarea id ='path' rows="1" cols="100"></textarea>
+      <textarea id ='definition' rows="10" cols="100"></textarea><br>
 
-    <h4>Task</h4>
-    <select id='task'></select>
 
-    <h4>Use</h4>
-    <select id='use_key'></select><select id='use_value'></select>
-
-    <h4>Replace</h4>
-    <p id='replace'></p>
-
-    <h4>What</h4>
-    <button id ="show"> show </button>
-
-    <footer></footer>
+      <button id ="show">ok</button>
+    </section>
+    <footer>
+    </footer>
     <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/definition.js"></script>
 </div>

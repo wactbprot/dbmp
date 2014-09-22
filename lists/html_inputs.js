@@ -8,7 +8,9 @@ function(head, req) {
   start(share.startHtml);
 
   while(row = getRow()) {
-    Inputs.values.push(row.value);
+
+
+    Inputs.values.push({key:row.key[1], value:row.key[2]});
   }
   send(mustache.to_html(inputs, Inputs))
 }
