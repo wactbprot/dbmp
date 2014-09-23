@@ -54,9 +54,12 @@ var read_replace = function(id){
     , r ={};
 
   for(var i = 0; i < $keys.length; i++){
+      
     var k = $keys.eq(i).val()
       , v = $vals.eq(i).val()
-    r[k] = v;
+      if(k && k !== "" && v && v !== ""){
+	  r[k] = v;
+      }
   }
   return r;
 }
