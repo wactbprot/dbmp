@@ -7,7 +7,6 @@ function(head, req) {
       idArr   = b.Id,
       dn      = b.DeviceName || "GenericDevice",
       mn      = b.MpName     || "Mp",
-      cuco    = b.CuCo, // is customer device?
       d       = new Date();
 
   tn = req.query.taskname ? JSON.parse(req.query.taskname) : tn;
@@ -91,7 +90,6 @@ function(head, req) {
       task.Id     = idArr;
     }
 
-    task.CuCo = cuco;
     task.MpName = mn;
   }else{
     task = {error:"no task found"};
