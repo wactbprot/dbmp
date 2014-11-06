@@ -1,17 +1,24 @@
 function(head, req) {
-  var oktask, mptask, row, i, j, task, mptn, butn, def,
+  var oktask, mptask, cmtask, row, i, j, task, mptn, cmtn, butn, def, mparr, cmarr,
       tr      = (req.body === "undefined") ? false : true,// try replace
       b       = tr ? JSON.parse(req.body) : {}, // body
       tn      = b.TaskName, //
       repl    = b.Replace,
-      idArr   = b.Id,
-      dn      = b.DeviceName || "GenericDevice",
-      mn      = b.MpName     || "Mp",
-      cuco    = b.CuCo, // is customer device?
+      idArr   = b.Id, // array of strungs
+      cust    = b.Customer, // is customer device?
+      mp      = b.MpName,
+      dn      = b.DeviceName,
       d       = new Date();
 
   tn = req.query.taskname ? JSON.parse(req.query.taskname) : tn;
-  if(dn && mn) mptn = tn.replace(dn, mn);
+
+  mparr    = tn.split("-");
+  mparr[0] = mp;
+  mptn     = mparr.join("-");
+
+  cmarr    = tn.split("-");
+  cmarr[0] = "Common";
+  cmtn     = cmarr.join("-");
 
   while(row = getRow()) {
     if(row.value.TaskName === tn) {
@@ -20,17 +27,11 @@ function(head, req) {
     if(row.value.TaskName === mptn){
       mptask = row.value;
     }
-  }
-
-  // Auswahl der richtigen Task
-  if(!oktask){ // die Verlangte task, wenn nicht vorhanden dann
-    if(!mptask){ // die Messprogramm Backup task wenn auch nicht
-    }else{
-      task = mptask;
+    if(row.value.TaskName === cmtn){
+      cmtask = row.value;
     }
-  }else{
-    task = oktask;
   }
+  task = oktask || mptask || cmtask;
 
   if(task){
     // Metatasks mit Use
@@ -56,7 +57,7 @@ function(head, req) {
     // @mpname, @devicename, @year
     // stehen in den task-Definitionen
     // immer zur Verfügung
-    def["@mpname"]     = mn;
+    def["@mpname"]     = mp;
     def["@devicename"] = dn;
     def["@year"]       = d.getFullYear();
     def["@cdids"]      = idArr;
@@ -91,8 +92,7 @@ function(head, req) {
       task.Id     = idArr;
     }
 
-    task.CuCo = cuco;
-    task.MpName = mn;
+    task.MpName = mp;
   }else{
     task = {error:"no task found"};
   }
