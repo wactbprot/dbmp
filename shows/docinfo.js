@@ -10,6 +10,7 @@ function (doc, req) {
         dcmcuco = dcm.CalibrationObject[0];
 
     if(dcpt && dcpc && dcmcuco){
+      res.id         = doc._id;
       res.Sign       = dc.Sign;
       res.Year       = dc.Year;
       res.Standard   = dc.Standard;
