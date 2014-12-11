@@ -3,8 +3,10 @@ function(doc) {
      doc.Mp.Container){
     var container = doc.Mp.Container;
     for(var i = 0; i < container.length; i++){
-      emit(doc._id, {value:i, display:container[i].Title});
+      var cont   = container[i]
+        , title  =  cont.Title;
+      if(title)
+        emit(doc._id + "_" + title, cont);
     }
-  }// Calibration
-
+  }
 }

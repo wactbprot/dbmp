@@ -8,6 +8,7 @@ function(head, req) {
       cust    = b.Customer, // is customer device?
       mp      = b.MpName,
       dn      = b.DeviceName,
+      std     = b.Standard,
       d       = new Date();
 
   tn = req.query.taskname ? JSON.parse(req.query.taskname) : tn;
@@ -57,6 +58,7 @@ function(head, req) {
     // @mpname, @devicename, @year
     // stehen in den task-Definitionen
     // immer zur Verfügung
+    def["@standard"]   = std;
     def["@mpname"]     = mp;
     def["@devicename"] = dn;
     def["@year"]       = d.getFullYear();
