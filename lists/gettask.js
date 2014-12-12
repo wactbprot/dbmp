@@ -96,7 +96,7 @@ function(head, req) {
 
     task.MpName = mp;
   }else{
-    task = {error:"no task found"};
+    task = {error:"no task called: "+  tn + " found"};
   }
   send(JSON.stringify(task))
 }
