@@ -6,7 +6,7 @@ function(doc) {
       var cont   = container[i]
         , title  =  cont.Title;
       if(title)
-        emit(doc._id + "_" + title, cont);
+        emit(title, cont);
     }
   }
 }

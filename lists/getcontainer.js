@@ -1,17 +1,25 @@
 function(head, req) {
-  var tr        = (req.body === "undefined") ? false : true// try replace
+  var row
+    , tr        = (req.body === "undefined") ? false : true// try replace
     , b         = tr ? JSON.parse(req.body) : {} // body
-    , cont_name = b.container
+    , take = b.take
+    , from = b.from
     , res;
 
   while(row = getRow()) {
-    if(row.key = cont_name){
-      res = row.value
+    if(row.id == from){
+      if(row.key == take){
+        res = row.value
+      }
     }
   }
   if(res){
     send(JSON.stringify(res))
   }else{
-    send(JSON.stringify({error:"no container " + cont_name + " found"}))
+    send(JSON.stringify({error:"no container "
+                              + take
+                              + " from "
+                              + from
+                              + " found"}))
   }
 }
