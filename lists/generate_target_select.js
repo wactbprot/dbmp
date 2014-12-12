@@ -36,10 +36,10 @@ function(head, req) {
 		    if((quant == "" || chk  == quant) &&
 		       (unit  == "" || unit == rvtv[quant].Unit)){
 
-		      quant  = chk,
-		      struct = rvtv[quant],
-		      unit   =  rvtv[quant].Unit,
-		      noOfVal     =  struct.Value.length;
+		      quant   = chk,
+		      struct  = rvtv[quant],
+		      unit    = rvtv[quant].Unit,
+		      noOfVal =  struct.Value.length;
 
 			for(var i = 0 ; i < noOfVal; i++){
 
@@ -63,16 +63,14 @@ function(head, req) {
         values.push( {value:cv, display:cv.toExponential() + " " + unit})
       }
     }
-   ro = {Unit:{value:unit},
-         targetPressure:{value:values[0].value,
-                              options:values}}
-
+    ro = {value:values[0].value,
+          options:values}
+    
 
 
   }else{
-    ro = {Unit:{value:""},
-          targetPressure:{value:"",
-                          options:[]}}
+    ro = {value:"",
+          options:[]}
   }
   return JSON.stringify(ro);
 }

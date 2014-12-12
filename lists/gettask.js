@@ -64,7 +64,6 @@ function(head, req) {
     def["@year"]       = d.getFullYear();
     def["@cdids"]      = idArr;
 
-
     // Defaults um Replaces erweitern
     // bzw. ersetzen
     if(repl && typeof repl === "object"){
