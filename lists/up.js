@@ -45,6 +45,7 @@ function(head, req) {
           }else{
             ikreso[iik] = rvc.Result.Values;
           }
+          log(ikreso)
         }
       }
 
