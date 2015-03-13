@@ -6,21 +6,20 @@ function(doc) {
  */
 
   if(doc && doc.Calibration){
-    var dc      = doc.Calibration,
-        dcm     = dc.Measurement,
-        dcp     = dc.Presettings,
-        dcpt    = dcp.ToDo     ||{},
-        dcpc    = dcp.Customer ||{},
-        dcmcuco = dcm.CalibrationObject[0] ||{};
+    var dc      = doc.Calibration
+      , dcm     = dc.Measurement
+      , dcp     = dc.Presettings
+      , dcpt    = dcp.ToDo     ||{}
+      , dcpc    = dcp.Customer ||{}
+      , dccuco  = dc.CalibrationObject[0] ||{}
+      , dcsm    = dc.Standard ? dc.Standard.Name : "_X_";
 
-
-      emit(dc.Standard + "-" + dc.Year,{
-        Id       : doc._id ,
-        Sign     : dc.Sign       || "__sign__",
-        Year     : dc.Year       || "__year__",
-        Standard : dc.Standard   || "__standard__",
-        Customer : dcpc.Name     || "__customer_name__",
-        Device   : dcmcuco.Name  || "__device_name__",
-        ToDoType : dcpt.Type     || "__todo_type__" });
+    emit(dcsm + "-" + dc.Year
+        , { Id       : doc._id
+          , Sign     : dc.Sign       || "__sign__"
+          , Year     : dc.Year       || "__year__"
+          , Customer : dcpc.Name     || "__customer_name__"
+          , Device   : dccuco.Name  || "__device_name__"
+          , ToDoType : dcpt.Type     || "__todo_type__" });
   }
 }

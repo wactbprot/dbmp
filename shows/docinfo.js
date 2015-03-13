@@ -7,15 +7,14 @@ function (doc, req) {
         dcp     = dc.Presettings,
         dcpt    = dcp.ToDo,
         dcpc    = dcp.Customer,
-        dcmcuco = dcm.CalibrationObject[0];
+        dccuco  = dc.CalibrationObject[0];
 
-    if(dcpt && dcpc && dcmcuco){
+    if(dcpt && dcpc && dccuco){
       res.id         = doc._id;
       res.Sign       = dc.Sign;
       res.Year       = dc.Year;
-      res.Standard   = dc.Standard;
       res.Customer   = dcpc.Name;
-      res.Device     = dcmcuco.Name;
+      res.Device     = dccuco.Name;
       res.ToDoType   = dcpt.Type
     }else{
       res.warn  = "ToDo or Customer or Customer Gauge missing";
