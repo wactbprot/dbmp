@@ -45,7 +45,7 @@ function(head, req) {
           }else{
             ikreso[iik] = rvc.Result.Values;
           }
-          log(ikreso)
+
         }
       }
 
@@ -92,10 +92,7 @@ function(head, req) {
     } // while
 
     if(doc){
-
-
-      var stdArr   = doc.Calibration.Standard.split("|"),
-          dcm      = doc.Calibration.Measurement,
+      var stdArr   = doc.Calibration.ToDo.Standard.split("|"),
           twoStds  = stdArr.length == 2 ? true : false,
           stdStr1  = stdArr[0],
           stdStr2,
@@ -103,10 +100,6 @@ function(head, req) {
           stdPos2,
           stdObj1  = sto[stdPos1],
           stdObj2;
-
-      if(!dcm){
-        doc.Calibration.Measurement = {};
-      }
 
       // put in Standard(s) (can be two)
       if( stdObj1 &&
@@ -137,9 +130,9 @@ function(head, req) {
             }
           }
         }
-        doc.Calibration.Measurement.Standard = [stdObj1, stdObj2];
+        doc.Calibration.Standard = [stdObj1, stdObj2];
       }else{
-        doc.Calibration.Measurement.Standard = stdObj1;
+        doc.Calibration.Standard = stdObj1;
       }
 
       // put in CalibrationObjects
@@ -172,15 +165,15 @@ function(head, req) {
         }
       }
 
-      var dcmco = dcm.CalibrationObject,
+      var dcco = doc.Calibration.CalibrationObject,
           allco
 
-      if(!dcmco){
+      if(!dcco){
         allco = [{Name:"cuco placeholder"}].concat(scoo);
       }else{
-        allco  = [dcmco[0]].concat(scoo);
+        allco  = [dcco[0]].concat(scoo);
       }
-      doc.Calibration.Measurement.CalibrationObject = allco
+      doc.Calibration.CalibrationObject = allco
 
 
       // at least the constants doc
