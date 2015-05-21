@@ -8,11 +8,8 @@
 
 ```
 
-
-__dbmp__ is a container for the ```ssmp``` 
-```views```, ```shows``` and ```lists```
-
 ## views
+
 ### tasks
 
 Diese _view_ liefert das Datenmaterial für die 
@@ -30,6 +27,8 @@ Die geschieht erst in der _list_ ```get``` (s. Datei ```lists/get.js```).
 
 ## lists
 
+### get/task
+
 Die _list_ ```get``` in Kombination mit der _view_ ```task```
 liefert fertige task-Objekte:
 
@@ -45,3 +44,9 @@ Als Ersetzungsstrings stehen immer:
 * ```@cdids```: ein Array mit allen ausgewählten Kalibrier-ids 
 
 zur Verfügung.
+
+### up/parts
+
+Die _list_ ```up``` in Kombination mit der _view_ ```parts```
+liefert ein aktualisiertes _Calibration_ Dokument. Entscheident ist der
+_id_-Parameter ```up/part?id=kdid```.
