@@ -6,26 +6,27 @@ function (doc, req) {
     var dc   = doc.Calibration
       , dct  = dc.ToDo
       , dcc  = dc.Customer
-      , dcco = dc.CalibrationObject
+      , dccu = dc.CustomerObject
 
-    res.id    = doc._id;
-    res.Sign  = dc.Sign;
-    res.Year  = dc.Year;
-    
-    if(dct){
-      res.ToDoType = dct.Type  || "~"
+    res.id           = doc._id;
+    res.Certificate  = dc.Certificate;
+    res.Issue        = dc.Issue;
+    res.Year         = dc.Year;
+
+    if(dct && dct.Type){
+      res.ToDoType = dct.Type;
     }else{
       res.warn  = "missing ToDo";
     }
 
-    if(dcc){
-      res.Customer = dcc.Name  || "~";
+    if(dcc && dcc.Name){
+      res.Customer = dcc.Name;
     }else{
       res.warn  = "missing Customer";
     }
 
-    if(dcco && dcco[0]){
-      res.Device = dcco[0].Name|| "~";
+    if(dccu && dccu.Name){
+      res.Device = dccu.Name;
     }else{
       res.warn  = "CalibrationObject missing ";
     }

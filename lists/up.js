@@ -11,7 +11,7 @@ function(head, req) {
       ikresn  = [], // int. calib. with Results- Names
       ikreso  = [], // int.calib. with Results- obnjects
       scoo    = [], // contains at least all cal.Obs belonging to the standard(s)
-      iksign = "",
+      ikcert,
       iik    = -1,
       constDoc, result, row,doc,
       rv, sstdn, istd, sstdo, caon,
@@ -36,11 +36,11 @@ function(head, req) {
            rvc.Result &&
            rvc.Result.Values ){
 
-          iksign = rvc.Sign.split(/[-_]+/)[0];
-          iik = share.indexOf(ikresn,iksign);
+          ikcert = rvc.Certificate;
+          iik = share.indexOf(ikresn, ikcert);
 
           if(iik == -1){
-            ikresn.push(iksign);
+            ikresn.push(ikcert);
             ikreso.push(rvc.Result.Values);
           }else{
             ikreso[iik] = rvc.Result.Values;
@@ -57,7 +57,6 @@ function(head, req) {
       // collect the standard(s)
       if(rv.Standard){
         var rvs = rv.Standard;
-
         if(rvs.Name &&
            share.indexOf(stn,rvs.Name)  == -1){
           stn.push(rvs.Name);
@@ -68,7 +67,6 @@ function(head, req) {
       // collect the CalibrationObjects
       if(rv.CalibrationObject){
         rvco = rv.CalibrationObject;
-
         if(rvco &&
            rvco.Name &&
            share.indexOf(con, rvco.Name) == -1){
@@ -164,18 +162,19 @@ function(head, req) {
           scoo.push(ccoo);
         }
       }
+      // no more need to paste in CustomerObject
+      doc.Calibration.CalibrationObject = scoo;
 
-      var dcco = doc.Calibration.CalibrationObject,
-          allco
-
-      if(!dcco){
-        allco = [{Name:"cuco placeholder"}].concat(scoo);
-      }else{
-        allco  = [dcco[0]].concat(scoo);
+      // refresh Customer Object
+      if(doc.Calibration.CustomerObject &&
+         doc.Calibration.CustomerObject.Name){
+        var cstnm  = doc.Calibration.CustomerObject.Name;
+        var icstnm = share.indexOf(con, cstnm)
+        if(icstnm > -1){
+          // fresh
+          doc.Calibration.CustomerObject = coo[icstnm];
+        }
       }
-      doc.Calibration.CalibrationObject = allco
-
-
       // at least the constants doc
       doc.Calibration.Constants = constDoc;
 

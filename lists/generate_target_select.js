@@ -54,7 +54,6 @@ function(head, req) {
     }//while
   if(all.length > 0){
     all.sort(function(a,b){return a-b;});
-
     var ov = 0;
     for(var j = 0; j < all.length; j++){
       var cv = all[j];
@@ -65,9 +64,6 @@ function(head, req) {
     }
     ro = {value:values[0].value,
           options:values}
-    
-
-
   }else{
     ro = {value:"",
           options:[]}
