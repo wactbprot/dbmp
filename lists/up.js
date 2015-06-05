@@ -163,8 +163,9 @@ function(head, req) {
         }
       }
       // no more need to paste in CustomerObject
-      doc.Calibration.CalibrationObject = scoo;
-
+      if(typeof scoo[0] == "object"){
+        doc.Calibration.CalibrationObject = scoo;
+      }
       // refresh Customer Object
       if(doc.Calibration.CustomerObject &&
          doc.Calibration.CustomerObject.Name){
