@@ -8,7 +8,7 @@ function (doc, req) {
       , dcc  = dc.Customer
       , dccu = dc.CustomerObject
 
-    res.id           = doc._id;
+    res.Id           = doc._id;
     res.Certificate  = dc.Certificate;
     res.Issue        = dc.Issue;
     res.Year         = dc.Year;

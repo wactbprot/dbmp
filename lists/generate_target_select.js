@@ -39,7 +39,7 @@ function(head, req) {
 		      quant   = chk,
 		      struct  = rvtv[quant],
 		      unit    = rvtv[quant].Unit,
-		      noOfVal =  struct.Value.length;
+		      noOfVal = struct.Value.length;
 
 			for(var i = 0 ; i < noOfVal; i++){
 
@@ -62,11 +62,11 @@ function(head, req) {
         values.push( {value:cv, display:cv.toExponential() + " " + unit})
       }
     }
-    ro = {value:values[0].value,
-          options:values}
+    ro = {Selected:values[0].value,
+          Select: values}
   }else{
-    ro = {value:"",
-          options:[]}
+    ro = {Selected:"",
+          Select: [{value:null, display: "no value"}]}
   }
   return JSON.stringify(ro);
 }
