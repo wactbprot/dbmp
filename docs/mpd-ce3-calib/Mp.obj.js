@@ -281,14 +281,13 @@
             "Definition": [
 		[ 
 		    {
-                        "TaskName": [
-                            "CE3-exchange_element"
-                        ],
-			"Use":{
+                        "TaskName": "CE3-exchange_element"
+                        ,
+			"Use":{ 
 			    "Values":"offset_element"
 			},
 			"ExpandPar": {
-                            "@elemtype": [
+			    "@elemtype": [
                                 "X1_offset",
 				"X01_offset",
 				"X001_offset", 
@@ -1501,9 +1500,12 @@
 		"offset_element":{
 		    "Caption": "@caption",
 		    "Ready":false,
+		    "Type":"",
 		    "Value":null,
 		    "SdValue":null,
-		    "N":null
+		    "N":null,
+		    "Unit":""
+
 		   
 		}
             }
