@@ -1,7 +1,7 @@
 {
   "env": {
     "default": {
-      "db": "http://localhost:5984/vl_db"
+      "db": "http://172.30.56.134:5984/vl_db"
     }
   }
 }
