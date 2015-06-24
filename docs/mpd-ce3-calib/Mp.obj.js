@@ -343,7 +343,15 @@
                             ]
                         }
                     }
-                ],
+                ],	
+		[ 
+                    {
+                        "TaskName": "Common-wait",
+                        "Replace": {
+                            "@waittime": 4000
+                        }
+                    }
+		],
                 [
                     {
                         "TaskName": "FM3_1000T-check_V11"
@@ -378,7 +386,7 @@
                             "FM3_1000T-read_out"
                         ],
                         "Replace": {
-                            "@repeat": 100,
+                            "@repeat": 20,
                             "@waittime": 500,
                             "@docpath": "Calibration.Measurement.AuxValues.Pressure"
                         },
@@ -416,7 +424,15 @@
                             ]
                         }
                     }
-                ],
+                ],	
+		[ 
+                    {
+                        "TaskName": "Common-wait",
+                        "Replace": {
+                            "@waittime": 4000
+                        }
+                    }
+		],
                 [
                     {
                         "TaskName": [
@@ -425,7 +441,7 @@
                             "FM3_1000T-read_out"
                         ],
                         "Replace": {
-                            "@repeat": 100,
+                            "@repeat": 20,
                             "@waittime": 500,
                             "@docpath": "Calibration.Measurement.AuxValues.Pressure"
                         },
@@ -464,6 +480,14 @@
                         }
                     }
                 ],
+		[ 
+                    {
+                        "TaskName": "Common-wait",
+                        "Replace": {
+                            "@waittime": 4000
+                        }
+                    }
+		],
                 [
                     {
                         "TaskName": [
@@ -472,7 +496,7 @@
                             "FM3_1000T-read_out"
                         ],
                         "Replace": {
-                            "@repeat": 100,
+                            "@repeat": 20,
                             "@waittime": 500,
                             "@docpath": "Calibration.Measurement.AuxValues.Pressure"
                         },
@@ -497,16 +521,59 @@
                             "@docpath": "Calibration.Measurement.AuxValues.Pressure"
                         },
                         "ExpandPar": {
+                            "@elemtype": [
+                                "X1_offset",
+				"X01_offset",
+				"X001_offset", 
+				"X1_offset",
+				"X01_offset",
+				"X001_offset", 
+				"X1_offset",
+				"X01_offset",
+				"X001_offset"
+                            ],
+			    "@devicename":[ 
+				"FM3_1T",
+				"FM3_1T",
+				"FM3_1T",
+				"FM3_10T",
+				"FM3_10T",
+				"FM3_10T",	
+				"FM3_1000T",
+				"FM3_1000T",
+				"FM3_1000T"
+			    ],
+			    "@runif": [
+                                "X1_offset.Ready",
+                                "X01_offset.Ready",
+                                "X001_offset.Ready",
+                                "X1_offset.Ready",
+                                "X01_offset.Ready",
+                                "X001_offset.Ready",
+                                "X1_offset.Ready",
+                                "X01_offset.Ready",
+                                "X001_offset.Ready"
+                            ]
+                        }
+                    }
+                ], 
+		[
+                    {
+                        "TaskName": [
+                            "FM3_1T-device_ini",
+                            "FM3_10T-device_ini",
+                            "FM3_1000T-device_ini"
+                        ],
+                        "ExpandPar": {
+                            "Values": [
+                                "high_range",
+                                "high_range",
+                                "high_range"
+                            ],
                             "@exchpath": [
-                                "FM3_1T-X1_offset",
-                                "FM3_1T-X01_offset",
-                                "FM3_1T-X001_offset",
-                                "FM3_10T-X1_offset",
-                                "FM3_10T-X01_offset",
-                                "FM3_10T-X001_offset",
-                                "FM3_1000T-X1_offset",
-                                "FM3_1000T-X01_offset",
-                                "FM3_1000T-X001_offset"
+                                "FM3_1T_ini_ok.Bool.value",
+                                "FM3_10T_ini_ok.Bool.value",
+                                "FM3_1000T_ini_ok.Bool.value"
                             ]
                         }
                     }
@@ -1499,12 +1566,12 @@
                 }, 
 		"offset_element":{
 		    "Caption": "@caption",
-		    "Ready":false,
 		    "Type":"",
 		    "Value":null,
 		    "SdValue":null,
 		    "N":null,
-		    "Unit":""
+		    "Unit":"",
+		    "Ready":false
 
 		   
 		}
