@@ -16,7 +16,7 @@
                     {
                         "TaskName": "Common-write_element",
                         "ExpandPar": {
-                            "Keys": [
+                            "ExchangePaths": [
                                 "doc_table",
                                 "doc_ok"
                             ],
@@ -279,45 +279,45 @@
                 "*_offset"
             ],
             "Definition": [
-		[ 
+		[
 		    {
                         "TaskName": "CE3-exchange_element"
                         ,
-			"Use":{ 
+			"Use":{
 			    "Values":"offset_element"
 			},
 			"ExpandPar": {
 			    "@elemtype": [
                                 "X1_offset",
 				"X01_offset",
-				"X001_offset", 
+				"X001_offset",
 				"X1_offset",
 				"X01_offset",
-				"X001_offset", 
+				"X001_offset",
 				"X1_offset",
 				"X01_offset",
 				"X001_offset"
                             ],
-			    "@devicename":[ 
+			    "@devicename":[
 				"FM3_1T",
 				"FM3_1T",
 				"FM3_1T",
 				"FM3_10T",
 				"FM3_10T",
-				"FM3_10T",	
+				"FM3_10T",
 				"FM3_1000T",
 				"FM3_1000T",
 				"FM3_1000T"
 			    ],
-			    "@caption":[ 
-				"1T Offset (Range X1)",	
-				"1T Offset (Range X0.1)",	
+			    "@caption":[
+				"1T Offset (Range X1)",
+				"1T Offset (Range X0.1)",
 				"1T Offset (Range X0.01)",
-				"10T Offset (Range X1)",	
-				"10T Offset (Range X0.1)",	
+				"10T Offset (Range X1)",
+				"10T Offset (Range X0.1)",
 				"10T Offset (Range X0.01)",
-				"1000T Offset (Range X1)",	
-				"1000T Offset (Range X0.1)",	
+				"1000T Offset (Range X1)",
+				"1000T Offset (Range X0.1)",
 				"1000T Offset (Range X0.01)"
 			    ]
                         }
@@ -343,8 +343,8 @@
                             ]
                         }
                     }
-                ],	
-		[ 
+                ],
+		[
                     {
                         "TaskName": "Common-wait",
                         "Replace": {
@@ -424,8 +424,8 @@
                             ]
                         }
                     }
-                ],	
-		[ 
+                ],
+		[
                     {
                         "TaskName": "Common-wait",
                         "Replace": {
@@ -480,7 +480,7 @@
                         }
                     }
                 ],
-		[ 
+		[
                     {
                         "TaskName": "Common-wait",
                         "Replace": {
@@ -524,21 +524,21 @@
                             "@elemtype": [
                                 "X1_offset",
 				"X01_offset",
-				"X001_offset", 
+				"X001_offset",
 				"X1_offset",
 				"X01_offset",
-				"X001_offset", 
+				"X001_offset",
 				"X1_offset",
 				"X01_offset",
 				"X001_offset"
                             ],
-			    "@devicename":[ 
+			    "@devicename":[
 				"FM3_1T",
 				"FM3_1T",
 				"FM3_1T",
 				"FM3_10T",
 				"FM3_10T",
-				"FM3_10T",	
+				"FM3_10T",
 				"FM3_1000T",
 				"FM3_1000T",
 				"FM3_1000T"
@@ -556,7 +556,7 @@
                             ]
                         }
                     }
-                ], 
+                ],
 		[
                     {
                         "TaskName": [
@@ -611,7 +611,7 @@
                     {
                         "TaskName": "CE3-meas_exchange_element",
                         "ExpandSeq": {
-                            "Keys": [
+                            "ExchangePaths": [
                                 "target_pressure",
                                 "target_pfill",
                                 "pfill_dev"
@@ -966,7 +966,7 @@
                     {
                         "TaskName": "CE3-meas_exchange_element",
                         "Use": {
-                            "Keys": "reset_pfill_ok",
+                            "ExchangePaths": "reset_pfill_ok",
                             "Values": "reset_pfill_ok"
                         }
                     },
@@ -1058,7 +1058,7 @@
                     {
                         "TaskName": "CE3-meas_exchange_element",
                         "Use": {
-                            "Keys": "reset_pfill_ok",
+                            "ExchangePaths": "reset_pfill_ok",
                             "Values": "reset_pfill_ok"
                         }
                     },
@@ -1488,7 +1488,7 @@
             "Action": "writeExchange",
             "Comment": "Add an element to the Exchange api",
             "TaskName": "exchange_element",
-            "Key": "@devicename-@elemtype",
+            "ExchangePath": "@devicename-@elemtype",
             "Values": {
                 "cal_port": {
                     "Caption": "@devicename",
@@ -1554,7 +1554,7 @@
                         }
                     ],
                     "Ready": false
-                }, 
+                },
 		"offset_element":{
 		    "Caption": "@caption",
 		    "Type":"",
@@ -1564,7 +1564,7 @@
 		    "Unit":"",
 		    "Ready":false
 
-		   
+
 		}
             }
         },
@@ -1572,7 +1572,7 @@
             "Action": "writeExchange",
             "Comment": "Add an element to the Exchange api",
             "TaskName": "meas_exchange_element",
-            "Keys": {
+            "ExchangePaths": {
                 "target_pressure": "Target_Pressure",
                 "target_pfill": "Filling_Pressure",
                 "reset_pfill_ok": "Filling_Pressure_Ok",

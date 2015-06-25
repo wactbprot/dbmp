@@ -37,7 +37,6 @@ function(head, req) {
   if(task){
     // Metatasks mit Use
     if(b.Use){
-
       for(var ks in b.Use){ // ks ist z.B. Values
         // plural --> singular
         if(task[ks]){
