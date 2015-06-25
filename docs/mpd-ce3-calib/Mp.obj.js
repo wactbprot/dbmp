@@ -55,7 +55,17 @@
             "Ctrl": "load",
             "Title": "device ini",
             "Definition": [
-                [
+              [
+                {
+                  "TaskName":"Commons-checkDB",
+                  "Replace":{"@dbinfo":"DataBase"}
+                },
+                {
+                  "TaskName":"Commons-checkRelay",
+                  "Replace":{"@dbinfo":"Relay"}
+                }
+              ],
+              [
                     {
                         "TaskName": [
                             "FM3_1T-device_ini",
