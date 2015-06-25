@@ -15,7 +15,8 @@ function(head, req) {
       unit    = "",
       struct  = "",
       all     = [],
-      values  = [],
+      values  = {value:[],
+                display:[]},
       noOfVal = 0,
       cnt     = 0;
 
@@ -59,14 +60,16 @@ function(head, req) {
       var cv = all[j];
       if(cv != ov){
         ov = cv;
-        values.push( {value:cv, display:cv.toExponential() + " " + unit})
+        values.value.push(cv);
+        values.display.push(cv.toExponential() + " " + unit);
       }
     }
     ro = {Selected:values[0].value,
           Select: values}
   }else{
     ro = {Selected:"",
-          Select: [{value:null, display: "no value"}]}
+          Select: {value:[null]
+                  , display: ["no value"]}}
   }
   return JSON.stringify(ro);
 }
