@@ -57,11 +57,11 @@
             "Definition": [
               [
                 {
-                  "TaskName":"Commons-checkDB",
+                  "TaskName":"Commons-db_info",
                   "Replace":{"@dbinfo":"DataBase"}
                 },
                 {
-                  "TaskName":"Commons-checkRelay",
+                  "TaskName":"Commons-relay_info",
                   "Replace":{"@dbinfo":"Relay"}
                 }
               ],
