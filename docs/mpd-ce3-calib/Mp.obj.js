@@ -337,9 +337,9 @@
                                 "high_range"
                             ],
                             "@exchpath": [
-                                "FM3_1T_ini_ok.Bool.value",
-                                "FM3_10T_ini_ok.Bool.value",
-                                "FM3_1000T_ini_ok.Bool.value"
+                                "FM3_1T_ini_ok.Bool",
+                                "FM3_10T_ini_ok.Bool",
+                                "FM3_1000T_ini_ok.Bool"
                             ]
                         }
                     }
@@ -418,9 +418,9 @@
                                 "med_range"
                             ],
                             "@exchpath": [
-                                "FM3_1T_ini_ok.Bool.value",
-                                "FM3_10T_ini_ok.Bool.value",
-                                "FM3_1000T_ini_ok.Bool.value"
+                                "FM3_1T_ini_ok.Bool",
+                                "FM3_10T_ini_ok.Bool",
+                                "FM3_1000T_ini_ok.Bool"
                             ]
                         }
                     }
@@ -473,9 +473,9 @@
                                 "low_range"
                             ],
                             "@exchpath": [
-                                "FM3_1T_ini_ok.Bool.value",
-                                "FM3_10T_ini_ok.Bool.value",
-                                "FM3_1000T_ini_ok.Bool.value"
+                                "FM3_1T_ini_ok.Bool",
+                                "FM3_10T_ini_ok.Bool",
+                                "FM3_1000T_ini_ok.Bool"
                             ]
                         }
                     }
@@ -598,9 +598,9 @@
             ]
         },
         {
-            "Description": "Set Filling Pressure",
+            "Description": "Select Filling Pressure, Measurement",
             "Ctrl": "unformed",
-            "Title": "set pfill",
+            "Title": "meas",
             "Element": [
                 "Target_Pressure",
                 "Filling_Pressure",
@@ -634,16 +634,7 @@
                             "@standard": "CE3",
                             "@listname": "generate_target_select",
                             "@viewname": "todos",
-                            "@exchangepath": "Target_Pressure.Value"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Common-read_element",
-                        "Replace": {
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
-                            "@key": "Target_Pressure"
+                            "@exchangepath": "Target_Pressure"
                         }
                     }
                 ],
@@ -1593,8 +1584,7 @@
                 },
                 "target_pressure": {
                     "Caption": "Target pressure",
-                    "Ready": false,
-                    "Unit": "mbar"
+                    "Ready": false
                 },
                 "target_pfill": {
                     "Caption": "Filling pressure",
@@ -1618,8 +1608,9 @@
             "Action": "/usr/bin/Rscript",
             "Comment": "Calculates pfill from pcal",
             "TaskName": "cal_pfill",
+	    "RunIf":"Target_Pressure.Ready",
             "FromExchange": {
-                "@targetpressure": "Target_Pressure.Value"
+                "@targetpressure": "Target_Pressure.Selected"
             },
             "Value": [
                 "/usr/local/lib/r4vl/ssmp/cal_filling_pressure.r",
