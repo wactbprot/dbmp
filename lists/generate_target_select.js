@@ -56,16 +56,16 @@ function(head, req) {
       var cv = all[j];
       if(cv != ov){
         ov = cv;
-        values.value.push(cv.toExponential(1));
-        values.display.push(cv.toExponential() + " " + unit);
+        values.push({value:cv.toExponential(1),
+                     display:cv.toExponential() + " " + unit});
       }
     }
-    ro = {Selected: values.value[0],
+    ro = {Selected: null,
           Select: values}
   }else{
     ro = {Selected:"",
-          Select: {value:[null]
-                  , display: ["no value"]}}
+          Select: [{value: null
+                   , display: "no value"}]
   }
   return JSON.stringify(ro);
 }
