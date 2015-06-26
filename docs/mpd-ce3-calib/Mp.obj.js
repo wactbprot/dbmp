@@ -699,6 +699,11 @@
                                 "med_range",
                                 "low_range",
                                 "med_range"
+                            ],
+			    "@exchpath": [
+                                "FM3_1T_ini_ok.Bool",
+                                "FM3_10T_ini_ok.Bool",
+                                "FM3_1000T_ini_ok.Bool"
                             ]
                         }
                     }
@@ -746,6 +751,11 @@
                                 "med_range",
                                 "med_range",
                                 "med_range"
+                            ],
+			    "@exchpath": [
+                                "FM3_1T_ini_ok.Bool",
+                                "FM3_10T_ini_ok.Bool",
+                                "FM3_1000T_ini_ok.Bool"
                             ]
                         }
                     }
@@ -793,6 +803,11 @@
                                 "med_range",
                                 "high_range",
                                 "med_range"
+                            ],
+			    "@exchpath": [
+                                "FM3_1T_ini_ok.Bool",
+                                "FM3_10T_ini_ok.Bool",
+                                "FM3_1000T_ini_ok.Bool"
                             ]
                         }
                     }
@@ -840,6 +855,11 @@
                                 "high_range",
                                 "high_range",
                                 "med_range"
+                            ],
+			    "@exchpath": [
+                                "FM3_1T_ini_ok.Bool",
+                                "FM3_10T_ini_ok.Bool",
+                                "FM3_1000T_ini_ok.Bool"
                             ]
                         }
                     }
@@ -887,6 +907,11 @@
                                 "high_range",
                                 "high_range",
                                 "high_range"
+                            ],
+			    "@exchpath": [
+                                "FM3_1T_ini_ok.Bool",
+                                "FM3_10T_ini_ok.Bool",
+                                "FM3_1000T_ini_ok.Bool"
                             ]
                         }
                     }
@@ -1104,12 +1129,12 @@
                     "Value": "mbar"
                 },
                 {
-                    "ExchangePath": "Target_Pressure.Value",
+                    "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "gt",
                     "Value": 1e-9
                 },
                 {
-                    "ExchangePath": "Target_Pressure.Value",
+                    "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 9e-7
                 },
@@ -1212,12 +1237,12 @@
                     "Value": "mbar"
                 },
                 {
-                    "ExchangePath": "Target_Pressure.Value",
+                    "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "gt",
                     "Value": 1e-9
                 },
                 {
-                    "ExchangePath": "Target_Pressure.Value",
+                    "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 9e-7
                 },
@@ -1320,12 +1345,12 @@
                     "Value": "mbar"
                 },
                 {
-                    "ExchangePath": "Target_Pressure.Value",
+                    "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "gt",
                     "Value": 9e-7
                 },
                 {
-                    "ExchangePath": "Target_Pressure.Value",
+                    "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 0.00009
                 },
@@ -1409,12 +1434,12 @@
                     "Value": "mbar"
                 },
                 {
-                    "ExchangePath": "Target_Pressure.Value",
+                    "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "gt",
                     "Value": 9e-7
                 },
                 {
-                    "ExchangePath": "Target_Pressure.Value",
+                    "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 0.00009
                 },
