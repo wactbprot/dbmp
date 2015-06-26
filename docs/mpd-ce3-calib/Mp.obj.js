@@ -55,17 +55,21 @@
             "Ctrl": "load",
             "Title": "device ini",
             "Definition": [
-              [
-                {
-                  "TaskName":"Commons-db_info",
-                  "Replace":{"@dbinfo":"DataBase"}
-                },
-                {
-                  "TaskName":"Commons-relay_info",
-                  "Replace":{"@dbinfo":"Relay"}
-                }
-              ],
-              [
+                [
+                    {
+                        "TaskName": "Commons-db_info",
+                        "Replace": {
+                            "@dbinfo": "DataBase"
+                        }
+                    },
+                    {
+                        "TaskName": "Commons-relay_info",
+                        "Replace": {
+                            "@dbinfo": "Relay"
+                        }
+                    }
+                ],
+                [
                     {
                         "TaskName": [
                             "FM3_1T-device_ini",
@@ -289,50 +293,49 @@
                 "*_offset"
             ],
             "Definition": [
-		[
-		    {
-                        "TaskName": "CE3-exchange_element"
-                        ,
-			"Use":{
-			    "Values":"offset_element"
-			},
-			"ExpandPar": {
-			    "@elemtype": [
+                [
+                    {
+                        "TaskName": "CE3-exchange_element",
+                        "Use": {
+                            "Values": "offset_element"
+                        },
+                        "ExpandPar": {
+                            "@elemtype": [
                                 "X1_offset",
-				"X01_offset",
-				"X001_offset",
-				"X1_offset",
-				"X01_offset",
-				"X001_offset",
-				"X1_offset",
-				"X01_offset",
-				"X001_offset"
+                                "X01_offset",
+                                "X001_offset",
+                                "X1_offset",
+                                "X01_offset",
+                                "X001_offset",
+                                "X1_offset",
+                                "X01_offset",
+                                "X001_offset"
                             ],
-			    "@devicename":[
-				"FM3_1T",
-				"FM3_1T",
-				"FM3_1T",
-				"FM3_10T",
-				"FM3_10T",
-				"FM3_10T",
-				"FM3_1000T",
-				"FM3_1000T",
-				"FM3_1000T"
-			    ],
-			    "@caption":[
-				"1T Offset (Range X1)",
-				"1T Offset (Range X0.1)",
-				"1T Offset (Range X0.01)",
-				"10T Offset (Range X1)",
-				"10T Offset (Range X0.1)",
-				"10T Offset (Range X0.01)",
-				"1000T Offset (Range X1)",
-				"1000T Offset (Range X0.1)",
-				"1000T Offset (Range X0.01)"
-			    ]
+                            "@devicename": [
+                                "FM3_1T",
+                                "FM3_1T",
+                                "FM3_1T",
+                                "FM3_10T",
+                                "FM3_10T",
+                                "FM3_10T",
+                                "FM3_1000T",
+                                "FM3_1000T",
+                                "FM3_1000T"
+                            ],
+                            "@caption": [
+                                "1T Offset (Range X1)",
+                                "1T Offset (Range X0.1)",
+                                "1T Offset (Range X0.01)",
+                                "10T Offset (Range X1)",
+                                "10T Offset (Range X0.1)",
+                                "10T Offset (Range X0.01)",
+                                "1000T Offset (Range X1)",
+                                "1000T Offset (Range X0.1)",
+                                "1000T Offset (Range X0.01)"
+                            ]
                         }
                     }
-		],
+                ],
                 [
                     {
                         "TaskName": [
@@ -354,14 +357,14 @@
                         }
                     }
                 ],
-		[
+                [
                     {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 4000
                         }
                     }
-		],
+                ],
                 [
                     {
                         "TaskName": "FM3_1000T-check_V11"
@@ -435,14 +438,14 @@
                         }
                     }
                 ],
-		[
+                [
                     {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 4000
                         }
                     }
-		],
+                ],
                 [
                     {
                         "TaskName": [
@@ -490,14 +493,14 @@
                         }
                     }
                 ],
-		[
+                [
                     {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 4000
                         }
                     }
-		],
+                ],
                 [
                     {
                         "TaskName": [
@@ -533,27 +536,27 @@
                         "ExpandPar": {
                             "@elemtype": [
                                 "X1_offset",
-				"X01_offset",
-				"X001_offset",
-				"X1_offset",
-				"X01_offset",
-				"X001_offset",
-				"X1_offset",
-				"X01_offset",
-				"X001_offset"
+                                "X01_offset",
+                                "X001_offset",
+                                "X1_offset",
+                                "X01_offset",
+                                "X001_offset",
+                                "X1_offset",
+                                "X01_offset",
+                                "X001_offset"
                             ],
-			    "@devicename":[
-				"FM3_1T",
-				"FM3_1T",
-				"FM3_1T",
-				"FM3_10T",
-				"FM3_10T",
-				"FM3_10T",
-				"FM3_1000T",
-				"FM3_1000T",
-				"FM3_1000T"
-			    ],
-			    "@runif": [
+                            "@devicename": [
+                                "FM3_1T",
+                                "FM3_1T",
+                                "FM3_1T",
+                                "FM3_10T",
+                                "FM3_10T",
+                                "FM3_10T",
+                                "FM3_1000T",
+                                "FM3_1000T",
+                                "FM3_1000T"
+                            ],
+                            "@runif": [
                                 "X1_offset.Ready",
                                 "X01_offset.Ready",
                                 "X001_offset.Ready",
@@ -567,7 +570,7 @@
                         }
                     }
                 ],
-		[
+                [
                     {
                         "TaskName": [
                             "FM3_1T-device_ini",
@@ -1565,17 +1568,15 @@
                     ],
                     "Ready": false
                 },
-		"offset_element":{
-		    "Caption": "@caption",
-		    "Type":"",
-		    "Value":null,
-		    "SdValue":null,
-		    "N":null,
-		    "Unit":"",
-		    "Ready":false
-
-
-		}
+                "offset_element": {
+                    "Caption": "@caption",
+                    "Type": "",
+                    "Value": null,
+                    "SdValue": null,
+                    "N": null,
+                    "Unit": "",
+                    "Ready": false
+                }
             }
         },
         {
@@ -1618,12 +1619,12 @@
             "Action": "/usr/bin/Rscript",
             "Comment": "Calculates pfill from pcal",
             "TaskName": "cal_pfill",
-	    "RunIf":"Target_Pressure.Ready",
+            "RunIf": "Target_Pressure.Ready",
             "FromExchange": {
                 "@targetpressure": "Target_Pressure.Selected"
             },
             "Value": [
-                "/usr/local/lib/r4vl/ssmp/cal_filling_pressure.r",
+                "/usr/local/lib/vlr/scripts/ce3_filling_pressure.r",
                 "@targetpressure"
             ],
             "PostProcessing": [
