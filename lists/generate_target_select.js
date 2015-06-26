@@ -34,25 +34,21 @@ function(head, req) {
                 // neu
                 //
 		for(chk in rvtv){
-		    if((quant == "" || chk  == quant) &&
-		       (unit  == "" || unit == rvtv[quant].Unit)){
+		  if(chk == "Pressure"){
+		    struct  = rvtv[chk],
+		    unit    = rvtv[chk].Unit,
+		    noOfVal = struct.Value.length;
 
-		      quant   = chk,
-		      struct  = rvtv[quant],
-		      unit    = rvtv[quant].Unit,
-		      noOfVal = struct.Value.length;
-
-			for(var i = 0 ; i < noOfVal; i++){
-
-			    all.push(parseFloat(struct.Value[i]));
-
-			} // for i
-		    }// quant
+		    for(var i = 0 ; i < noOfVal; i++){
+                      all.push(parseFloat(struct.Value[i]));
+                    } // for i
+		  }
 		}// for chk
             }//Values
 	}// todo
         cnt++;
     }//while
+
   if(all.length > 0){
     all.sort(function(a,b){return a-b;});
     var ov = 0;
@@ -60,11 +56,11 @@ function(head, req) {
       var cv = all[j];
       if(cv != ov){
         ov = cv;
-        values.value.push(cv);
+        values.value.push(cv.toExponential(1));
         values.display.push(cv.toExponential() + " " + unit);
       }
     }
-    ro = {Selected:values[0].value,
+    ro = {Selected: values.value[0],
           Select: values}
   }else{
     ro = {Selected:"",
