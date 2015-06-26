@@ -15,8 +15,7 @@ function(head, req) {
       unit    = "",
       struct  = "",
       all     = [],
-      values  = {value:[],
-                display:[]},
+      values  = [],
       noOfVal = 0,
       cnt     = 0;
 
@@ -34,20 +33,15 @@ function(head, req) {
                 // neu
                 //
 		for(chk in rvtv){
-		    if((quant == "" || chk  == quant) &&
-		       (unit  == "" || unit == rvtv[quant].Unit)){
+		  if(chk == "Pressure"){
+		    struct  = rvtv[chk],
+		    unit    = rvtv[chk].Unit,
+		    noOfVal = struct.Value.length;
 
-		      quant   = chk,
-		      struct  = rvtv[quant],
-		      unit    = rvtv[quant].Unit,
-		      noOfVal = struct.Value.length;
-
-			for(var i = 0 ; i < noOfVal; i++){
-
-			    all.push(parseFloat(struct.Value[i]));
-
-			} // for i
-		    }// quant
+		    for(var i = 0 ; i < noOfVal; i++){
+                      all.push(parseFloat(struct.Value[i]));
+                    } // for i
+		  }
 		}// for chk
             }//Values
 	}// todo
@@ -61,16 +55,16 @@ function(head, req) {
       var cv = all[j];
       if(cv != ov){
         ov = cv;
-        values.value.push(cv);
-        values.display.push(cv.toExponential() + " " + unit);
+        values.push({value:cv.toExponential(1),
+                     display:cv.toExponential() + " " + unit});
       }
     }
-    ro = {Selected:values[0].value,
+    ro = {Selected: null,
           Select: values}
   }else{
     ro = {Selected:"",
-          Select: {value:[null]
-                  , display: ["no value"]}}
+          Select: [{value: null
+                   , display: "no value"}]}
   }
   return JSON.stringify(ro);
 }
