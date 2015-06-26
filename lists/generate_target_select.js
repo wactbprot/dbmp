@@ -15,8 +15,7 @@ function(head, req) {
       unit    = "",
       struct  = "",
       all     = [],
-      values  = {value:[],
-                display:[]},
+      values  = [],
       noOfVal = 0,
       cnt     = 0;
 
@@ -65,7 +64,7 @@ function(head, req) {
   }else{
     ro = {Selected:"",
           Select: [{value: null
-                   , display: "no value"}]
+                   , display: "no value"}]}
   }
   return JSON.stringify(ro);
 }
