@@ -1219,6 +1219,14 @@
                             "Values": "open_V21"
                         }
                     }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "prepair_cond"
+                        }
+                    }
                 ]
             ],
             "DefinitionClass": "measure_drift",
@@ -1327,6 +1335,14 @@
                             "Values": "open_V21"
                         }
                     }
+                ],
+		[
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "prepair_cond"
+                        }
+                    }
                 ]
             ],
             "DefinitionClass": "measure_drift",
@@ -1414,6 +1430,14 @@
                         "TaskName": "VS_CE3-ctrl_valve",
                         "Use": {
                             "Values": "open_V22"
+                        }
+                    }
+                ],
+		[
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "prepair_cond"
                         }
                     }
                 ]
@@ -1505,10 +1529,104 @@
                             "Values": "open_V22"
                         }
                     }
+                ],
+		[
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "prepair_cond"
+                        }
+                    }
                 ]
             ],
             "DefinitionClass": "measure_drift",
             "ShortDescr": "measures the drift\n"
+        },
+        {
+            "Condition": [ 
+		{
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "lt",
+                    "Value": 13.3
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "gt",
+                    "Value": 1e-10
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "lt",
+                    "Value":9e-7
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                }
+            ],
+            "Definition": [
+                [
+                    {
+                        "TaskName": [
+                            "FM3_1T-device_ini",
+                            "FM3_10T-device_ini",
+                            "FM3_1000T-device_ini"
+                        ],
+                        "ExpandPar": {
+                            "Values": [
+                                "med_range",
+                                "high_range",
+                                "med_range"
+                            ],
+                            "@exchpath": [
+                                "FM3_1T_ini_ok.Bool",
+                                "FM3_10T_ini_ok.Bool",
+                                "FM3_1000T_ini_ok.Bool"
+                            ]
+                        }
+                    }
+                ],
+		[ 
+		    {
+                        "TaskName": "VS_CE3-ctrl_valve",
+                        "Use": {
+                            "Values": "open_V11"
+                        }
+                    }
+		],
+		[ 
+		    {
+                        "TaskName": "VS_CE3-ctrl_valve",
+                        "Use": {
+                            "Values": "close_VTMP"
+                        }
+                    }
+		],
+		[ 
+		    {
+                        "TaskName": "VS_CE3-ctrl_valve",
+                        "Use": {
+                            "Values": "close_V21"
+                        }
+                    }
+		],
+		[ 
+		    {
+                        "TaskName": "Corvus_1-check_position"
+                    },
+		    {
+                        "TaskName": "Corvus_2-check_position"
+                    }
+		]
+            ],
+            "DefinitionClass": "prepair_cond",
+            "ShortDescr": "prepairs the conductance DV2 (kl. LW)\n"
         }
     ],
     "Task": [
@@ -1620,6 +1738,12 @@
                 },
                 "target_pressure": {
                     "Caption": "Target pressure",
+		    "Selected":null,
+		    "Select":[
+			{"value":null, 
+			 "display":"select"}
+		    ],
+		    "Unit":"mbar",
                     "Ready": false
                 },
                 "target_pfill": {
