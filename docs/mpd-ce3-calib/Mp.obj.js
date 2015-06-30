@@ -1623,6 +1623,126 @@
 		    {
                         "TaskName": "Corvus_2-check_position"
                     }
+		],
+		[ 
+		    {
+                        "TaskName": "Corvus_1-exec",
+			"Use":{
+			    "Values":"open_klLW"
+			},
+			"Replace":{
+			    "@runif":"LW_kl_startpos.Bool"
+			}
+                    }
+		],
+		[ 
+		    {
+                        "TaskName": "Corvus_1-check_position"
+                    },
+		    {
+                        "TaskName": "Corvus_2-check_position"
+                    }
+		],
+		[
+		    {
+			"TaskName":"Common-wait",
+			"Replace":{
+			    "@waittime":3000,
+			    "@waitfor": "rough flow equilibrium"
+			}
+		    }
+		],	
+		[ 
+		    {
+                        "TaskName": "VS_CE3-ctrl_valve",
+                        "Use": {
+                            "Values": "close_V22"
+                        }
+                    }
+		],
+		[
+		    {
+			"TaskName":"Common-wait",
+			"Replace":{
+			    "@waittime":3000,
+			    "@waitfor": "rough flow equilibrium"
+			}
+		    }
+		],
+		[
+		    {
+                        "TaskName": "Common-get_time",
+                        "Replace": {
+                            "@docpath": "Calibration.Measurement.Values.Time",
+                            "@type": "start_sz_mt",
+			    "@timepath":"Time-start_sz"
+                        }
+                    }, 
+		    {
+                        "TaskName": 
+                        "FM3_1T-read_out",
+                        "Replace": {
+                            "@repeat": 10,
+                            "@waittime": 100,
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+			    "@exchpath":"FM3_1T-start_sz",
+			    "@token":"start_sz"
+                        }
+                    }
+		],
+		[
+		    {
+			"TaskName":"Common-wait",
+			"Replace":{
+			    "@waittime":10000,
+			    "@waitfor": "pressure drop"
+			}
+		    }
+		],
+		[
+		    {
+                        "TaskName": "Common-get_time",
+                        "Replace": {
+                            "@docpath": "Calibration.Measurement.Values.Time",
+                            "@type": "end_sz_mt",
+			    "@timepath":"Time-end_sz"
+                        }
+                    }, 
+		    {
+                        "TaskName": 
+                        "FM3_1T-read_out",
+                        "Replace": {
+                            "@repeat": 10,
+                            "@waittime": 100,
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+			    "@exchpath":"FM3_1T-end_sz",
+			    "@token":"end_sz"
+                        }
+                    }
+		],
+		[ 
+		    {
+                        "TaskName": "VS_CE3-ctrl_valve",
+                        "Use": {
+                            "Values": "open_V22"
+                        }
+                    }
+		],	
+		[ 
+		    {
+                        "TaskName": "Corvus_1-exec",
+			"Use":{
+			    "Values":"close_klLW"
+			},
+			"Replace":{
+			    "@runif":"LW_kl_endpos.Bool"
+			}
+                    }
+		],	
+		[ 
+		    {
+                        "TaskName":"CE3-cal_sz_param"
+		    }
 		]
             ],
             "DefinitionClass": "prepair_cond",
@@ -1778,6 +1898,30 @@
             ],
             "PostProcessing": [
                 "var ToExchange = {'Filling_Pressure.Value':JSON.parse(_x)};"
+            ]
+        },
+        {
+            "Action": "/usr/bin/Rscript",
+            "Comment": "Calculates the saw tooth parameters.",
+            "TaskName": "cal_sz_param",
+           
+            "FromExchange": {
+                "@targetpressure": "Target_Pressure.Selected",
+		"@pressurestart":"FM3_1T-start_sz.Value",	
+		"@timestart":"Time-start_sz.Value",
+		"@pressureend":"FM3_1T-end_sz.Value",	
+		"@timeend":"Time-end_sz.Value"
+            },
+            "Value": [
+                "/usr/local/lib/vlr/scripts/ce3_cal_sz_param.r",
+                "@targetpressure",
+		"@pressurestart",
+		"@timestart",	
+		"@pressureend",	
+		"@timeend"
+            ],
+            "PostProcessing": [
+                "var ToExchange = JSON.parse(_x);"
             ]
         }
     ]
