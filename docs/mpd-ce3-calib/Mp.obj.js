@@ -1772,7 +1772,7 @@
                     {
                         "TaskName": "Common-wait",
                         "Replace": {
-                            "@waittime": 10000,
+                            "@waittime": 20000,
                             "@waitfor": "pressure drop"
                         }
                     }
@@ -1881,6 +1881,14 @@
             ],
             "Definition": [
 		[
+		    {
+                        "TaskName":"FM3_CE3-DMM_Agilent-read_out",
+
+			"Replace":{
+			    "@prefix":"agilentCh",
+			    "@sufix":"_before_lw"
+			}
+		    },
                     {
                         "TaskName": "Corvus_2-displacer_sz_position"    
                     }
@@ -1917,6 +1925,22 @@
                         "TaskName": "FM3_1T-sz_read_out"
                     }
                 ], 
+		[
+                    {
+                        "TaskName": "Corvus_2-displacer_sz_exec",
+                        "Use": {
+                            "Values": "displacer_in"
+                        }
+                    }
+                ],
+		[
+                    {
+                        "TaskName": "Corvus_2-displacer_sz_position"    
+                    },
+		    {
+                        "TaskName": "FM3_1T-sz_read_out"
+                    }
+                ],
 		[
                     {
                         "TaskName": "Corvus_2-displacer_sz_exec",
@@ -1954,6 +1978,7 @@
                         "TaskName": "Corvus_2-displacer_sz_exec",
                         "ExpandSeq": {
                             "Values": [
+				"displacer_out", 
 				"displacer_out", 
 				"displacer_out", 
 				"displacer_out", 
