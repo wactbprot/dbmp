@@ -84,8 +84,7 @@ function(head, req) {
       strtask  = strtask.replace(/\n/g, "\\n");
       strtask  = strtask.replace(/\r/g, "\\r");
     }
-
-    task          = JSON.parse(strtask);
+   task          = JSON.parse(strtask);
     task.Defaults = def;
 
     if(idArr && typeof idArr === "object"){

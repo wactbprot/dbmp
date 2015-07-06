@@ -1682,7 +1682,17 @@
                     {
                         "TaskName": "Corvus_2-dvg_position"
                     }
-                ],
+                ], 
+		[
+		    {
+                        "TaskName":"FM3_CE3-DMM_Agilent-read_out",
+
+			"Replace":{
+			    "@prefix":"agilentCh",
+			    "@sufix":"_before_lw"
+			}
+		    }
+		],
                 [
                     {
                         "TaskName": "Commons-select_definition",
@@ -1762,7 +1772,6 @@
                         "Replace": {
                             "@repeat": 10,
                             "@waittime": 100,
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
                             "@exchpath": "FM3_1T-start_sz",
                             "@token": "start_sz"
                         }
@@ -1783,7 +1792,6 @@
                         "Replace": {
                             "@repeat": 10,
                             "@waittime": 100,
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
                             "@exchpath": "FM3_1T-end_sz",
                             "@token": "end_sz"
                         }
@@ -1803,7 +1811,6 @@
                         "Replace": {
                             "@repeat": 10,
                             "@waittime": 100,
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
                             "@exchpath": "FM3_1T-start_drv",
                             "@token": "start_drv"
                         }
@@ -1832,7 +1839,6 @@
                         "Replace": {
                             "@repeat": 10,
                             "@waittime": 100,
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
                             "@exchpath": "FM3_1T-end_drv",
                             "@token": "end_drv"
                         }
@@ -1849,6 +1855,14 @@
                         "TaskName": "CE3-cal_sz_param"
                     }
                 ],
+		[
+		    {
+                        "TaskName": "VS_CE3-ctrl_valve",
+                        "Use": {
+                            "Values": "open_V22"
+                        }
+                    }
+		],
                 [
                     {
                         "TaskName": "Commons-select_definition",
@@ -1883,14 +1897,47 @@
 		[
 		    {
                         "TaskName":"FM3_CE3-DMM_Agilent-read_out",
-
 			"Replace":{
 			    "@prefix":"agilentCh",
 			    "@sufix":"_before_lw"
 			}
-		    },
+		    } ,
+		    {
+                        "TaskName": "FM3_1T-read_save",
+                        "Replace":{
+                            "@repeat": 10,
+                            "@waittime": 100,
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+                            "@token": "dp_before"
+                        }
+                    }
+		],	
+		[
+                    {
+                        "TaskName": "VS_CE3-ctrl_valve",
+                        "Use": {
+                            "Values": "close_V22"
+                        }
+                    },
+		    { 
+			"TaskName": "Common-wait",
+			"Replace":{
+			    "@waittime":3000
+		      }
+		    }
+                ],
+		[
                     {
                         "TaskName": "Corvus_2-displacer_sz_position"    
+                    },
+		    {
+                        "TaskName": "FM3_1T-read_save",
+                        "Replace": {
+                            "@repeat": 10,
+                            "@waittime": 100,
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+                            "@token": "dp_after"
+                        }
                     }
                 ],
                 [
@@ -1971,6 +2018,14 @@
                     },
 		    {
                         "TaskName": "FM3_1T-sz_read_out"
+                    }
+                ],
+		[
+                    {
+                        "TaskName": "VS_CE3-ctrl_valve",
+                        "Use": {
+                            "Values": "open_V22"
+                        }
                     }
                 ],
                 [
@@ -1986,7 +2041,15 @@
 			    ]
 			    
                         }
-                    }
+                    },
+		    {
+                        "TaskName":"FM3_CE3-DMM_Agilent-read_out",
+
+			"Replace":{
+			    "@prefix":"agilentCh",
+			    "@sufix":"_after_lw"
+			}
+		    }
                 ],
                 [
                     {
@@ -2019,14 +2082,7 @@
                 }
             ],
             "Definition": [
-                [
-                    {
-                        "TaskName": "VS_CE3-ctrl_valve",
-                        "Use": {
-                            "Values": "open_V22"
-                        }
-                    }
-                ],
+                
                 [
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
