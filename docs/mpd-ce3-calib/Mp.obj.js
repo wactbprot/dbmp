@@ -717,7 +717,7 @@
                         ],
                         "ExpandSeq": {
                             "Values": [
-                                "med_range",
+                                "low_range",
                                 "low_range",
                                 "med_range"
                             ],
@@ -1630,6 +1630,8 @@
             "ShortDescr": "prepairs the conductance DV2 (kl. LW)\n"
         },
         {
+            "DefinitionClass": "prepair_cond",
+            "ShortDescr": "prepairs the conductance DV1 (gr. LW)\n",
             "Condition": [
                 {
                     "ExchangePath": "Target_Pressure.Selected",
@@ -1701,11 +1703,11 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "prepair_cond",
-            "ShortDescr": "prepairs the conductance DV1 (gr. LW)\n"
+            ]
         },
         {
+            "DefinitionClass": "test_sz",
+            "ShortDescr": "executes a test saw tooth to gain params\n",
             "Condition": [
                 {
                     "ExchangePath": "Target_Pressure.Selected",
@@ -1734,15 +1736,6 @@
                 ],
                 [
                     {
-                        "TaskName": "Common-wait",
-                        "Replace": {
-                            "@waittime": 3000,
-                            "@waitfor": "rough flow equilibrium"
-                        }
-                    }
-                ],
-                [
-                    {
                         "TaskName": "VS_CE3-ctrl_valve",
                         "Use": {
                             "Values": "close_V22"
@@ -1753,7 +1746,7 @@
                     {
                         "TaskName": "Common-wait",
                         "Replace": {
-                            "@waittime": 3000,
+                            "@waittime": 10000,
                             "@waitfor": "rough flow equilibrium"
                         }
                     }
@@ -1871,9 +1864,7 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "test_sz",
-            "ShortDescr": "executes a test saw tooth to gain params\n"
+            ]
         },
         {
             "Condition": [
@@ -1922,7 +1913,7 @@
 		    { 
 			"TaskName": "Common-wait",
 			"Replace":{
-			    "@waittime":3000
+			    "@waittime":10000
 		      }
 		    }
                 ],
@@ -2041,16 +2032,17 @@
 			    ]
 			    
                         }
-                    },
+                    }
+                ],
+		[
 		    {
                         "TaskName":"FM3_CE3-DMM_Agilent-read_out",
-
 			"Replace":{
 			    "@prefix":"agilentCh",
 			    "@sufix":"_after_lw"
 			}
 		    }
-                ],
+		],
                 [
                     {
                         "TaskName": "Commons-select_definition",
@@ -2064,7 +2056,24 @@
             "ShortDescr": "sz measurement\n"
         },
         {
+            "DefinitionClass": "end_sz",
+            "ShortDescr": "reset sz\n",
             "Condition": [
+		{
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "gt",
+                    "Value": 0.013
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "lt",
+                    "Value": 13.3
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                },
                 {
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "gt",
@@ -2082,7 +2091,17 @@
                 }
             ],
             "Definition": [
-                
+		[
+		    {
+                        "TaskName": "FM3_10T-read_save",
+                        "Replace": {
+                            "@token": "after_lw_fill",
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+                            "@repeat": 20,
+                            "@wait": 500
+                        }
+                    }
+		],                
                 [
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
@@ -2121,9 +2140,7 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "end_sz",
-            "ShortDescr": "reset sz\n"
+            ]
         }
     ],
     "Task": [
