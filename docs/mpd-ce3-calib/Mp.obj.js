@@ -633,6 +633,8 @@
     ],
     "Definitions": [
         {
+            "DefinitionClass": "start_meas",
+            "ShortDescr": "select target pressure, cal filling pressure\n",
             "Condition": [
                 {
                     "ExchangePath": "run_time.Value",
@@ -685,12 +687,12 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "start_meas",
-            "ShortDescr": "select target pressure, cal filling pressure\n"
+            ]
         },
         {
-            "Condition": [
+            "DefinitionClass": "set_range",
+            "ShortDescr": "Sets the Range depending on pfill\n",
+	    "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
                     "Methode": "lt",
@@ -737,11 +739,11 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "set_range",
-            "ShortDescr": "Sets the Range depending on pfill\n"
+            ]
         },
         {
+            "DefinitionClass": "set_range",
+            "ShortDescr": "Sets the Range depending on pfill\n",
             "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
@@ -789,11 +791,11 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "set_range",
-            "ShortDescr": "Sets the Range depending on pfill\n"
+            ]
         },
         {
+            "DefinitionClass": "set_range",
+            "ShortDescr": "Sets the Range depending on pfill\n",
             "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
@@ -841,11 +843,11 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "set_range",
-            "ShortDescr": "Sets the Range depending on pfill\n"
+            ]
         },
         {
+            "DefinitionClass": "set_range",
+            "ShortDescr": "Sets the Range depending on pfill\n",
             "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
@@ -893,11 +895,11 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "set_range",
-            "ShortDescr": "Sets the Range depending on pfill\n"
+            ]
         },
         {
+            "DefinitionClass": "set_range",
+            "ShortDescr": "Sets the Range depending on pfill\n",
             "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
@@ -945,11 +947,11 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "set_range",
-            "ShortDescr": "Sets the Range depending on pfill\n"
+            ]
         },
         {
+            "DefinitionClass": "set_filling_pressure",
+            "ShortDescr": "Sets the pfill\n",
             "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
@@ -1041,11 +1043,11 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "set_filling_pressure",
-            "ShortDescr": "Sets the pfill\n"
+            ]
         },
         {
+	    "DefinitionClass": "set_filling_pressure",
+            "ShortDescr": "Sets the pfill\n",
             "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
@@ -1133,11 +1135,11 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "set_filling_pressure",
-            "ShortDescr": "Sets the pfill\n"
+            ]
         },
-        {
+        { 
+	    "DefinitionClass": "measure_drift",
+            "ShortDescr": "measures the drift\n",
             "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
@@ -1249,12 +1251,13 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "measure_drift",
-            "ShortDescr": "measures the drift\n"
+            ]
         },
         {
-            "Condition": [
+	    
+            "DefinitionClass": "measure_drift",
+            "ShortDescr": "measures the drift\n",           
+	    "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
                     "Methode": "gt",
@@ -1365,12 +1368,12 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "measure_drift",
-            "ShortDescr": "measures the drift\n"
+            ]
         },
         {
-            "Condition": [
+            "DefinitionClass": "measure_drift",
+            "ShortDescr": "measures the drift\n",
+	    "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
                     "Methode": "lt",
@@ -1462,11 +1465,11 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "measure_drift",
-            "ShortDescr": "measures the drift\n"
+            ]
         },
         {
+            "DefinitionClass": "measure_drift",
+            "ShortDescr": "measures the drift\n",
             "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
@@ -1559,11 +1562,11 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "measure_drift",
-            "ShortDescr": "measures the drift\n"
+            ]
         },
         {
+            "DefinitionClass": "prepair_cond",
+            "ShortDescr": "prepairs the conductance DV2 (kl. LW)\n",
             "Condition": [
                 {
                     "ExchangePath": "Target_Pressure.Selected",
@@ -1625,9 +1628,7 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "prepair_cond",
-            "ShortDescr": "prepairs the conductance DV2 (kl. LW)\n"
+            ]
         },
         {
             "DefinitionClass": "prepair_cond",
@@ -1867,6 +1868,8 @@
             ]
         },
         {
+            "DefinitionClass": "meas_sz",
+            "ShortDescr": "sz measurement\n",
             "Condition": [
                 {
                     "ExchangePath": "Target_Pressure.Selected",
@@ -2051,9 +2054,7 @@
                         }
                     }
                 ]
-            ],
-            "DefinitionClass": "meas_sz",
-            "ShortDescr": "sz measurement\n"
+            ]
         },
         {
             "DefinitionClass": "end_sz",
@@ -2118,6 +2119,267 @@
                         },
                         "Replace": {
                             "@runif": "LW_kl_endpos.Bool"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Corvus_2-displacer_exec",
+                        "Use": {
+                            "Values": "displacer_out"
+                        },
+                        "Replace": {
+                            "@rot": 1
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass":"start_meas"
+                        }
+                    }
+                ]
+            ]
+        },
+	{
+            "DefinitionClass": "end_sz",
+            "ShortDescr": "reset sz\n",
+            "Condition": [
+		{
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "gt",
+                    "Value": 13.3
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "lt",
+                    "Value": 500.0
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "gt",
+                    "Value": 9e-7
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "lt",
+                    "Value": 2e-4
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                }
+            ],
+            "Definition": [
+		[
+		    {
+                        "TaskName": "FM3_1000T-read_save",
+                        "Replace": {
+                            "@token": "after_lw_fill",
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+                            "@repeat": 20,
+                            "@wait": 500
+                        }
+                    }
+		],                
+                [
+                    {
+                        "TaskName": "VS_CE3-ctrl_valve",
+                        "Use": {
+                            "Values": "open_V21"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Corvus_1-exec",
+                        "Use": {
+                            "Values": "close_grLW"
+                        },
+                        "Replace": {
+                            "@runif": "LW_gr_endpos.Bool"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Corvus_2-displacer_exec",
+                        "Use": {
+                            "Values": "displacer_out"
+                        },
+                        "Replace": {
+                            "@rot": 1
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass":"start_meas"
+                        }
+                    }
+                ]
+            ]
+        },
+	{
+            "DefinitionClass": "end_sz",
+            "ShortDescr": "reset sz\n",
+            "Condition": [
+		{
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "gt",
+                    "Value": 13.3
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "lt",
+                    "Value": 500.0
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "gt",
+                    "Value": 8e-10
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "lt",
+                    "Value": 9e-7
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                }
+            ],
+            "Definition": [
+		[
+		    {
+                        "TaskName": "FM3_1000T-read_save",
+                        "Replace": {
+                            "@token": "after_lw_fill",
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+                            "@repeat": 20,
+                            "@wait": 500
+                        }
+                    }
+		],                
+                [
+                    {
+                        "TaskName": "VS_CE3-ctrl_valve",
+                        "Use": {
+                            "Values": "open_V21"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Corvus_1-exec",
+                        "Use": {
+                            "Values": "close_klLW"
+                        },
+                        "Replace": {
+                            "@runif": "LW_kl_endpos.Bool"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Corvus_2-displacer_exec",
+                        "Use": {
+                            "Values": "displacer_out"
+                        },
+                        "Replace": {
+                            "@rot": 1
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass":"start_meas"
+                        }
+                    }
+                ]
+            ]
+        },
+	{
+            "DefinitionClass": "end_sz",
+            "ShortDescr": "reset sz\n",
+            "Condition": [
+		{
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "gt",
+                    "Value":0.013
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "lt",
+                    "Value":13.3
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "gt",
+                    "Value": 9e-7
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "lt",
+                    "Value": 2e-4
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                }
+            ],
+            "Definition": [
+		[
+		    {
+                        "TaskName": "FM3_10T-read_save",
+                        "Replace": {
+                            "@token": "after_lw_fill",
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+                            "@repeat": 20,
+                            "@wait": 500
+                        }
+                    }
+		],                
+                [
+                    {
+                        "TaskName": "VS_CE3-ctrl_valve",
+                        "Use": {
+                            "Values": "open_V21"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Corvus_1-exec",
+                        "Use": {
+                            "Values": "close_klLW"
+                        },
+                        "Replace": {
+                            "@runif": "LW_gr_endpos.Bool"
                         }
                     }
                 ],
