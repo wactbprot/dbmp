@@ -1,4 +1,5 @@
 function(head, req) {
+log(req)
   var oktask, mptask, cmtask, row, i, j, task, mptn, cmtn, butn, def, mparr, cmarr,
       tr      = (req.body === "undefined") ? false : true,// try replace
       b       = tr ? JSON.parse(req.body) : {}, // body
@@ -72,7 +73,9 @@ function(head, req) {
     }
 
     var strtask = JSON.stringify(task);
+
     for(j in def){
+
       var patt = new RegExp( j ,"g");
       if(Object.prototype.toString.call( def[j] ) === '[object Array]'){
         strtask = strtask.replace(patt, JSON.stringify(def[j]))
@@ -84,7 +87,8 @@ function(head, req) {
       strtask  = strtask.replace(/\n/g, "\\n");
       strtask  = strtask.replace(/\r/g, "\\r");
     }
-   task          = JSON.parse(strtask);
+
+    task          = JSON.parse(strtask);
     task.Defaults = def;
 
     if(idArr && typeof idArr === "object"){

@@ -1137,7 +1137,7 @@
                 ]
             ]
         },
-        { 
+        {
 	    "DefinitionClass": "measure_drift",
             "ShortDescr": "measures the drift\n",
             "Condition": [
@@ -1202,29 +1202,7 @@
                 ],
                 [
                     {
-                        "TaskName": "FM3_10T-read_save",
-                        "Replace": {
-                            "@token": "before_drift_fill",
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
-                            "@repeat": 20,
-                            "@wait": 500
-                        }
-                    }
-                ],
-                [
-                    {
                         "TaskName": "FM3_1T-drift_exec"
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "FM3_10T-read_save",
-                        "Replace": {
-                            "@token": "after_drift_fill",
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
-                            "@repeat": 20,
-                            "@wait": 500
-                        }
                     }
                 ],
                 [
@@ -1254,9 +1232,9 @@
             ]
         },
         {
-	    
+
             "DefinitionClass": "measure_drift",
-            "ShortDescr": "measures the drift\n",           
+            "ShortDescr": "measures the drift\n",
 	    "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
@@ -1319,29 +1297,7 @@
                 ],
                 [
                     {
-                        "TaskName": "FM3_1000T-read_save",
-                        "Replace": {
-                            "@token": "before_drift_fill",
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
-                            "@repeat": 20,
-                            "@wait": 500
-                        }
-                    }
-                ],
-                [
-                    {
                         "TaskName": "FM3_1T-drift_exec"
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "FM3_1000T-read_save",
-                        "Replace": {
-                            "@token": "after_drift_fill",
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
-                            "@repeat": 20,
-                            "@wait": 500
-                        }
                     }
                 ],
                 [
@@ -1424,29 +1380,7 @@
                 ],
                 [
                     {
-                        "TaskName": "FM3_10T-read_save",
-                        "Replace": {
-                            "@token": "before_drift_fill",
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
-                            "@repeat": 20,
-                            "@wait": 500
-                        }
-                    }
-                ],
-                [
-                    {
                         "TaskName": "FM3_1T-drift_exec"
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "FM3_10T-read_save",
-                        "Replace": {
-                            "@token": "after_drift_fill",
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
-                            "@repeat": 20,
-                            "@wait": 500
-                        }
                     }
                 ],
                 [
@@ -1521,29 +1455,7 @@
                 ],
                 [
                     {
-                        "TaskName": "FM3_1000T-read_save",
-                        "Replace": {
-                            "@token": "before_drift_fill",
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
-                            "@repeat": 20,
-                            "@wait": 500
-                        }
-                    }
-                ],
-                [
-                    {
                         "TaskName": "FM3_1T-drift_exec"
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "FM3_1000T-read_save",
-                        "Replace": {
-                            "@token": "after_drift_fill",
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
-                            "@repeat": 20,
-                            "@wait": 500
-                        }
                     }
                 ],
                 [
@@ -1685,7 +1597,7 @@
                     {
                         "TaskName": "Corvus_2-dvg_position"
                     }
-                ], 
+                ],
 		[
 		    {
                         "TaskName":"FM3_CE3-DMM_Agilent-read_out",
@@ -1905,7 +1817,7 @@
                             "@token": "dp_before"
                         }
                     }
-		],	
+		],
 		[
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
@@ -1913,7 +1825,7 @@
                             "Values": "close_V22"
                         }
                     },
-		    { 
+		    {
 			"TaskName": "Common-wait",
 			"Replace":{
 			    "@waittime":10000
@@ -1922,7 +1834,7 @@
                 ],
 		[
                     {
-                        "TaskName": "Corvus_2-displacer_sz_position"    
+                        "TaskName": "Corvus_2-displacer_sz_position"
                     },
 		    {
                         "TaskName": "FM3_1T-read_save",
@@ -1944,39 +1856,7 @@
                 ],
 		[
                     {
-                        "TaskName": "Corvus_2-displacer_sz_position"    
-                    },
-		    {
-                        "TaskName": "FM3_1T-sz_read_out"
-                    }
-                ], 
-		[
-                    {
-                        "TaskName": "Corvus_2-displacer_sz_exec",
-                        "Use": {
-                            "Values": "displacer_in"
-                        }
-                    }
-                ],
-		[
-                    {
-                        "TaskName": "Corvus_2-displacer_sz_position"    
-                    },
-		    {
-                        "TaskName": "FM3_1T-sz_read_out"
-                    }
-                ], 
-		[
-                    {
-                        "TaskName": "Corvus_2-displacer_sz_exec",
-                        "Use": {
-                            "Values": "displacer_in"
-                        }
-                    }
-                ],
-		[
-                    {
-                        "TaskName": "Corvus_2-displacer_sz_position"    
+                        "TaskName": "Corvus_2-displacer_sz_position"
                     },
 		    {
                         "TaskName": "FM3_1T-sz_read_out"
@@ -1992,12 +1872,12 @@
                 ],
 		[
                     {
-                        "TaskName": "Corvus_2-displacer_sz_position"    
+                        "TaskName": "Corvus_2-displacer_sz_position"
                     },
 		    {
                         "TaskName": "FM3_1T-sz_read_out"
                     }
-                ], 
+                ],
 		[
                     {
                         "TaskName": "Corvus_2-displacer_sz_exec",
@@ -2008,7 +1888,39 @@
                 ],
 		[
                     {
-                        "TaskName": "Corvus_2-displacer_sz_position"    
+                        "TaskName": "Corvus_2-displacer_sz_position"
+                    },
+		    {
+                        "TaskName": "FM3_1T-sz_read_out"
+                    }
+                ],
+		[
+                    {
+                        "TaskName": "Corvus_2-displacer_sz_exec",
+                        "Use": {
+                            "Values": "displacer_in"
+                        }
+                    }
+                ],
+		[
+                    {
+                        "TaskName": "Corvus_2-displacer_sz_position"
+                    },
+		    {
+                        "TaskName": "FM3_1T-sz_read_out"
+                    }
+                ],
+		[
+                    {
+                        "TaskName": "Corvus_2-displacer_sz_exec",
+                        "Use": {
+                            "Values": "displacer_in"
+                        }
+                    }
+                ],
+		[
+                    {
+                        "TaskName": "Corvus_2-displacer_sz_position"
                     },
 		    {
                         "TaskName": "FM3_1T-sz_read_out"
@@ -2027,13 +1939,13 @@
                         "TaskName": "Corvus_2-displacer_sz_exec",
                         "ExpandSeq": {
                             "Values": [
-				"displacer_out", 
-				"displacer_out", 
-				"displacer_out", 
-				"displacer_out", 
+				"displacer_out",
+				"displacer_out",
+				"displacer_out",
+				"displacer_out",
 				"displacer_out"
 			    ]
-			    
+
                         }
                     }
                 ],
@@ -2102,7 +2014,7 @@
                             "@wait": 500
                         }
                     }
-		],                
+		],
                 [
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
@@ -2189,7 +2101,7 @@
                             "@wait": 500
                         }
                     }
-		],                
+		],
                 [
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
@@ -2276,7 +2188,7 @@
                             "@wait": 500
                         }
                     }
-		],                
+		],
                 [
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
@@ -2363,7 +2275,7 @@
                             "@wait": 500
                         }
                     }
-		],                
+		],
                 [
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
