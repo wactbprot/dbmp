@@ -234,7 +234,8 @@
                         },
                         "Replace": {
                             "@caption": "Offset",
-                            "@elemtype": "ind_offset"
+                            "@elemtype": "ind_offset",
+                            "@type":"ind_offset"
                         }
                     }
                 ],
@@ -247,7 +248,8 @@
                         },
                         "Replace": {
                             "@caption": "Pressure",
-                            "@elemtype": "ind"
+                            "@elemtype": "ind",
+                            "@type":"ind"
                         }
                     }
                 ],
@@ -1997,7 +1999,7 @@
                     {
                         "TaskName": "Commons-select_definition",
                         "Replace": {
-                            "@definitionclass": "end_sz"
+                            "@definitionclass": "customer_ind"
                         }
                     }
                 ]
@@ -2352,6 +2354,54 @@
             ]
         },
         {
+            "DefinitionClass": "customer_ind",
+            "ShortDescr": "ini and read customer indication\n",
+            "Condition": [
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "gt",
+                    "Value": 1e-11
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "lt",
+                    "Value": 0.0002
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                }
+            ],
+            "Definition": [
+              [
+                    {
+                      "TaskName": "common-wait"
+                    }
+                ],
+                [
+                      {
+                        "TaskName": "read_element",
+                        "Customer": true,
+                        "Replace": {
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+                            "@elemtype": "ind",
+                            "@runif": "ind.Ready"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "end_sz"
+                        }
+                    }
+                ]
+
+            ]
+        },
+        {
             "DefinitionClass": "customer_offset",
             "ShortDescr": "ini and read customer offset\n",
             "Condition": [
@@ -2484,11 +2534,11 @@
                 },
                 "pressure_element": {
                     "Caption": "@caption @devicename",
-                    "Type": "",
+                    "Type": "@type",
                     "Value": null,
                     "SdValue": null,
                     "N": null,
-                    "Unit": "",
+                    "Unit": "mbar",
                     "Ready": false
                 }
             }
