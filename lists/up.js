@@ -81,7 +81,7 @@ function(head, req) {
         rvao = rv.AuxObject;
         if(rvao &&
            rvao.Name &&
-           share.indexOf(con,rvao.Name)        == -1){
+           share.indexOf(con,rvao.Name)  == -1){
 
           aon.push(rvao.Name);
           aoo.push(rvao);
@@ -142,12 +142,12 @@ function(head, req) {
         if(iik >-1){
           ccoo.Values = ikreso[iik];
         }
-        var ccood = ccoo.Device;
 
-        if(ccood &&
-           ccood.Standard &&
-           ccood.Standard == stdStr1 ||
-           (twoStds  && ccood.Standard == stdStr2) ){
+
+        if(ccoo &&
+           ccoo.Standard &&
+           ccoo.Standard == stdStr1 ||
+           (twoStds  && ccoo.Standard == stdStr2) ){
 
           if(ccoo.AuxObject){
             for(var iao in ccoo.AuxObject){

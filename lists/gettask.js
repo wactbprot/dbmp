@@ -1,5 +1,5 @@
 function(head, req) {
-log(req)
+
   var oktask, mptask, cmtask, row, i, j, task, mptn, cmtn, butn, def, mparr, cmarr,
       tr      = (req.body === "undefined") ? false : true,// try replace
       b       = tr ? JSON.parse(req.body) : {}, // body

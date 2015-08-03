@@ -214,7 +214,7 @@
                 ],
                 [
                     {
-                        "TaskName": "exchange_element",
+                        "TaskName": "std_exchange_element",
                         "Customer": true,
                         "Use": {
                             "Values": "cal_port"
@@ -227,9 +227,35 @@
                 ],
                 [
                     {
+                        "TaskName": "std_exchange_element",
+                        "Customer": true,
+                        "Use": {
+                            "Values": "pressure_element"
+                        },
+                        "Replace": {
+                            "@caption": "Offset",
+                            "@elemtype": "ind_offset"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "std_exchange_element",
+                        "Customer": true,
+                        "Use": {
+                            "Values": "pressure_element"
+                        },
+                        "Replace": {
+                            "@caption": "Pressure",
+                            "@elemtype": "ind"
+                        }
+                    }
+                ],
+                [
+                    {
                         "TaskName": [
-                            "CE3-exchange_element",
-                            "CE3-exchange_element"
+                            "CE3-std_exchange_element",
+                            "CE3-std_exchange_element"
                         ],
                         "Replace": {
                             "@caption": "Calibration Gas",
@@ -295,9 +321,18 @@
             "Definition": [
                 [
                     {
-                        "TaskName": "CE3-exchange_element",
+                        "TaskName": "Common-get_date",
+                        "Replace": {
+                            "@docpath": "Calibration.Measurement.Date",
+                            "@type": "measurement"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "CE3-std_exchange_element",
                         "Use": {
-                            "Values": "offset_element"
+                            "Values": "pressure_element"
                         },
                         "ExpandPar": {
                             "@elemtype": [
@@ -533,7 +568,7 @@
                         "Replace": {
                             "@docpath": "Calibration.Measurement.AuxValues.Pressure"
                         },
-                        "ExpandPar": {
+                        "ExpandSeq": {
                             "@elemtype": [
                                 "X1_offset",
                                 "X01_offset",
@@ -617,7 +652,10 @@
             "Element": [
                 "Target_Pressure",
                 "Filling_Pressure",
-                "Filling_Pressure_Dev"
+                "Filling_Pressure_Dev",
+              "*-ind_offset",
+              "*-ind"
+
             ],
             "Definition": [
                 [
@@ -692,7 +730,7 @@
         {
             "DefinitionClass": "set_range",
             "ShortDescr": "Sets the Range depending on pfill\n",
-	    "Condition": [
+            "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
                     "Methode": "lt",
@@ -1046,7 +1084,7 @@
             ]
         },
         {
-	    "DefinitionClass": "set_filling_pressure",
+            "DefinitionClass": "set_filling_pressure",
             "ShortDescr": "Sets the pfill\n",
             "Condition": [
                 {
@@ -1138,7 +1176,7 @@
             ]
         },
         {
-	    "DefinitionClass": "measure_drift",
+            "DefinitionClass": "measure_drift",
             "ShortDescr": "measures the drift\n",
             "Condition": [
                 {
@@ -1232,10 +1270,9 @@
             ]
         },
         {
-
             "DefinitionClass": "measure_drift",
             "ShortDescr": "measures the drift\n",
-	    "Condition": [
+            "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
                     "Methode": "gt",
@@ -1329,7 +1366,7 @@
         {
             "DefinitionClass": "measure_drift",
             "ShortDescr": "measures the drift\n",
-	    "Condition": [
+            "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
                     "Methode": "lt",
@@ -1598,16 +1635,15 @@
                         "TaskName": "Corvus_2-dvg_position"
                     }
                 ],
-		[
-		    {
-                        "TaskName":"FM3_CE3-DMM_Agilent-read_out",
-
-			"Replace":{
-			    "@prefix":"agilentCh",
-			    "@sufix":"_before_lw"
-			}
-		    }
-		],
+                [
+                    {
+                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
+                        "Replace": {
+                            "@prefix": "agilentCh",
+                            "@sufix": "_before_lw"
+                        }
+                    }
+                ],
                 [
                     {
                         "TaskName": "Commons-select_definition",
@@ -1630,7 +1666,7 @@
                 {
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
-                    "Value": 2e-4
+                    "Value": 0.0002
                 },
                 {
                     "ExchangePath": "Target_Pressure.Unit",
@@ -1761,14 +1797,14 @@
                         "TaskName": "CE3-cal_sz_param"
                     }
                 ],
-		[
-		    {
+                [
+                    {
                         "TaskName": "VS_CE3-ctrl_valve",
                         "Use": {
                             "Values": "open_V22"
                         }
                     }
-		],
+                ],
                 [
                     {
                         "TaskName": "Commons-select_definition",
@@ -1800,43 +1836,43 @@
                 }
             ],
             "Definition": [
-		[
-		    {
-                        "TaskName":"FM3_CE3-DMM_Agilent-read_out",
-			"Replace":{
-			    "@prefix":"agilentCh",
-			    "@sufix":"_before_lw"
-			}
-		    } ,
-		    {
+                [
+                    {
+                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
+                        "Replace": {
+                            "@prefix": "agilentCh",
+                            "@sufix": "_before_lw"
+                        }
+                    },
+                    {
                         "TaskName": "FM3_1T-read_save",
-                        "Replace":{
+                        "Replace": {
                             "@repeat": 10,
                             "@waittime": 100,
                             "@docpath": "Calibration.Measurement.Values.Pressure",
                             "@token": "dp_before"
                         }
                     }
-		],
-		[
+                ],
+                [
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
                         "Use": {
                             "Values": "close_V22"
                         }
                     },
-		    {
-			"TaskName": "Common-wait",
-			"Replace":{
-			    "@waittime":10000
-		      }
-		    }
+                    {
+                        "TaskName": "Common-wait",
+                        "Replace": {
+                            "@waittime": 10000
+                        }
+                    }
                 ],
-		[
+                [
                     {
                         "TaskName": "Corvus_2-displacer_sz_position"
                     },
-		    {
+                    {
                         "TaskName": "FM3_1T-read_save",
                         "Replace": {
                             "@repeat": 10,
@@ -1854,15 +1890,15 @@
                         }
                     }
                 ],
-		[
+                [
                     {
                         "TaskName": "Corvus_2-displacer_sz_position"
                     },
-		    {
+                    {
                         "TaskName": "FM3_1T-sz_read_out"
                     }
                 ],
-		[
+                [
                     {
                         "TaskName": "Corvus_2-displacer_sz_exec",
                         "Use": {
@@ -1870,15 +1906,15 @@
                         }
                     }
                 ],
-		[
+                [
                     {
                         "TaskName": "Corvus_2-displacer_sz_position"
                     },
-		    {
+                    {
                         "TaskName": "FM3_1T-sz_read_out"
                     }
                 ],
-		[
+                [
                     {
                         "TaskName": "Corvus_2-displacer_sz_exec",
                         "Use": {
@@ -1886,15 +1922,15 @@
                         }
                     }
                 ],
-		[
+                [
                     {
                         "TaskName": "Corvus_2-displacer_sz_position"
                     },
-		    {
+                    {
                         "TaskName": "FM3_1T-sz_read_out"
                     }
                 ],
-		[
+                [
                     {
                         "TaskName": "Corvus_2-displacer_sz_exec",
                         "Use": {
@@ -1902,15 +1938,15 @@
                         }
                     }
                 ],
-		[
+                [
                     {
                         "TaskName": "Corvus_2-displacer_sz_position"
                     },
-		    {
+                    {
                         "TaskName": "FM3_1T-sz_read_out"
                     }
                 ],
-		[
+                [
                     {
                         "TaskName": "Corvus_2-displacer_sz_exec",
                         "Use": {
@@ -1918,15 +1954,15 @@
                         }
                     }
                 ],
-		[
+                [
                     {
                         "TaskName": "Corvus_2-displacer_sz_position"
                     },
-		    {
+                    {
                         "TaskName": "FM3_1T-sz_read_out"
                     }
                 ],
-		[
+                [
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
                         "Use": {
@@ -1939,25 +1975,24 @@
                         "TaskName": "Corvus_2-displacer_sz_exec",
                         "ExpandSeq": {
                             "Values": [
-				"displacer_out",
-				"displacer_out",
-				"displacer_out",
-				"displacer_out",
-				"displacer_out"
-			    ]
-
+                                "displacer_out",
+                                "displacer_out",
+                                "displacer_out",
+                                "displacer_out",
+                                "displacer_out"
+                            ]
                         }
                     }
                 ],
-		[
-		    {
-                        "TaskName":"FM3_CE3-DMM_Agilent-read_out",
-			"Replace":{
-			    "@prefix":"agilentCh",
-			    "@sufix":"_after_lw"
-			}
-		    }
-		],
+                [
+                    {
+                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
+                        "Replace": {
+                            "@prefix": "agilentCh",
+                            "@sufix": "_after_lw"
+                        }
+                    }
+                ],
                 [
                     {
                         "TaskName": "Commons-select_definition",
@@ -1972,7 +2007,7 @@
             "DefinitionClass": "end_sz",
             "ShortDescr": "reset sz\n",
             "Condition": [
-		{
+                {
                     "ExchangePath": "Filling_Pressure.Value",
                     "Methode": "gt",
                     "Value": 0.013
@@ -2004,8 +2039,8 @@
                 }
             ],
             "Definition": [
-		[
-		    {
+                [
+                    {
                         "TaskName": "FM3_10T-read_save",
                         "Replace": {
                             "@token": "after_lw_fill",
@@ -2014,7 +2049,7 @@
                             "@wait": 500
                         }
                     }
-		],
+                ],
                 [
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
@@ -2049,17 +2084,17 @@
                     {
                         "TaskName": "Commons-select_definition",
                         "Replace": {
-                            "@definitionclass":"start_meas"
+                            "@definitionclass": "start_meas"
                         }
                     }
                 ]
             ]
         },
-	{
+        {
             "DefinitionClass": "end_sz",
             "ShortDescr": "reset sz\n",
             "Condition": [
-		{
+                {
                     "ExchangePath": "Filling_Pressure.Value",
                     "Methode": "gt",
                     "Value": 13.3
@@ -2067,7 +2102,7 @@
                 {
                     "ExchangePath": "Filling_Pressure.Value",
                     "Methode": "lt",
-                    "Value": 500.0
+                    "Value": 500
                 },
                 {
                     "ExchangePath": "Filling_Pressure.Unit",
@@ -2082,7 +2117,7 @@
                 {
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
-                    "Value": 2e-4
+                    "Value": 0.0002
                 },
                 {
                     "ExchangePath": "Target_Pressure.Unit",
@@ -2091,8 +2126,8 @@
                 }
             ],
             "Definition": [
-		[
-		    {
+                [
+                    {
                         "TaskName": "FM3_1000T-read_save",
                         "Replace": {
                             "@token": "after_lw_fill",
@@ -2101,7 +2136,7 @@
                             "@wait": 500
                         }
                     }
-		],
+                ],
                 [
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
@@ -2136,17 +2171,17 @@
                     {
                         "TaskName": "Commons-select_definition",
                         "Replace": {
-                            "@definitionclass":"start_meas"
+                            "@definitionclass": "start_meas"
                         }
                     }
                 ]
             ]
         },
-	{
+        {
             "DefinitionClass": "end_sz",
             "ShortDescr": "reset sz\n",
             "Condition": [
-		{
+                {
                     "ExchangePath": "Filling_Pressure.Value",
                     "Methode": "gt",
                     "Value": 13.3
@@ -2154,7 +2189,7 @@
                 {
                     "ExchangePath": "Filling_Pressure.Value",
                     "Methode": "lt",
-                    "Value": 500.0
+                    "Value": 500
                 },
                 {
                     "ExchangePath": "Filling_Pressure.Unit",
@@ -2178,8 +2213,8 @@
                 }
             ],
             "Definition": [
-		[
-		    {
+                [
+                    {
                         "TaskName": "FM3_1000T-read_save",
                         "Replace": {
                             "@token": "after_lw_fill",
@@ -2188,7 +2223,7 @@
                             "@wait": 500
                         }
                     }
-		],
+                ],
                 [
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
@@ -2223,25 +2258,25 @@
                     {
                         "TaskName": "Commons-select_definition",
                         "Replace": {
-                            "@definitionclass":"start_meas"
+                            "@definitionclass": "start_meas"
                         }
                     }
                 ]
             ]
         },
-	{
+        {
             "DefinitionClass": "end_sz",
             "ShortDescr": "reset sz\n",
             "Condition": [
-		{
+                {
                     "ExchangePath": "Filling_Pressure.Value",
                     "Methode": "gt",
-                    "Value":0.013
+                    "Value": 0.013
                 },
                 {
                     "ExchangePath": "Filling_Pressure.Value",
                     "Methode": "lt",
-                    "Value":13.3
+                    "Value": 13.3
                 },
                 {
                     "ExchangePath": "Filling_Pressure.Unit",
@@ -2256,7 +2291,7 @@
                 {
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
-                    "Value": 2e-4
+                    "Value": 0.0002
                 },
                 {
                     "ExchangePath": "Target_Pressure.Unit",
@@ -2265,8 +2300,8 @@
                 }
             ],
             "Definition": [
-		[
-		    {
+                [
+                    {
                         "TaskName": "FM3_10T-read_save",
                         "Replace": {
                             "@token": "after_lw_fill",
@@ -2275,7 +2310,7 @@
                             "@wait": 500
                         }
                     }
-		],
+                ],
                 [
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
@@ -2310,7 +2345,7 @@
                     {
                         "TaskName": "Commons-select_definition",
                         "Replace": {
-                            "@definitionclass":"start_meas"
+                            "@definitionclass": "start_meas"
                         }
                     }
                 ]
@@ -2331,7 +2366,7 @@
         {
             "Action": "writeExchange",
             "Comment": "Add an element to the Exchange api",
-            "TaskName": "exchange_element",
+            "TaskName": "std_exchange_element",
             "ExchangePath": "@devicename-@elemtype",
             "Values": {
                 "cal_port": {
@@ -2399,8 +2434,8 @@
                     ],
                     "Ready": false
                 },
-                "offset_element": {
-                    "Caption": "@caption",
+                "pressure_element": {
+                    "Caption": "@caption @devicename",
                     "Type": "",
                     "Value": null,
                     "SdValue": null,
@@ -2425,16 +2460,18 @@
                     "Value": false
                 },
                 "target_pressure": {
-                    "Caption": "Target pressure",
-                    "Selected": null,
-                    "Select": [
-                        {
-                            "value": null,
-                            "display": "select"
-                        }
-                    ],
-                    "Unit": "mbar",
-                    "Ready": false
+                  "Caption": "Target pressure",
+                  "Ready": false,
+                  "Selected": null,
+                  "Select": [
+                    {
+                      "value": null,
+                      "display": "select"
+                    }
+                  ],
+
+                  "Unit": "mbar"
+
                 },
                 "target_pfill": {
                     "Caption": "Filling pressure",
@@ -2447,10 +2484,6 @@
                     "Type": "rel.",
                     "Unit": "1",
                     "Value": null
-                },
-                "pressure_elem": {
-                    "Caption": "@caption",
-                    "Ready": false
                 }
             }
         },
@@ -2463,7 +2496,7 @@
                 "@targetpressure": "Target_Pressure.Selected"
             },
             "Value": [
-                "/usr/local/lib/vlr/scripts/ce3_filling_pressure.r",
+                "/usr/local/lib/vlr/scripts/ce3.filling_pressure.r",
                 "@targetpressure"
             ],
             "PostProcessing": [
@@ -2487,7 +2520,7 @@
                 "@displdrvend": "Displacer-end_drv.Value"
             },
             "Value": [
-                "/usr/local/lib/vlr/scripts/ce3_sz_param.r",
+                "/usr/local/lib/vlr/scripts/fm3.sz_param.r",
                 "@targetpressure",
                 "@fillingpressure",
                 "@pressurestart",
