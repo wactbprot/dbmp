@@ -1639,15 +1639,6 @@
                 ],
                 [
                     {
-                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
-                        "Replace": {
-                            "@prefix": "agilentCh",
-                            "@sufix": "_before_lw"
-                        }
-                    }
-                ],
-                [
-                    {
                         "TaskName": "Commons-select_definition",
                         "Replace": {
                             "@definitionclass": "test_sz"
@@ -1811,12 +1802,104 @@
                     {
                         "TaskName": "Commons-select_definition",
                         "Replace": {
-                            "@definitionclass": "meas_sz"
+                            "@definitionclass": "before_sz"
                         }
                     }
                 ]
             ]
         },
+
+        {
+            "DefinitionClass": "before_sz",
+            "ShortDescr": "measures p_fill and temperature before sz\n",
+            "Condition": [
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "gt",
+                    "Value": 13.3
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                }
+            ],
+            "Definition": [
+               [
+                 {
+                   "TaskName": "FM3_1000T-read_save",
+                   "Replace": {
+                     "@token": "before_lw_fill",
+                     "@docpath": "Calibration.Measurement.Values.Pressure",
+                     "@repeat": 20,
+                     "@wait": 500
+                   }
+                 },
+                 {
+                   "TaskName": "FM3_CE3-DMM_Agilent-read_out",
+                   "Replace": {
+                     "@prefix": "agilentCh",
+                     "@sufix": "_before_lw"
+                   }
+                 }
+
+               ],
+              [
+                {
+                  "TaskName": "Commons-select_definition",
+                  "Replace": {
+                    "@definitionclass": "meas_sz"
+                  }
+                }
+              ]
+            ]
+        },
+        {
+            "DefinitionClass": "before_sz",
+            "ShortDescr": "measures p_fill and temperature before sz\n",
+            "Condition": [
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "lt",
+                    "Value": 13.3
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                }
+            ],
+            "Definition": [
+               [
+                 {
+                   "TaskName": "FM3_10T-read_save",
+                   "Replace": {
+                     "@token": "before_lw_fill",
+                     "@docpath": "Calibration.Measurement.Values.Pressure",
+                     "@repeat": 20,
+                     "@wait": 500
+                   }
+                 },
+                 {
+                   "TaskName": "FM3_CE3-DMM_Agilent-read_out",
+                   "Replace": {
+                     "@prefix": "agilentCh",
+                     "@sufix": "_before_lw"
+                   }
+                 }
+
+               ],
+              [
+                {
+                  "TaskName": "Commons-select_definition",
+                  "Replace": {
+                    "@definitionclass": "meas_sz"
+                  }
+                }
+              ]
+            ]
+        },
+
         {
             "DefinitionClass": "meas_sz",
             "ShortDescr": "sz measurement\n",
@@ -1839,13 +1922,6 @@
             ],
             "Definition": [
                 [
-                    {
-                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
-                        "Replace": {
-                            "@prefix": "agilentCh",
-                            "@sufix": "_before_lw"
-                        }
-                    },
                     {
                         "TaskName": "FM3_1T-read_save",
                         "Replace": {
@@ -1988,15 +2064,6 @@
                 ],
                 [
                     {
-                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
-                        "Replace": {
-                            "@prefix": "agilentCh",
-                            "@sufix": "_after_lw"
-                        }
-                    }
-                ],
-                [
-                    {
                         "TaskName": "Commons-select_definition",
                         "Replace": {
                             "@definitionclass": "customer_ind"
@@ -2041,17 +2108,6 @@
                 }
             ],
             "Definition": [
-                [
-                    {
-                        "TaskName": "FM3_10T-read_save",
-                        "Replace": {
-                            "@token": "after_lw_fill",
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
-                            "@repeat": 20,
-                            "@wait": 500
-                        }
-                    }
-                ],
                 [
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
@@ -2136,6 +2192,13 @@
                             "@docpath": "Calibration.Measurement.Values.Pressure",
                             "@repeat": 20,
                             "@wait": 500
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
+                        "Replace": {
+                            "@prefix": "agilentCh",
+                            "@sufix": "_after_lw"
                         }
                     }
                 ],
@@ -2224,6 +2287,13 @@
                             "@repeat": 20,
                             "@wait": 500
                         }
+                    },
+                    {
+                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
+                        "Replace": {
+                            "@prefix": "agilentCh",
+                            "@sufix": "_after_lw"
+                        }
                     }
                 ],
                 [
@@ -2311,6 +2381,13 @@
                             "@repeat": 20,
                             "@wait": 500
                         }
+                    },
+                    {
+                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
+                        "Replace": {
+                            "@prefix": "agilentCh",
+                            "@sufix": "_after_lw"
+                        }
                     }
                 ],
                 [
@@ -2353,6 +2430,104 @@
                 ]
             ]
         },
+
+
+
+        {
+            "DefinitionClass": "after_sz",
+            "ShortDescr": "measures p_fill and temperature before sz\n",
+            "Condition": [
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "gt",
+                    "Value": 13.3
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                }
+            ],
+            "Definition": [
+               [
+                 {
+                   "TaskName": "FM3_1000T-read_save",
+                   "Replace": {
+                     "@token": "after_lw_fill",
+                     "@docpath": "Calibration.Measurement.Values.Pressure",
+                     "@repeat": 20,
+                     "@wait": 500
+                   }
+                 },
+                 {
+                   "TaskName": "FM3_CE3-DMM_Agilent-read_out",
+                   "Replace": {
+                     "@prefix": "agilentCh",
+                     "@sufix": "_after_lw"
+                   }
+                 }
+
+               ],
+              [
+                {
+                  "TaskName": "Commons-select_definition",
+                  "Replace": {
+                    "@definitionclass": "end_sz"
+                  }
+                }
+              ]
+            ]
+        },
+        {
+            "DefinitionClass": "after_sz",
+            "ShortDescr": "measures p_fill and temperature before sz\n",
+            "Condition": [
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "lt",
+                    "Value": 13.3
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                }
+            ],
+            "Definition": [
+               [
+                 {
+                   "TaskName": "FM3_10T-read_save",
+                   "Replace": {
+                     "@token": "after_lw_fill",
+                     "@docpath": "Calibration.Measurement.Values.Pressure",
+                     "@repeat": 20,
+                     "@wait": 500
+                   }
+                 },
+                 {
+                   "TaskName": "FM3_CE3-DMM_Agilent-read_out",
+                   "Replace": {
+                     "@prefix": "agilentCh",
+                     "@sufix": "_after_lw"
+                   }
+                 }
+
+               ],
+              [
+                {
+                  "TaskName": "Commons-select_definition",
+                  "Replace": {
+                    "@definitionclass": "end_sz"
+                  }
+                }
+              ]
+            ]
+        },
+
+
+
+
+
         {
             "DefinitionClass": "customer_ind",
             "ShortDescr": "ini and read customer indication\n",
@@ -2360,7 +2535,7 @@
                 {
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "gt",
-                    "Value": 1e-11
+                    "Value": 8e-10
                 },
                 {
                     "ExchangePath": "Target_Pressure.Selected",
@@ -2394,7 +2569,7 @@
                     {
                         "TaskName": "Commons-select_definition",
                         "Replace": {
-                            "@definitionclass": "end_sz"
+                            "@definitionclass": "after_sz"
                         }
                     }
                 ]
@@ -2408,7 +2583,7 @@
                 {
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "gt",
-                    "Value": 1e-11
+                    "Value": 8e-10
                 },
                 {
                     "ExchangePath": "Target_Pressure.Selected",
