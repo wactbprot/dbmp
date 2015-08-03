@@ -1263,7 +1263,7 @@
                     {
                         "TaskName": "Commons-select_definition",
                         "Replace": {
-                            "@definitionclass": "prepair_cond"
+                            "@definitionclass": "customer_offset"
                         }
                     }
                 ]
@@ -1357,7 +1357,7 @@
                     {
                         "TaskName": "Commons-select_definition",
                         "Replace": {
-                            "@definitionclass": "prepair_cond"
+                            "@definitionclass": "customer_offset"
                         }
                     }
                 ]
@@ -1432,7 +1432,7 @@
                     {
                         "TaskName": "Commons-select_definition",
                         "Replace": {
-                            "@definitionclass": "prepair_cond"
+                            "@definitionclass": "customer_offset"
                         }
                     }
                 ]
@@ -1507,7 +1507,7 @@
                     {
                         "TaskName": "Commons-select_definition",
                         "Replace": {
-                            "@definitionclass": "prepair_cond"
+                            "@definitionclass": "customer_offset"
                         }
                     }
                 ]
@@ -2349,6 +2349,54 @@
                         }
                     }
                 ]
+            ]
+        },
+        {
+            "DefinitionClass": "customer_offset",
+            "ShortDescr": "ini and read customer offset\n",
+            "Condition": [
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "gt",
+                    "Value": 1e-11
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "lt",
+                    "Value": 0.0002
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                }
+            ],
+            "Definition": [
+              [
+                    {
+                      "TaskName": "common-wait"
+                    }
+                ],
+                [
+                      {
+                        "TaskName": "read_element",
+                        "Customer": true,
+                        "Replace": {
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+                            "@elemtype": "ind_offset",
+                            "@runif": "ind_offset.Ready"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "prepair_cond"
+                        }
+                    }
+                ]
+
             ]
         }
     ],
