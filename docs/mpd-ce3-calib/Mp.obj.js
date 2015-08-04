@@ -1200,11 +1200,6 @@
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 9e-7
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
                 }
             ],
             "Definition": [
@@ -1294,11 +1289,6 @@
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 9e-7
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
                 }
             ],
             "Definition": [
@@ -1388,11 +1378,6 @@
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 0.00009
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
                 }
             ],
             "Definition": [
@@ -1463,11 +1448,6 @@
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 0.00009
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
                 }
             ],
             "Definition": [
@@ -1528,11 +1508,6 @@
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 9e-7
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
                 }
             ],
             "Definition": [
@@ -1594,11 +1569,6 @@
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 0.0002
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
                 }
             ],
             "Definition": [
@@ -1660,11 +1630,6 @@
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 0.0002
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
                 }
             ],
             "Definition": [
@@ -1913,11 +1878,6 @@
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 0.0002
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
                 }
             ],
             "Definition": [
@@ -2100,11 +2060,6 @@
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 9e-7
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
                 }
             ],
             "Definition": [
@@ -2176,11 +2131,6 @@
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 0.0002
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
                 }
             ],
             "Definition": [
@@ -2270,11 +2220,6 @@
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 9e-7
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
                 }
             ],
             "Definition": [
@@ -2364,11 +2309,6 @@
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 0.0002
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
                 }
             ],
             "Definition": [
@@ -2541,11 +2481,6 @@
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 0.0002
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
                 }
             ],
             "Definition": [
@@ -2589,11 +2524,6 @@
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
                     "Value": 0.0002
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
                 }
             ],
             "Definition": [
@@ -2741,10 +2671,7 @@
                       "value": null,
                       "display": "select"
                     }
-                  ],
-
-                  "Unit": "mbar"
-
+                  ]
                 },
                 "target_pfill": {
                     "Caption": "Filling pressure",
