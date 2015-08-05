@@ -318,7 +318,7 @@
             "Ctrl": "unformed",
             "Title": "offset",
             "Element": [
-                "*_offset"
+                "FM3_*_offset"
             ],
             "Definition": [
                 [
@@ -2033,347 +2033,6 @@
             ]
         },
         {
-            "DefinitionClass": "end_sz",
-            "ShortDescr": "reset sz\n",
-            "Condition": [
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
-                    "Value": 0.013
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "lt",
-                    "Value": 13.3
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
-                    "Value": 8e-10
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "lt",
-                    "Value": 9e-7
-                }
-            ],
-            "Definition": [
-                [
-                    {
-                        "TaskName": "VS_CE3-ctrl_valve",
-                        "Use": {
-                            "Values": "open_V21"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Corvus_1-exec",
-                        "Use": {
-                            "Values": "close_klLW"
-                        },
-                        "Replace": {
-                            "@runif": "LW_kl_endpos.Bool"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Corvus_2-displacer_exec",
-                        "Use": {
-                            "Values": "displacer_out"
-                        },
-                        "Replace": {
-                            "@rot": 1
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Commons-select_definition",
-                        "Replace": {
-                            "@definitionclass": "start_meas"
-                        }
-                    }
-                ]
-            ]
-        },
-        {
-            "DefinitionClass": "end_sz",
-            "ShortDescr": "reset sz\n",
-            "Condition": [
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
-                    "Value": 13.3
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "lt",
-                    "Value": 500
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
-                    "Value": 9e-7
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "lt",
-                    "Value": 0.0002
-                }
-            ],
-            "Definition": [
-                [
-                    {
-                        "TaskName": "FM3_1000T-read_save",
-                        "Replace": {
-                            "@token": "after_lw_fill",
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
-                            "@repeat": 20,
-                            "@wait": 500
-                        }
-                    },
-                    {
-                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
-                        "Replace": {
-                            "@prefix": "agilentCh",
-                            "@sufix": "_after_lw"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "VS_CE3-ctrl_valve",
-                        "Use": {
-                            "Values": "open_V21"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Corvus_1-exec",
-                        "Use": {
-                            "Values": "close_grLW"
-                        },
-                        "Replace": {
-                            "@runif": "LW_gr_endpos.Bool"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Corvus_2-displacer_exec",
-                        "Use": {
-                            "Values": "displacer_out"
-                        },
-                        "Replace": {
-                            "@rot": 1
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Commons-select_definition",
-                        "Replace": {
-                            "@definitionclass": "start_meas"
-                        }
-                    }
-                ]
-            ]
-        },
-        {
-            "DefinitionClass": "end_sz",
-            "ShortDescr": "reset sz\n",
-            "Condition": [
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
-                    "Value": 13.3
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "lt",
-                    "Value": 500
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
-                    "Value": 8e-10
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "lt",
-                    "Value": 9e-7
-                }
-            ],
-            "Definition": [
-                [
-                    {
-                        "TaskName": "FM3_1000T-read_save",
-                        "Replace": {
-                            "@token": "after_lw_fill",
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
-                            "@repeat": 20,
-                            "@wait": 500
-                        }
-                    },
-                    {
-                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
-                        "Replace": {
-                            "@prefix": "agilentCh",
-                            "@sufix": "_after_lw"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "VS_CE3-ctrl_valve",
-                        "Use": {
-                            "Values": "open_V21"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Corvus_1-exec",
-                        "Use": {
-                            "Values": "close_klLW"
-                        },
-                        "Replace": {
-                            "@runif": "LW_kl_endpos.Bool"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Corvus_2-displacer_exec",
-                        "Use": {
-                            "Values": "displacer_out"
-                        },
-                        "Replace": {
-                            "@rot": 1
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Commons-select_definition",
-                        "Replace": {
-                            "@definitionclass": "start_meas"
-                        }
-                    }
-                ]
-            ]
-        },
-        {
-            "DefinitionClass": "end_sz",
-            "ShortDescr": "reset sz\n",
-            "Condition": [
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
-                    "Value": 0.013
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "lt",
-                    "Value": 13.3
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
-                    "Value": 9e-7
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "lt",
-                    "Value": 0.0002
-                }
-            ],
-            "Definition": [
-                [
-                    {
-                        "TaskName": "FM3_10T-read_save",
-                        "Replace": {
-                            "@token": "after_lw_fill",
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
-                            "@repeat": 20,
-                            "@wait": 500
-                        }
-                    },
-                    {
-                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
-                        "Replace": {
-                            "@prefix": "agilentCh",
-                            "@sufix": "_after_lw"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "VS_CE3-ctrl_valve",
-                        "Use": {
-                            "Values": "open_V21"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Corvus_1-exec",
-                        "Use": {
-                            "Values": "close_klLW"
-                        },
-                        "Replace": {
-                            "@runif": "LW_gr_endpos.Bool"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Corvus_2-displacer_exec",
-                        "Use": {
-                            "Values": "displacer_out"
-                        },
-                        "Replace": {
-                            "@rot": 1
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Commons-select_definition",
-                        "Replace": {
-                            "@definitionclass": "start_meas"
-                        }
-                    }
-                ]
-            ]
-        },
-
-
-
-        {
             "DefinitionClass": "after_sz",
             "ShortDescr": "measures p_fill and temperature before sz\n",
             "Condition": [
@@ -2463,11 +2122,290 @@
               ]
             ]
         },
-
-
-
-
-
+        {
+            "DefinitionClass": "end_sz",
+            "ShortDescr": "reset sz\n",
+            "Condition": [
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "gt",
+                    "Value": 0.013
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "lt",
+                    "Value": 13.3
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "gt",
+                    "Value": 8e-10
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "lt",
+                    "Value": 9e-7
+                }
+            ],
+            "Definition": [
+                [
+                    {
+                        "TaskName": "VS_CE3-ctrl_valve",
+                        "Use": {
+                            "Values": "open_V21"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Corvus_1-exec",
+                        "Use": {
+                            "Values": "close_klLW"
+                        },
+                        "Replace": {
+                            "@runif": "LW_kl_endpos.Bool"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Corvus_2-displacer_exec",
+                        "Use": {
+                            "Values": "displacer_out"
+                        },
+                        "Replace": {
+                            "@rot": 1
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "start_meas"
+                        }
+                    }
+                ]
+            ]
+        },
+        {
+            "DefinitionClass": "end_sz",
+            "ShortDescr": "reset sz\n",
+            "Condition": [
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "gt",
+                    "Value": 13.3
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "lt",
+                    "Value": 500
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "gt",
+                    "Value": 9e-7
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "lt",
+                    "Value": 0.0002
+                }
+            ],
+            "Definition": [
+                [
+                    {
+                        "TaskName": "VS_CE3-ctrl_valve",
+                        "Use": {
+                            "Values": "open_V21"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Corvus_1-exec",
+                        "Use": {
+                            "Values": "close_grLW"
+                        },
+                        "Replace": {
+                            "@runif": "LW_gr_endpos.Bool"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Corvus_2-displacer_exec",
+                        "Use": {
+                            "Values": "displacer_out"
+                        },
+                        "Replace": {
+                            "@rot": 1
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "start_meas"
+                        }
+                    }
+                ]
+            ]
+        },
+        {
+            "DefinitionClass": "end_sz",
+            "ShortDescr": "reset sz\n",
+            "Condition": [
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "gt",
+                    "Value": 13.3
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "lt",
+                    "Value": 500
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "gt",
+                    "Value": 8e-10
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "lt",
+                    "Value": 9e-7
+                }
+            ],
+            "Definition": [
+                [
+                    {
+                        "TaskName": "VS_CE3-ctrl_valve",
+                        "Use": {
+                            "Values": "open_V21"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Corvus_1-exec",
+                        "Use": {
+                            "Values": "close_klLW"
+                        },
+                        "Replace": {
+                            "@runif": "LW_kl_endpos.Bool"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Corvus_2-displacer_exec",
+                        "Use": {
+                            "Values": "displacer_out"
+                        },
+                        "Replace": {
+                            "@rot": 1
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "start_meas"
+                        }
+                    }
+                ]
+            ]
+        },
+        {
+            "DefinitionClass": "end_sz",
+            "ShortDescr": "reset sz\n",
+            "Condition": [
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "gt",
+                    "Value": 0.013
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Value",
+                    "Methode": "lt",
+                    "Value": 13.3
+                },
+                {
+                    "ExchangePath": "Filling_Pressure.Unit",
+                    "Methode": "eq",
+                    "Value": "mbar"
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "gt",
+                    "Value": 9e-7
+                },
+                {
+                    "ExchangePath": "Target_Pressure.Selected",
+                    "Methode": "lt",
+                    "Value": 0.0002
+                }
+            ],
+            "Definition": [
+                [
+                    {
+                        "TaskName": "VS_CE3-ctrl_valve",
+                        "Use": {
+                            "Values": "open_V21"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Corvus_1-exec",
+                        "Use": {
+                            "Values": "close_klLW"
+                        },
+                        "Replace": {
+                            "@runif": "LW_gr_endpos.Bool"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Corvus_2-displacer_exec",
+                        "Use": {
+                            "Values": "displacer_out"
+                        },
+                        "Replace": {
+                            "@rot": 1
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "start_meas"
+                        }
+                    }
+                ]
+            ]
+        },
         {
             "DefinitionClass": "customer_ind",
             "ShortDescr": "ini and read customer indication\n",
