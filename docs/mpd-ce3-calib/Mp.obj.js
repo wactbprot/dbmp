@@ -235,7 +235,7 @@
                         "Replace": {
                             "@caption": "Offset",
                             "@elemtype": "ind_offset",
-                            "@type":"ind_offset"
+                            "@type": "ind_offset"
                         }
                     }
                 ],
@@ -249,7 +249,7 @@
                         "Replace": {
                             "@caption": "Pressure",
                             "@elemtype": "ind",
-                            "@type":"ind"
+                            "@type": "ind"
                         }
                     }
                 ],
@@ -655,9 +655,8 @@
                 "Target_Pressure",
                 "Filling_Pressure",
                 "Filling_Pressure_Dev",
-              "*-ind_offset",
-              "*-ind"
-
+                "*-ind_offset",
+                "*-ind"
             ],
             "Definition": [
                 [
@@ -740,7 +739,7 @@
                 },
                 {
                     "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 0.013
                 },
                 {
@@ -792,7 +791,7 @@
                 },
                 {
                     "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 0.13
                 },
                 {
@@ -844,7 +843,7 @@
                 },
                 {
                     "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 1.33
                 },
                 {
@@ -896,7 +895,7 @@
                 },
                 {
                     "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 13.3
                 },
                 {
@@ -948,7 +947,7 @@
                 },
                 {
                     "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 133
                 },
                 {
@@ -1000,7 +999,7 @@
                 },
                 {
                     "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 0.01
                 },
                 {
@@ -1096,7 +1095,7 @@
                 },
                 {
                     "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 13.3
                 },
                 {
@@ -1193,7 +1192,7 @@
                 },
                 {
                     "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 8e-10
                 },
                 {
@@ -1282,7 +1281,7 @@
                 },
                 {
                     "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 1e-9
                 },
                 {
@@ -1371,7 +1370,7 @@
                 },
                 {
                     "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 9e-7
                 },
                 {
@@ -1441,7 +1440,7 @@
                 },
                 {
                     "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 9e-7
                 },
                 {
@@ -1501,7 +1500,7 @@
             "Condition": [
                 {
                     "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 8e-10
                 },
                 {
@@ -1562,7 +1561,7 @@
             "Condition": [
                 {
                     "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 9e-7
                 },
                 {
@@ -1623,7 +1622,7 @@
             "Condition": [
                 {
                     "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 8e-10
                 },
                 {
@@ -1773,14 +1772,13 @@
                 ]
             ]
         },
-
         {
             "DefinitionClass": "before_sz",
             "ShortDescr": "measures p_fill and temperature before sz\n",
             "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 13.3
                 },
                 {
@@ -1790,33 +1788,32 @@
                 }
             ],
             "Definition": [
-               [
-                 {
-                   "TaskName": "FM3_1000T-read_save",
-                   "Replace": {
-                     "@token": "before_lw_fill",
-                     "@docpath": "Calibration.Measurement.Values.Pressure",
-                     "@repeat": 20,
-                     "@wait": 500
-                   }
-                 },
-                 {
-                   "TaskName": "FM3_CE3-DMM_Agilent-read_out",
-                   "Replace": {
-                     "@prefix": "agilentCh",
-                     "@sufix": "_before_lw"
-                   }
-                 }
-
-               ],
-              [
-                {
-                  "TaskName": "Commons-select_definition",
-                  "Replace": {
-                    "@definitionclass": "meas_sz"
-                  }
-                }
-              ]
+                [
+                    {
+                        "TaskName": "FM3_1000T-read_save",
+                        "Replace": {
+                            "@token": "before_lw_fill",
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+                            "@repeat": 20,
+                            "@wait": 500
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
+                        "Replace": {
+                            "@prefix": "agilentCh",
+                            "@sufix": "_before_lw"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "meas_sz"
+                        }
+                    }
+                ]
             ]
         },
         {
@@ -1835,43 +1832,41 @@
                 }
             ],
             "Definition": [
-               [
-                 {
-                   "TaskName": "FM3_10T-read_save",
-                   "Replace": {
-                     "@token": "before_lw_fill",
-                     "@docpath": "Calibration.Measurement.Values.Pressure",
-                     "@repeat": 20,
-                     "@wait": 500
-                   }
-                 },
-                 {
-                   "TaskName": "FM3_CE3-DMM_Agilent-read_out",
-                   "Replace": {
-                     "@prefix": "agilentCh",
-                     "@sufix": "_before_lw"
-                   }
-                 }
-
-               ],
-              [
-                {
-                  "TaskName": "Commons-select_definition",
-                  "Replace": {
-                    "@definitionclass": "meas_sz"
-                  }
-                }
-              ]
+                [
+                    {
+                        "TaskName": "FM3_10T-read_save",
+                        "Replace": {
+                            "@token": "before_lw_fill",
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+                            "@repeat": 20,
+                            "@wait": 500
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
+                        "Replace": {
+                            "@prefix": "agilentCh",
+                            "@sufix": "_before_lw"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "meas_sz"
+                        }
+                    }
+                ]
             ]
         },
-
         {
             "DefinitionClass": "meas_sz",
             "ShortDescr": "sz measurement\n",
             "Condition": [
                 {
                     "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 8e-10
                 },
                 {
@@ -2038,7 +2033,7 @@
             "Condition": [
                 {
                     "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 13.3
                 },
                 {
@@ -2048,33 +2043,32 @@
                 }
             ],
             "Definition": [
-               [
-                 {
-                   "TaskName": "FM3_1000T-read_save",
-                   "Replace": {
-                     "@token": "after_lw_fill",
-                     "@docpath": "Calibration.Measurement.Values.Pressure",
-                     "@repeat": 20,
-                     "@wait": 500
-                   }
-                 },
-                 {
-                   "TaskName": "FM3_CE3-DMM_Agilent-read_out",
-                   "Replace": {
-                     "@prefix": "agilentCh",
-                     "@sufix": "_after_lw"
-                   }
-                 }
-
-               ],
-              [
-                {
-                  "TaskName": "Commons-select_definition",
-                  "Replace": {
-                    "@definitionclass": "end_sz"
-                  }
-                }
-              ]
+                [
+                    {
+                        "TaskName": "FM3_1000T-read_save",
+                        "Replace": {
+                            "@token": "after_lw_fill",
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+                            "@repeat": 20,
+                            "@wait": 500
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
+                        "Replace": {
+                            "@prefix": "agilentCh",
+                            "@sufix": "_after_lw"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "end_sz"
+                        }
+                    }
+                ]
             ]
         },
         {
@@ -2093,33 +2087,32 @@
                 }
             ],
             "Definition": [
-               [
-                 {
-                   "TaskName": "FM3_10T-read_save",
-                   "Replace": {
-                     "@token": "after_lw_fill",
-                     "@docpath": "Calibration.Measurement.Values.Pressure",
-                     "@repeat": 20,
-                     "@wait": 500
-                   }
-                 },
-                 {
-                   "TaskName": "FM3_CE3-DMM_Agilent-read_out",
-                   "Replace": {
-                     "@prefix": "agilentCh",
-                     "@sufix": "_after_lw"
-                   }
-                 }
-
-               ],
-              [
-                {
-                  "TaskName": "Commons-select_definition",
-                  "Replace": {
-                    "@definitionclass": "end_sz"
-                  }
-                }
-              ]
+                [
+                    {
+                        "TaskName": "FM3_10T-read_save",
+                        "Replace": {
+                            "@token": "after_lw_fill",
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+                            "@repeat": 20,
+                            "@wait": 500
+                        }
+                    },
+                    {
+                        "TaskName": "FM3_CE3-DMM_Agilent-read_out",
+                        "Replace": {
+                            "@prefix": "agilentCh",
+                            "@sufix": "_after_lw"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "end_sz"
+                        }
+                    }
+                ]
             ]
         },
         {
@@ -2127,23 +2120,8 @@
             "ShortDescr": "reset sz\n",
             "Condition": [
                 {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
-                    "Value": 0.013
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "lt",
-                    "Value": 13.3
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
-                },
-                {
                     "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 8e-10
                 },
                 {
@@ -2198,23 +2176,8 @@
             "ShortDescr": "reset sz\n",
             "Condition": [
                 {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
-                    "Value": 13.3
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "lt",
-                    "Value": 500
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
-                },
-                {
                     "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
+                    "Methode": "ge",
                     "Value": 9e-7
                 },
                 {
@@ -2265,148 +2228,6 @@
             ]
         },
         {
-            "DefinitionClass": "end_sz",
-            "ShortDescr": "reset sz\n",
-            "Condition": [
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
-                    "Value": 13.3
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "lt",
-                    "Value": 500
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
-                    "Value": 8e-10
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "lt",
-                    "Value": 9e-7
-                }
-            ],
-            "Definition": [
-                [
-                    {
-                        "TaskName": "VS_CE3-ctrl_valve",
-                        "Use": {
-                            "Values": "open_V21"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Corvus_1-exec",
-                        "Use": {
-                            "Values": "close_klLW"
-                        },
-                        "Replace": {
-                            "@runif": "LW_kl_endpos.Bool"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Corvus_2-displacer_exec",
-                        "Use": {
-                            "Values": "displacer_out"
-                        },
-                        "Replace": {
-                            "@rot": 1
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Commons-select_definition",
-                        "Replace": {
-                            "@definitionclass": "start_meas"
-                        }
-                    }
-                ]
-            ]
-        },
-        {
-            "DefinitionClass": "end_sz",
-            "ShortDescr": "reset sz\n",
-            "Condition": [
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
-                    "Value": 0.013
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "lt",
-                    "Value": 13.3
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "gt",
-                    "Value": 9e-7
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "lt",
-                    "Value": 0.0002
-                }
-            ],
-            "Definition": [
-                [
-                    {
-                        "TaskName": "VS_CE3-ctrl_valve",
-                        "Use": {
-                            "Values": "open_V21"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Corvus_1-exec",
-                        "Use": {
-                            "Values": "close_klLW"
-                        },
-                        "Replace": {
-                            "@runif": "LW_gr_endpos.Bool"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Corvus_2-displacer_exec",
-                        "Use": {
-                            "Values": "displacer_out"
-                        },
-                        "Replace": {
-                            "@rot": 1
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Commons-select_definition",
-                        "Replace": {
-                            "@definitionclass": "start_meas"
-                        }
-                    }
-                ]
-            ]
-        },
-        {
             "DefinitionClass": "customer_ind",
             "ShortDescr": "ini and read customer indication\n",
             "Condition": [
@@ -2422,13 +2243,13 @@
                 }
             ],
             "Definition": [
-              [
+                [
                     {
-                      "TaskName": "common-wait"
+                        "TaskName": "common-wait"
                     }
                 ],
                 [
-                      {
+                    {
                         "TaskName": "read_element",
                         "Customer": true,
                         "Replace": {
@@ -2446,7 +2267,6 @@
                         }
                     }
                 ]
-
             ]
         },
         {
@@ -2465,13 +2285,13 @@
                 }
             ],
             "Definition": [
-              [
+                [
                     {
-                      "TaskName": "common-wait"
+                        "TaskName": "common-wait"
                     }
                 ],
                 [
-                      {
+                    {
                         "TaskName": "read_element",
                         "Customer": true,
                         "Replace": {
@@ -2489,7 +2309,6 @@
                         }
                     }
                 ]
-
             ]
         }
     ],
@@ -2601,15 +2420,15 @@
                     "Value": false
                 },
                 "target_pressure": {
-                  "Caption": "Target pressure",
-                  "Ready": false,
-                  "Selected": null,
-                  "Select": [
-                    {
-                      "value": null,
-                      "display": "select"
-                    }
-                  ]
+                    "Caption": "Target pressure",
+                    "Ready": false,
+                    "Selected": null,
+                    "Select": [
+                        {
+                            "value": null,
+                            "display": "select"
+                        }
+                    ]
                 },
                 "target_pfill": {
                     "Caption": "Filling pressure",
