@@ -2,15 +2,11 @@ function(head, req) {
   var row
     , share      = require("lib/vl/share")
     , mustache   = require("lib/couchapp/mustache")
-    , Inputs = {values:[]}
-    , inputs = this.templates.Inputs;
-
+    , links      = this.templates.overview
+    , mpds       = [];
   start(share.startHtml);
-
   while(row = getRow()) {
-
-
-    Inputs.values.push({key:row.key[1], value:row.key[2]});
+    mpds.push(row.value);
   }
-  send(mustache.to_html(inputs, Inputs));
+  send( mustache.to_html(links, {mpds:mpds}));
 }

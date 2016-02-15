@@ -1,12 +1,14 @@
 function (doc, req) {
-  var res = {DocInfo:true};
+  var res = {DocInfo:true}
+  var valid = false;
 
   if(doc && doc.Calibration){
+    var  dc    = doc.Calibration
+      , dct   = dc.ToDo
+      , dcc   = dc.Customer
+      , dccu  = dc.CustomerObject
 
-    var dc   = doc.Calibration
-      , dct  = dc.ToDo
-      , dcc  = dc.Customer
-      , dccu = dc.CustomerObject
+    valid = true;
 
     res.Id           = doc._id;
     res.Certificate  = dc.Certificate;
@@ -30,8 +32,14 @@ function (doc, req) {
     }else{
       res.warn  = "CalibrationObject missing ";
     }
+  }
 
-  }else{
+  if(doc && doc.Measurement){
+    valid   = true;
+    res.Id  = doc._id;
+  }
+
+  if(!valid){
     res.error  = "not a Calibration";
   }
   return toJSON(res);
