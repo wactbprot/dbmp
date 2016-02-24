@@ -1178,18 +1178,8 @@
         },
         {
             "DefinitionClass": "measure_drift",
-            "ShortDescr": "measures the drift\n",
+            "ShortDescr": "measures the drift kl. LW\n",
             "Condition": [
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "lt",
-                    "Value": 13.3
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
-                },
                 {
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "ge",
@@ -1204,23 +1194,26 @@
             "Definition": [
                 [
                     {
-                        "TaskName": "Common-get_time",
-                        "Replace": {
-                            "@docpath": "Calibration.Measurement.Values.Time",
-                            "@type": "drift_mt"
-                        }
-                    },
-                    {
                         "TaskName": "VS_CE3-ctrl_valve",
                         "Use": {
                             "Values": "close_V21"
                         }
                     },
                     {
-                        "TaskName": "Common-wait"
+                        "TaskName": "Common-wait",
+                        "Replace": {
+                            "@waittime": 5000
+                        }
                     }
                 ],
                 [
+                    {
+                        "TaskName": "Common-get_time",
+                        "Replace": {
+                            "@docpath": "Calibration.Measurement.Values.Time",
+                            "@type": "drift_mt"
+                        }
+                    },
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
                         "Use": {
@@ -1267,189 +1260,34 @@
         },
         {
             "DefinitionClass": "measure_drift",
-            "ShortDescr": "measures the drift\n",
+            "ShortDescr": "measures the drift gr. LW\n",
             "Condition": [
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
-                    "Value": 13.3
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
-                },
                 {
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "ge",
-                    "Value": 1e-9
+                    "Value": 9e-7
                 },
                 {
                     "ExchangePath": "Target_Pressure.Selected",
                     "Methode": "lt",
-                    "Value": 9e-7
+                    "Value": 0.0002
                 }
             ],
             "Definition": [
-                [
-                    {
-                        "TaskName": "Common-get_time",
-                        "Replace": {
-                            "@docpath": "Calibration.Measurement.Values.Time",
-                            "@type": "drift_mt"
-                        }
-                    },
-                    {
-                        "TaskName": "VS_CE3-ctrl_valve",
-                        "Use": {
-                            "Values": "close_V21"
-                        }
-                    },
-                    {
-                        "TaskName": "Common-wait"
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "VS_CE3-ctrl_valve",
-                        "Use": {
-                            "Values": "close_V22"
-                        }
-                    },
-                    {
-                        "TaskName": "Common-wait",
-                        "Replace": {
-                            "@waittime": 10000
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "FM3_1T-drift_exec"
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "VS_CE3-ctrl_valve",
-                        "Use": {
-                            "Values": "open_V22"
-                        }
-                    }
-                ],
                 [
                     {
                         "TaskName": "VS_CE3-ctrl_valve",
                         "Use": {
                             "Values": "open_V21"
                         }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Commons-select_definition",
-                        "Replace": {
-                            "@definitionclass": "customer_offset"
-                        }
-                    }
-                ]
-            ]
-        },
-        {
-            "DefinitionClass": "measure_drift",
-            "ShortDescr": "measures the drift\n",
-            "Condition": [
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "lt",
-                    "Value": 13.3
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "ge",
-                    "Value": 9e-7
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "lt",
-                    "Value": 0.00009
-                }
-            ],
-            "Definition": [
-                [
-                    {
-                        "TaskName": "Common-get_time",
-                        "Replace": {
-                            "@docpath": "Calibration.Measurement.Values.Time",
-                            "@type": "drift_mt"
-                        }
-                    },
-                    {
-                        "TaskName": "VS_CE3-ctrl_valve",
-                        "Use": {
-                            "Values": "close_V22"
-                        }
                     },
                     {
                         "TaskName": "Common-wait",
                         "Replace": {
-                            "@waittime": 10000
+                            "@waittime": 5000
                         }
                     }
                 ],
-                [
-                    {
-                        "TaskName": "FM3_1T-drift_exec"
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "VS_CE3-ctrl_valve",
-                        "Use": {
-                            "Values": "open_V22"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "Commons-select_definition",
-                        "Replace": {
-                            "@definitionclass": "customer_offset"
-                        }
-                    }
-                ]
-            ]
-        },
-        {
-            "DefinitionClass": "measure_drift",
-            "ShortDescr": "measures the drift\n",
-            "Condition": [
-                {
-                    "ExchangePath": "Filling_Pressure.Value",
-                    "Methode": "gt",
-                    "Value": 13.3
-                },
-                {
-                    "ExchangePath": "Filling_Pressure.Unit",
-                    "Methode": "eq",
-                    "Value": "mbar"
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "ge",
-                    "Value": 9e-7
-                },
-                {
-                    "ExchangePath": "Target_Pressure.Selected",
-                    "Methode": "lt",
-                    "Value": 0.00009
-                }
-            ],
-            "Definition": [
                 [
                     {
                         "TaskName": "Common-get_time",
@@ -2453,7 +2291,7 @@
                 "@targetpressure": "Target_Pressure.Selected"
             },
             "Value": [
-                "/usr/local/lib/vlr/scripts/ce3.filling_pressure.r",
+                "/usr/local/share/vlr/scripts/ce3.filling_pressure.r",
                 "@targetpressure"
             ],
             "PostProcessing": [
@@ -2477,7 +2315,7 @@
                 "@displdrvend": "Displacer-end_drv.Value"
             },
             "Value": [
-                "/usr/local/lib/vlr/scripts/fm3.sz_param.r",
+                "/usr/local/share/vlr/scripts/fm3.sz_param.r",
                 "@targetpressure",
                 "@fillingpressure",
                 "@pressurestart",
