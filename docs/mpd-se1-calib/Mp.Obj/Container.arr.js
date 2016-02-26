@@ -77,30 +77,16 @@
             ],
             [
                 {
-                    "TaskName": "Common-get_list",
-                    "Use": {
-                        "Params": "todo"
-                    },
-                    "Replace": {
-                        "@standard": "SE1",
-                        "@listname": "generate_target_select",
-                        "@viewname": "todos",
-                        "@exchangepath": "Target_Pressure"
-                    }
-                }
-            ],
-            [
-                {
                     "TaskName": "SE1-meas_exchange_element",
                     "ExpandSeq": {
                         "ExchangePaths": [
-                            "target_pressure_ok",
+                            "target_pressure",
                             "target_pfill",
                             "expansion",
                             "pfill_dev"
                         ],
                         "Values": [
-                            "target_pressure_ok",
+                            "target_pressure",
                             "target_pfill",
                             "expansion",
                             "pfill_dev"
@@ -148,6 +134,20 @@
                     },
                     "Replace": {
                         "@exchpath": "SE1-Gas"
+                    }
+                }
+            ],
+            [
+                {
+                    "TaskName": "Common-get_list",
+                    "Use": {
+                        "Params": "todo"
+                    },
+                    "Replace": {
+                        "@standard": "SE1",
+                        "@listname": "generate_target_select",
+                        "@viewname": "todos",
+                        "@exchangepath": "Target_Pressure"
                     }
                 }
             ],
@@ -222,7 +222,6 @@
         "Title": "meas",
         "Element": [
             "Target_Pressure",
-            "Target_Pressure_Ok",
             "Expansion",
             "Filling_Pressure",
             "Filling_Pressure_Dev",
@@ -376,9 +375,15 @@
         "Title": "test",
         "Element": [],
         "Definition": [
-            [
-                {
-                    "TaskName": "SE1-DMM_Keithley-device_init",
+          [
+            {
+              "TaskName": "VS-SE1-valves_init"
+            }
+          ],
+
+          [
+            {
+              "TaskName": "SE1-DMM_Keithley-device_init",
                     "ExpandSeq": {
                         "Values": [
                             "reset",
@@ -402,5 +407,5 @@
                 }
             ]
         ]
-    }
+     }
 ]

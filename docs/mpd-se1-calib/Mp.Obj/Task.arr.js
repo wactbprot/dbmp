@@ -51,10 +51,10 @@
         "Comment": "Add an element to the Exchange api",
         "TaskName": "meas_exchange_element",
         "ExchangePaths": {
-            "target_pfill": "Filling_Pressure",
-            "expansion": "Expansion",
-            "target_pressure_ok": "Target_Pressure_Ok",
-            "pfill_dev": "Filling_Pressure_Dev"
+          "target_pressure":"Target_Pressure",
+          "target_pfill": "Filling_Pressure",
+          "expansion": "Expansion",
+          "pfill_dev": "Filling_Pressure_Dev"
         },
         "Values": {
             "target_pfill": {
@@ -63,8 +63,16 @@
                 "Unit": "mbar",
                 "Value": null
             },
-            "target_pressure_ok": {
-                "Ready": "false"
+            "target_pressure": {
+              "Caption": "Target pressure",
+              "Ready": false,
+              "Selected": null,
+              "Select": [
+                {
+                  "value": null,
+                  "display": "select"
+                }
+              ]
             },
             "expansion": {
                 "Caption": "Expansion Sequence",
@@ -82,7 +90,7 @@
         "Action": "/usr/bin/Rscript",
         "Comment": "Calculates pfill from pcal",
         "TaskName": "cal_pfill",
-        "RunIf": "Target_Pressure_Ok.Ready",
+        "RunIf": "Target_Pressure.Ready",
         "FromExchange": {
             "@targetpressure": "Target_Pressure.Selected"
         },

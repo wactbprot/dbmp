@@ -402,12 +402,6 @@
           }
         },
         {
-          "TaskName": "VS-SE1-status_closed",
-          "Replace": {
-            "@valve": "V4"
-          }
-        },
-        {
           "TaskName": "Common-wait",
           "Replace": {
             "@waittime": 2000
@@ -422,12 +416,6 @@
           }
         },
         {
-          "TaskName": "VS-SE1-status_closed",
-          "Replace": {
-            "@valve": "V5"
-          }
-        },
-        {
           "TaskName": "Common-wait",
           "Replace": {
             "@waittime": 2000
@@ -439,12 +427,6 @@
           "TaskName": "VS-SE1-ctrl_valve",
           "Use": {
             "Values": "open_v3"
-          }
-        },
-        {
-          "TaskName": "VS-SE1-status_closed",
-          "Replace": {
-            "@valve": "V3"
           }
         },
         {
@@ -479,12 +461,6 @@
           "TaskName": "VS-SE1-ctrl_valve",
           "Use": {
             "Values": "open_v1"
-          }
-        },
-        {
-          "TaskName": "VS-SE1-status_closed",
-          "Replace": {
-            "@valve": "V1"
           }
         },
         {
@@ -543,12 +519,6 @@
           }
         },
         {
-          "TaskName": "VS-SE1-status_closed",
-          "Replace": {
-            "@valve": "V2"
-          }
-        },
-        {
           "TaskName": "Common-wait",
           "Replace": {
             "@waittime": 20000
@@ -600,12 +570,6 @@
           "TaskName": "VS-SE1-ctrl_valve",
           "Use": {
             "Values": "open_v6"
-          }
-        },
-        {
-          "TaskName": "VS-SE1-status_closed",
-          "Replace": {
-            "@valve": "V6"
           }
         },
         {
