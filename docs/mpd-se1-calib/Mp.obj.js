@@ -1060,6 +1060,14 @@
                         "TaskName": "SE1-cal_pfill"
                     }
                 ],
+              [
+                {
+                  "TaskName": "SE1-reset_ready",
+                  "Replace":{
+                    "@exchpath":"Target_Pressure.Ready"
+                  }
+                }
+              ],
                 [
                     {
                         "TaskName": "Common-message",
@@ -1317,6 +1325,12 @@
                 "Unit": "mbar",
                 "Ready": false
             }
+        },{
+            "Action": "writeExchange",
+            "Comment": "resets a ready Element",
+            "TaskName": "reset_ready",
+            "ExchangePath": "@exchpath",
+            "Value": {"Ready":false}
         },
         {
             "Action": "writeExchange",
