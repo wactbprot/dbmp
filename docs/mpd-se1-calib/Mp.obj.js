@@ -41,7 +41,15 @@
                     {
                         "TaskName": "Common-update_cd"
                     }
-                ]
+                ],
+              [
+                {
+                  "TaskName": "SE1-reset_ready",
+                  "Replace":{
+                    "@exchpath":"DocumentsOk"
+                  }
+                }
+              ]
             ]
         },
         {
@@ -451,6 +459,14 @@
                         }
                     }
                 ],
+              [
+                {
+                  "TaskName": "SE1-reset_ready",
+                  "Replace":{
+                    "@exchpath":"Filling_Pressure_Ok"
+                  }
+                }
+              ],
                 [
                     {
                         "TaskName": "Commons-select_definition",
@@ -501,6 +517,14 @@
                         }
                     }
                 ],
+              [
+                {
+                  "TaskName": "SE1-reset_ready",
+                  "Replace":{
+                    "@exchpath":"Filling_Pressure_Ok"
+                  }
+                }
+              ],
                 [
                     {
                         "TaskName": "Commons-select_definition",
@@ -551,6 +575,14 @@
                         }
                     }
                 ],
+              [
+                {
+                  "TaskName": "SE1-reset_ready",
+                  "Replace":{
+                    "@exchpath":"Filling_Pressure_Ok"
+                  }
+                }
+              ],
                 [
                     {
                         "TaskName": "Commons-select_definition",
@@ -1064,7 +1096,7 @@
                 {
                   "TaskName": "SE1-reset_ready",
                   "Replace":{
-                    "@exchpath":"Target_Pressure.Ready"
+                    "@exchpath":"Target_Pressure"
                   }
                 }
               ],
@@ -1325,7 +1357,8 @@
                 "Unit": "mbar",
                 "Ready": false
             }
-        },{
+        },
+      {
             "Action": "writeExchange",
             "Comment": "resets a ready Element",
             "TaskName": "reset_ready",
