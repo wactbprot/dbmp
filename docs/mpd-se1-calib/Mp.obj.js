@@ -425,7 +425,7 @@
     ],
     "Definitions": [
         {
-            "Definitionclass": "set_p_fill",
+            "DefinitionClass": "set_p_fill",
             "ShortDescr": "sets the filling pressure with 10T CDG\n",
             "Condition": [
                 {
@@ -804,6 +804,75 @@
                         "TaskName": "Commons-select_definition",
                         "Replace": {
                             "@definitionclass": "expansion_post"
+                        }
+                    }
+                ]
+            ]
+        },
+      {
+            "DefinitionClass": "expansion_post",
+            "ShortDescr": "Valve setting after expasion A\n",
+            "Condition": [
+                {
+                    "ExchangePath": "Expansion.Value",
+                    "Methode": "eq",
+                    "Value": "Expansion_B"
+                }
+            ],
+            "Definition": [
+                [
+                    {
+                        "TaskName": "VS-SE1-ctrl_valve",
+                        "Use": {
+                            "Values": "close_v6"
+                        }
+                    },
+                    {
+                        "TaskName": "VS-SE1-status_closed",
+                        "Replace": {
+                            "@valve": "V6"
+                        }
+                    },
+                    {
+                        "TaskName": "Common-wait",
+                        "Replace": {
+                            "@waittime": 2000
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "VS-SE1-ctrl_valve",
+                        "Use": {
+                            "Values": "open_v4"
+                        }
+                    },
+                    {
+                        "TaskName": "Common-wait",
+                        "Replace": {
+                            "@waittime": 2000
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "VS-SE1-ctrl_valve",
+                        "Use": {
+                            "Values": "open_v5"
+                        }
+                    },
+                    {
+                        "TaskName": "Common-wait",
+                        "Replace": {
+                            "@waittime": 2000
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "start_meas"
                         }
                     }
                 ]
