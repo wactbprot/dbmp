@@ -42,14 +42,14 @@
                         "TaskName": "Common-update_cd"
                     }
                 ],
-              [
-                {
-                  "TaskName": "SE1-reset_ready",
-                  "Replace":{
-                    "@exchpath":"DocumentsOk"
-                  }
-                }
-              ]
+                [
+                    {
+                        "TaskName": "SE1-reset_ready",
+                        "Replace": {
+                            "@exchpath": "DocumentsOk"
+                        }
+                    }
+                ]
             ]
         },
         {
@@ -62,6 +62,25 @@
                 "SE1-Gas"
             ],
             "Definition": [
+                [
+                    {
+                        "TaskName": "Common-get_date",
+                        "Replace": {
+                            "@docpath": "Calibration.Measurement.Date",
+                            "@type": "measurement"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Common-get_time",
+                        "Replace": {
+                            "@docpath": "Calibration.Measurement.AuxValues.Time",
+                            "@type": "mp_ini",
+                            "@timepath": "mp_ini"
+                        }
+                    }
+                ],
                 [
                     {
                         "TaskName": "pressure_input",
@@ -379,43 +398,55 @@
             ]
         },
         {
-            "Description": "Test Department",
+            "Description": "Calculates the measurement results",
             "Ctrl": "void",
-            "Title": "test",
+            "Title": "cal",
             "Element": [],
             "Definition": [
                 [
                     {
-                        "TaskName": "VS-SE1-valves_init"
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "SE1-DMM_Keithley-device_init",
-                        "ExpandSeq": {
-                            "Values": [
-                                "reset",
-                                "func_t",
-                                "temp_frtd",
-                                "temp_typ",
-                                "cont_ini_off",
-                                "trig_imm",
-                                "trig_coun",
-                                "samp_coun",
-                                "rout_scan_t",
-                                "rout_tso",
-                                "rout_lsel"
-                            ]
-                        }
-                    }
-                ],
-                [
-                    {
-                        "TaskName": "SE1-DMM_Keithley-temperature_exec"
+                        "TaskName": "SE1-cal_pcal"
                     }
                 ]
             ]
-        }
+        },
+      {
+            "Description": "Measurement of the outgasing rate",
+            "Ctrl": "void",
+            "Title": "outgas",
+            "Element": [
+              "OutGasRate"
+            ],
+            "Definition": [
+              [
+                {
+                  "TaskName": "VS-SE1-ctrl_valve",
+                  "Use": {
+                    "Values": "close_v4"
+                  }
+                },
+                {
+                  "TaskName": "VS-SE1-status_closed",
+                  "Replace": {
+                    "@valve": "V4"
+                  }
+                }
+              ],
+              [
+                {
+                  "TaskName": "SE1_ATMION-outgas_exec"
+                }
+              ],
+              [
+                {
+                  "TaskName": "VS-SE1-ctrl_valve",
+                  "Use": {
+                    "Values": "open_v4"
+                  }
+                }
+              ]
+            ]
+      }
     ],
     "Date": [
         {
@@ -459,14 +490,14 @@
                         }
                     }
                 ],
-              [
-                {
-                  "TaskName": "SE1-reset_ready",
-                  "Replace":{
-                    "@exchpath":"Filling_Pressure_Ok"
-                  }
-                }
-              ],
+                [
+                    {
+                        "TaskName": "SE1-reset_ready",
+                        "Replace": {
+                            "@exchpath": "Filling_Pressure_Ok"
+                        }
+                    }
+                ],
                 [
                     {
                         "TaskName": "Commons-select_definition",
@@ -517,14 +548,14 @@
                         }
                     }
                 ],
-              [
-                {
-                  "TaskName": "SE1-reset_ready",
-                  "Replace":{
-                    "@exchpath":"Filling_Pressure_Ok"
-                  }
-                }
-              ],
+                [
+                    {
+                        "TaskName": "SE1-reset_ready",
+                        "Replace": {
+                            "@exchpath": "Filling_Pressure_Ok"
+                        }
+                    }
+                ],
                 [
                     {
                         "TaskName": "Commons-select_definition",
@@ -575,14 +606,14 @@
                         }
                     }
                 ],
-              [
-                {
-                  "TaskName": "SE1-reset_ready",
-                  "Replace":{
-                    "@exchpath":"Filling_Pressure_Ok"
-                  }
-                }
-              ],
+                [
+                    {
+                        "TaskName": "SE1-reset_ready",
+                        "Replace": {
+                            "@exchpath": "Filling_Pressure_Ok"
+                        }
+                    }
+                ],
                 [
                     {
                         "TaskName": "Commons-select_definition",
@@ -604,16 +635,6 @@
                 }
             ],
             "Definition": [
-                [
-                    {
-                        "TaskName": "Common-get_time",
-                        "Replace": {
-                            "@type": "amt_before",
-                            "@docpath": "Calibration.Measurement.Values.Time",
-                            "@timepath": "Before_Expansion_Time"
-                        }
-                    }
-                ],
                 [
                     {
                         "TaskName": "CDG_10-init"
@@ -809,7 +830,7 @@
                 ]
             ]
         },
-      {
+        {
             "DefinitionClass": "expansion_post",
             "ShortDescr": "Valve setting after expasion A\n",
             "Condition": [
@@ -995,64 +1016,74 @@
                 ]
             ]
         },
-      {
-        "DefinitionClass": "expansion_exec",
-        "ShortDescr": "Executes the single Expasion B\n",
-        "Condition": [
-          {
-            "ExchangePath": "Expansion.Value",
-            "Methode": "eq",
-            "Value": "Expansion_B"
-          }
-        ],
-        "Definition": [
-          [
-            {
-                        "TaskName": "VS-SE1-ctrl_valve",
-              "Use": {
-                "Values": "close_v4"
-              }
-            },
-            {
-                        "TaskName": "VS-SE1-status_closed",
-              "Replace": {
-                "@valve": "V4"
-              }
-            },
-            {
-              "TaskName": "Common-wait",
-              "Replace": {
-                "@waittime": 10000
-              }
-            }
-          ],
-          [
-            {
-              "TaskName": "VS-SE1-ctrl_valve",
-              "Use": {
-                "Values": "open_v6"
-              }
-            },
-            {
-              "TaskName": "Common-wait",
-              "Replace": {
-                "@waittime": 20000
-              }
-            }
-          ],
-          [
-            {
-              "TaskName": "Commons-select_definition",
-              "Replace": {
-                "@definitionclass": "temp_after_meas"
-              }
-            }
-          ]
-        ]
-      },
-      {
+        {
             "DefinitionClass": "expansion_exec",
-        "ShortDescr": "Executes the double Expasion A\n",
+            "ShortDescr": "Executes the single Expasion B\n",
+            "Condition": [
+                {
+                    "ExchangePath": "Expansion.Value",
+                    "Methode": "eq",
+                    "Value": "Expansion_B"
+                }
+            ],
+            "Definition": [
+                [
+                    {
+                        "TaskName": "VS-SE1-ctrl_valve",
+                        "Use": {
+                            "Values": "close_v4"
+                        }
+                    },
+                    {
+                        "TaskName": "VS-SE1-status_closed",
+                        "Replace": {
+                            "@valve": "V4"
+                        }
+                    },
+                    {
+                        "TaskName": "Common-wait",
+                        "Replace": {
+                            "@waittime": 10000
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Common-get_time",
+                        "Replace": {
+                            "@type": "amt_before",
+                            "@docpath": "Calibration.Measurement.Values.Time",
+                            "@timepath": "Before_Expansion_Time"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "VS-SE1-ctrl_valve",
+                        "Use": {
+                            "Values": "open_v6"
+                        }
+                    },
+                    {
+                        "TaskName": "Common-wait",
+                        "Replace": {
+                            "@waittime": 20000
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "temp_after_meas"
+                        }
+                    }
+                ]
+            ]
+        },
+        {
+            "DefinitionClass": "expansion_exec",
+            "ShortDescr": "Executes the double Expasion A\n",
             "Condition": [
                 {
                     "ExchangePath": "Expansion.Value",
@@ -1135,6 +1166,16 @@
                         }
                     }
                 ],
+               [
+                    {
+                        "TaskName": "Common-get_time",
+                        "Replace": {
+                            "@type": "amt_before",
+                            "@docpath": "Calibration.Measurement.Values.Time",
+                            "@timepath": "Before_Expansion_Time"
+                        }
+                    }
+                ],
                 [
                     {
                         "TaskName": "VS-SE1-ctrl_valve",
@@ -1158,7 +1199,8 @@
                     }
                 ]
             ]
-        }, {
+        },
+        {
             "DefinitionClass": "exec_meas",
             "ShortDescr": "First part of expansion B\n",
             "Condition": [
@@ -1256,14 +1298,14 @@
                         "TaskName": "SE1-cal_pfill"
                     }
                 ],
-              [
-                {
-                  "TaskName": "SE1-reset_ready",
-                  "Replace":{
-                    "@exchpath":"Target_Pressure"
-                  }
-                }
-              ],
+                [
+                    {
+                        "TaskName": "SE1-reset_ready",
+                        "Replace": {
+                            "@exchpath": "Target_Pressure"
+                        }
+                    }
+                ],
                 [
                     {
                         "TaskName": "Common-message",
@@ -1288,9 +1330,9 @@
                         "TaskName": "SE1-read_aux_element",
                         "ExpandSeq": {
                             "@docpath": [
-                                "Calibration.Measurement.AuxValues.Expansion",
-                                "Calibration.Measurement.AuxValues.Expansion",
-                                "Calibration.Measurement.AuxValues.Expansion"
+                                "Calibration.Measurement.Values.Expansion",
+                                "Calibration.Measurement.Values.Expansion",
+                                "Calibration.Measurement.Values.Expansion"
                             ],
                             "@exchpath": [
                                 "Expansion",
@@ -1321,14 +1363,15 @@
                 }
             ],
             "Definition": [
-              [
-                {
-                  "TaskName": "Common-message",
-                  "Replace": {
-                    "@message": "Ventil 9 (20l Kessel) schließen!\n Offsetmessung kann beginnen(?)"
-                  }
-                }
-              ],                [
+                [
+                    {
+                        "TaskName": "Common-message",
+                        "Replace": {
+                            "@message": "Ventil 9 (20l Kessel) schließen!\n Offsetmessung kann beginnen(?)"
+                        }
+                    }
+                ],
+                [
                     {
                         "TaskName": "Common-get_time",
                         "Replace": {
@@ -1379,25 +1422,25 @@
                         "Replace": {
                             "@token": "cdg1000_p_fill_offset",
                             "@docpath": "Calibration.Measurement.AuxValues.Pressure",
-                          "@exchangepath": "CDG_1000-Offset"
+                            "@exchangepath": "CDG_1000-Offset"
                         }
                     }
                 ],
-              [
-                {
-                  "TaskName": "VS-SE1-ctrl_valve",
-                  "Use": {
-                    "Values": "close_v3"
-                  }
-                },
-                {
-                  "TaskName": "Common-wait",
-                  "Replace": {
-                    "@waittime": 2000
+                [
+                    {
+                        "TaskName": "VS-SE1-ctrl_valve",
+                        "Use": {
+                            "Values": "close_v3"
                         }
-                }
-              ],
-              [
+                    },
+                    {
+                        "TaskName": "Common-wait",
+                        "Replace": {
+                            "@waittime": 2000
+                        }
+                    }
+                ],
+                [
                     {
                         "TaskName": "VS-SE1-ctrl_valve",
                         "Use": {
@@ -1411,7 +1454,7 @@
                         }
                     }
                 ],
-              [
+                [
                     {
                         "TaskName": "VS-SE1-ctrl_valve",
                         "Use": {
@@ -1425,7 +1468,7 @@
                         }
                     }
                 ],
-              [
+                [
                     {
                         "TaskName": "VS-SE1-ctrl_valve",
                         "Use": {
@@ -1480,7 +1523,7 @@
                         }
                     }
                 ],
-                 [
+                [
                     {
                         "TaskName": "VS-SE1-ctrl_valve",
                         "Use": {
@@ -1540,7 +1583,7 @@
                     {
                         "TaskName": "Common-message",
                         "Replace": {
-                            "@message": "Ventil 7  und 8 (1l-Kugel) zu!\n CDGs zur TMP hin öffnen\n Offsetmessung kann beginnen(?)"
+                            "@message": "Ventil 9 (20l Volumen) auf\nVentil 7  und 8 (1l-Kugel) zu!\n CDGs zur TMP hin öffnen\n Offsetmessung kann beginnen(?)"
                         }
                     }
                 ],
@@ -1653,12 +1696,14 @@
                 "Ready": false
             }
         },
-      {
+        {
             "Action": "writeExchange",
             "Comment": "resets a ready Element",
             "TaskName": "reset_ready",
             "ExchangePath": "@exchpath",
-            "Value": {"Ready":false}
+            "Value": {
+                "Ready": false
+            }
         },
         {
             "Action": "writeExchange",
@@ -1704,6 +1749,7 @@
             "Action": "readExchange",
             "Comment": "Reads values under @exchpath and writes it to @docpath.",
             "TaskName": "read_aux_element",
+            "NoLog": true,
             "DocPath": "@docpath",
             "ExchangePath": "@exchpath"
         },
@@ -1737,6 +1783,15 @@
                 "'Volume.Unit':'cm^3'",
                 "};",
                 "var LogData={'x':_x};"
+            ]
+        },
+        {
+            "Action": "/usr/bin/Rscript",
+            "Comment": "Calculates the calibration pressure for all selected calibration documents.",
+            "TaskName": "cal_pcal",
+            "Value": [
+                "/usr/local/share/vlr/scripts/se1.calibration_pressure.r",
+                "@cdids"
             ]
         }
     ]
