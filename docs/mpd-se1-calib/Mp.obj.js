@@ -228,7 +228,7 @@
         {
             "Description": "Prepair",
             "Ctrl": "void",
-            "Title": "prepair",
+            "Title": "prepair expansions",
             "Element": [
                 "Expansion",
                 "Filling_Pressure"
@@ -247,7 +247,7 @@
         {
             "Description": "Measurement",
             "Ctrl": "void",
-            "Title": "meas",
+            "Title": "measurement",
             "Element": [
                 "Target_Pressure",
                 "Expansion",
@@ -431,6 +431,15 @@
                     "@valve": "V4"
                   }
                 }
+              ],
+              [
+                {
+                  "TaskName": "Common-wait",
+                  "Replace": {
+                    "@waittime": 5000
+                        }
+                }
+
               ],
               [
                 {
