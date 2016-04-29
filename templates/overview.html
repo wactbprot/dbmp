@@ -3,25 +3,40 @@
   <head>
     <meta charset="utf-8">
     <script type="text/javascript"  src="../../../../lib/js/jquery-2.1.0.min.js"></script>
-    <title>mpd link overview</title>
+    <title>mpd link overview</title><style type="text/css">
+      body {
+      background-color: gray;
+      }
+      h1 {
+      color: white;
+      }
+      thead {
+      background-color: darkgray;
+      color: white;
+      }
+      tbody {
+      font-size: 18px; 
+      background-color: lightgray;
+      }
+    </style>
   </head>
   <body>
-    <h1> mpd link overview</h1>
+    <h1>measurement definitions</h1>
     <table border="0" width="100%">
-      <thead bgcolor="#fdf8e3">
+      <thead>
         <tr>
-	  <th align="center"><b>mpd</b></th>
-          <th align="left">ssmp load</th>
-          <th align="left">ssmp remove</th>
-	  <th align="left">frame state</th>
-	  <th align="left">frame elements</th>
-	  <th align="left">ssmp exchange</th>
-	  <th align="left">ssmp meta</th>
-	  <th align="left">ssmp all</th>
-          <th align="left">couchdb link</th>
+	  <th align="center"><h2>mpd</h2></th>
+          <th align="left"><h2>ssmp load</h2></th>
+          <th align="left"><h2>ssmp remove</h2></th>
+	  <th align="left"><h2>frame state</h2></th>
+	  <th align="left"><h2>frame elements</h2></th>
+	  <th align="left"><h2>ssmp exchange</h2></th>
+	  <th align="left"><h2>ssmp meta</h2></th>
+	  <th align="left"><h2>ssmp all</h2></th>
+          <th align="left"><h2>couchdb link</h2></th>
         </tr>
       </thead>
-      <tbody bgcolor="#fdf6e3">
+      <tbody>
         {{#mpds}}
         <tr>
 	  <td><b>{{value}}</b></td>

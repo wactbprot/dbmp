@@ -43,15 +43,15 @@
                     }
                 ],
                 [
-                  {
-                    "TaskName": "SE1-reset_ready",
-                      "Replace": {
-                        "@exchpath": "DocumentsOk"
-                      }
-                  },
-                  {
-                    "TaskName": "SE1-run_container"
-                  }
+                    {
+                        "TaskName": "SE1-reset_ready",
+                        "Replace": {
+                            "@exchpath": "DocumentsOk"
+                        }
+                    },
+                    {
+                        "TaskName": "SE1-run_container"
+                    }
                 ]
             ]
         },
@@ -106,14 +106,15 @@
                         }
                     }
                 ],
-              [
-                {"TaskName": "SE1-expansion_prepaired",
-                 "Replace":{
-                   "@expansion":"unprepaired"
-                 }
-                }
-              ],
-              [
+                [
+                    {
+                        "TaskName": "SE1-expansion_prepaired",
+                        "Replace": {
+                            "@expansion": "unprepaired"
+                        }
+                    }
+                ],
+                [
                     {
                         "TaskName": "SE1-meas_exchange_element",
                         "ExpandSeq": {
@@ -263,7 +264,7 @@
             "Ctrl": "void",
             "Title": "end sequence",
             "Element": [
-              "Valve_*_opened"
+                "Valve_*_opened"
             ],
             "Definition": [
                 [
@@ -465,21 +466,20 @@
                 ]
             ]
         },
-      {
-        "Description": "Test area",
-        "Ctrl": "void",
-        "Title": "(test)",
-        "Element": [
-          "Valve_*"
-        ],
-        "Definition": [
-          [
-
-            {
-              "TaskName": "SE1-cal_pcal"
-            }
-          ]
-        ]
+        {
+            "Description": "Test area",
+            "Ctrl": "void",
+            "Title": "(test)",
+            "Element": [
+                "Valve_*"
+            ],
+            "Definition": [
+                [
+                    {
+                        "TaskName": "SE1-cal_pcal"
+                    }
+                ]
+            ]
         }
     ],
     "Date": [
@@ -1097,17 +1097,17 @@
                 }
             ],
             "Definition": [
-              [
-                {
-                  "TaskName": "Common-get_time",
+                [
+                    {
+                        "TaskName": "Common-get_time",
                         "Replace": {
-                          "@type": "amt_before",
-                          "@docpath": "Calibration.Measurement.Values.Time",
-                          "@timepath": "Before_Expansion_Time"
+                            "@type": "amt_before",
+                            "@docpath": "Calibration.Measurement.Values.Time",
+                            "@timepath": "Before_Expansion_Time"
                         }
-                }
-              ],
-              [
+                    }
+                ],
+                [
                     {
                         "TaskName": "VS-SE1-ctrl_valve",
                         "Use": {
@@ -1370,33 +1370,33 @@
                 ]
             ]
         },
-      {
-        "DefinitionClass": "analyse_meas",
-        "ShortDescr": "runs calculations\n",
-        "Condition": [
-          {
-            "ExchangePath": "run_time.Value",
-            "Methode": "gt",
+        {
+            "DefinitionClass": "analyse_meas",
+            "ShortDescr": "runs calculations\n",
+            "Condition": [
+                {
+                    "ExchangePath": "run_time.Value",
+                    "Methode": "gt",
                     "Value": 0
-          }
-        ],
-        "Definition": [
-          [
-            {
-              "TaskName": "SE1-cal_pcal"
-            }
-          ],
-          [
-            {
-                  "TaskName": "Commons-select_definition",
-              "Replace": {
-                "@definitionclass": "start_meas"
-              }
-            }
-              ]
-        ]
-      },
-      {
+                }
+            ],
+            "Definition": [
+                [
+                    {
+                        "TaskName": "SE1-cal_pcal"
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "start_meas"
+                        }
+                    }
+                ]
+            ]
+        },
+        {
             "DefinitionClass": "start_meas",
             "ShortDescr": "select target pressure, cal filling pressure\n",
             "Condition": [
@@ -1420,8 +1420,7 @@
                         }
                     }
                 ],
-                [
-                ],
+                [],
                 [
                     {
                         "TaskName": "Commons-select_definition",
@@ -1431,18 +1430,19 @@
                     }
                 ]
             ]
-        },  {
+        },
+        {
             "DefinitionClass": "expansion_param",
             "ShortDescr": "Reads and saves expansion params\n",
             "Condition": [
-               {
+                {
                     "ExchangePath": "run_time.Value",
                     "Methode": "gt",
                     "Value": 0
                 }
             ],
             "Definition": [
-              [
+                [
                     {
                         "TaskName": "SE1-read_aux_element",
                         "ExpandSeq": {
@@ -1458,15 +1458,15 @@
                             ]
                         }
                     }
-              ],
-              [
-                {
-                  "TaskName": "Commons-select_definition",
-                  "Replace": {
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
                             "@definitionclass": "set_p_fill"
-                  }
-                }
-              ]
+                        }
+                    }
+                ]
             ]
         },
         {
@@ -1480,36 +1480,36 @@
                 }
             ],
             "Definition": [
-              [
-                {
-                  "TaskName": "Common-message",
-                  "Replace": {
-                    "@message": "Voreinstellungen ok? Offset bestätigen;\n danach wird Fülldruck wird eingestellt"
-                  }
-                }
-              ],
-              [
-                {
-                  "TaskName": "read_element",
-                  "Customer": true,
-                  "Replace": {
-                    "@docpath": "Calibration.Measurement.Values.Pressure",
-                    "@elemtype": "ind_offset",
-                    "@runif": "ind_offset.Ready"
-                  }
-                }
-              ],
-              [
-                {
-                  "TaskName": "Commons-select_definition",
-                  "Replace": {
-                    "@definitionclass": "expansion_param"
-                  }
-                }
-              ]
+                [
+                    {
+                        "TaskName": "Common-message",
+                        "Replace": {
+                            "@message": "Voreinstellungen ok? Offset bestätigen;\n danach wird Fülldruck wird eingestellt"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "read_element",
+                        "Customer": true,
+                        "Replace": {
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+                            "@elemtype": "ind_offset",
+                            "@runif": "ind_offset.Ready"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "expansion_param"
+                        }
+                    }
+                ]
             ]
         },
-      {
+        {
             "DefinitionClass": "prepair_meas",
             "ShortDescr": "Nothing todo if last expansion euqal new expansion\n",
             "Condition": [
@@ -1524,18 +1524,18 @@
                     "Value": "Expansion_B"
                 }
             ],
-        "Definition": [
-          [
-            {
-              "TaskName": "Commons-select_definition",
-              "Replace": {
-                "@definitionclass": "customer_read_offset"
-              }
-            }
-          ]
-        ]
-      },
-      {
+            "Definition": [
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "customer_read_offset"
+                        }
+                    }
+                ]
+            ]
+        },
+        {
             "DefinitionClass": "prepair_meas",
             "ShortDescr": "Nothing todo if last expansion euqal new expansion\n",
             "Condition": [
@@ -1550,18 +1550,18 @@
                     "Value": "Expansion_A"
                 }
             ],
-        "Definition": [
-          [
-            {
-              "TaskName": "Commons-select_definition",
-              "Replace": {
-                "@definitionclass": "customer_read_offset"
-              }
-            }
-          ]
-        ]
-      },
-      {
+            "Definition": [
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "customer_read_offset"
+                        }
+                    }
+                ]
+            ]
+        },
+        {
             "DefinitionClass": "prepair_meas",
             "ShortDescr": "Prepairs the measurement for expansion B\n",
             "Condition": [
@@ -1715,20 +1715,21 @@
                     }
                 ],
                 [
-                {"TaskName": "SE1-expansion_prepaired",
-                 "Replace":{
-                   "@expansion":"Expansion_B"
-                 }
-                }
-              ],
-              [
-                {
-                  "TaskName": "Commons-select_definition",
-                  "Replace": {
+                    {
+                        "TaskName": "SE1-expansion_prepaired",
+                        "Replace": {
+                            "@expansion": "Expansion_B"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
                             "@definitionclass": "customer_read_offset"
-                  }
-                }
-              ]
+                        }
+                    }
+                ]
             ]
         },
         {
@@ -1918,21 +1919,22 @@
                         }
                     }
                 ],
-              [
-                {"TaskName": "SE1-expansion_prepaired",
-                 "Replace":{
-                   "@expansion":"Expansion_A"
-                 }
-                }
-              ],
-              [
-                {
-                  "TaskName": "Commons-select_definition",
-                  "Replace": {
-                    "@definitionclass": "customer_read_offset"
-                  }
-                }
-              ]
+                [
+                    {
+                        "TaskName": "SE1-expansion_prepaired",
+                        "Replace": {
+                            "@expansion": "Expansion_A"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "customer_read_offset"
+                        }
+                    }
+                ]
             ]
         }
     ],
@@ -1940,16 +1942,16 @@
     "Name": "SE1",
     "Standard": "SE1",
     "Task": [
-      {
-           "Action": "ctrlContainer",
-           "Comment": "Starts ini Container",
-           "TaskName": "run_container",
-           "RunIf": "DocumentsOk.Ready",
-           "Value": {
-               "1": "load;run",
-               "2": "load;run"
-           }
-       },
+        {
+            "Action": "ctrlContainer",
+            "Comment": "Starts ini Container",
+            "TaskName": "run_container",
+            "RunIf": "DocumentsOk.Ready",
+            "Value": {
+                "1": "load;run",
+                "2": "load;run"
+            }
+        },
         {
             "Action": "writeExchange",
             "Comment": "Add an element to the Exchange api",
@@ -2048,7 +2050,7 @@
                     "Caption": "Expansion Sequence",
                     "Value": null
                 },
-               "pfill_dev": {
+                "pfill_dev": {
                     "Caption": "Filling pressure deviation",
                     "Type": "rel.",
                     "Unit": "1",
