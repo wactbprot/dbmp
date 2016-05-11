@@ -2,6 +2,7 @@
     "Name": "CDG_10",
     "Sign": "4036",
     "Type": "CDG",
+    "Standard": "SE1",
     "Device": {
         "Serial": "101",
         "Type": "CTR 101",
@@ -10,7 +11,6 @@
         "InvNo": "300013795/127",
         "LocationBuilding": "Foe-Bau",
         "LocationRoom": "23",
-        "Standard": "SE1",
         "UsedFor": "pfill"
     },
     "Owner": {
@@ -82,19 +82,26 @@
             "Host": "@host",
             "Device": "@device",
             "Value": "READ?",
-            "LogPriority": "1",
-            "Repeat": "4",
+            "NoLog": true,
+            "Repeat": "3",
+            "FromExchange": {
+                "@target_p_fill": "Filling_Pressure.Value"
+            },
             "Wait": "100",
-            "StopIf": "pfill_ok",
-            "ReadDefaultFrom": "ex_and_pfill",
+            "StopIf": "Filling_Pressure_Ok.Ready",
+            "Fallback": {
+                "ToExchange": {
+                    "Filling_Pressure_Ok.Ready": false
+                }
+            },
             "PostProcessing": [
                 "_vec=_x.map(_.extractKeithleyVolt).map(parseFloat);",
                 "_res = _.vlStat(_vec),",
-                "mq = 'expansion' == 'Expansion_B'? 0.01:0.05,",
-                "_ret = _.calQsp(p_fill_mbar, _res.mv / @CONV, mq);",
+                "mq = 'expansion' == 'Expansion_B'? 0.01:0.025,",
+                "_ret = _.calQsp(@target_p_fill, _res.mv / @CONV, mq);",
                 "ToExchange={",
                 "'Filling_Pressure_Dev.Value':_ret.dp,",
-                "'Filling_Pressure_Ok.Value':_ret.pfill_ok,",
+                "'Filling_Pressure_Ok.Ready':_ret.pfill_ok,",
                 "'MKS_Flow_Ctrl.Bool': typeof _ret.sp1 =='number' && typeof _ret.sp2 =='number',",
                 "'MKS_Flow_Ctrl.Value':'SP1,'+_ret.sp1+'\\r' +'SP2,'+_ret.sp2+'\\r'",
                 "};"
@@ -107,7 +114,7 @@
             "Action": "@acc",
             "Host": "@host",
             "Device": "@device",
-            "Value": "*RST;FUNC 'VOLT',(@201);INIT:CONT OFF;*OPC?",
+            "Value": "*RST;FUNC 'VOLT',(@201);ROUT:CLOS (@201);*OPC?",
             "PostProcessing": [
                 "ok = (_x == 1)?true:false;"
             ]
@@ -128,7 +135,7 @@
                 "var _vec=_x.map(_.extractKeithleyVolt).map(parseFloat),",
                 "_res = _.vlStat(_.checkNumArr(_vec).Arr);",
                 "var Result=[_.vlRes('@token',_res.mv,'V', '',_res.sd, _res.N)];",
-                "var ToExchange={'@exchangepath.Type':'@token','@exchangepath.Value':_res.mv / @CONV,'@exchangepath.Unit':'mbar'};"
+                "var ToExchange={'@exchangepath.Caption':'@exchangepath','@exchangepath.Type':'@token','@exchangepath.Value':_res.mv / @CONV,'@exchangepath.SdValue':_res.sd / @CONV,'@exchangepath.Unit':'mbar'};"
             ]
         }
     ],

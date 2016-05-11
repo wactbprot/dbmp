@@ -75,16 +75,32 @@
         },
         {
             "TaskName": "status_closed",
-            "Comment": "liefert Antwort auf Ventil @valve geschlossen",
+            "Comment": "liefert Antwort auf: Ventil @valve geschlossen?",
             "LogPriority": 1,
             "Action": "@acc",
             "Host": "@host",
+            "NoLog": true,
             "Device": "@device",
             "StopIf": "Valve_@valve_closed.Bool",
-            "Value": "P0X_CR",
+            "Value": "P0X@CR",
             "PostProcessing": [
-                "var _state =  _.se1ValveClosed(_x,'@valve'),",
-                "ToExchange = {'Valve_@valve_closed.Bool':_state.Valve_closed};"
+                "var _state =  _.se1ValveStatus(_x,'@valve'),",
+                "ToExchange = {'Valve_@valve_closed.Bool':_state.Valve_closed,'Valve_@valve_opened.Bool':_state.Valve_opened};"
+            ]
+        },
+        {
+            "TaskName": "status_opened",
+            "Comment": "liefert Antwort auf: Ventil @valve geöffnet?",
+            "LogPriority": 1,
+            "Action": "@acc",
+            "Host": "@host",
+            "NoLog": true,
+            "Device": "@device",
+            "StopIf": "Valve_@valve_opened.Bool",
+            "Value": "P0X@CR",
+            "PostProcessing": [
+                "var _state =  _.se1ValveStatus(_x,'@valve'),",
+                "ToExchange = {'Valve_@valve_closed.Bool':_state.Valve_closed,'Valve_@valve_opened.Bool':_state.Valve_opened};"
             ]
         }
     ]

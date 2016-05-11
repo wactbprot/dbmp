@@ -3,7 +3,7 @@
         {
             "Description": "Choose the calibration documents belonging to the calibration devices to calibrate.",
             "Ctrl": "load;run",
-            "Title": "select cd",
+            "Title": "select cal. document",
             "Element": [
                 "DocumentsOk",
                 "DocumentsTable"
@@ -48,6 +48,9 @@
                         "Replace": {
                             "@exchpath": "DocumentsOk"
                         }
+                    },
+                    {
+                        "TaskName": "SE1-run_container"
                     }
                 ]
             ]
@@ -55,7 +58,7 @@
         {
             "Description": "Initialisiert Messgeräte und Eingaben",
             "Ctrl": "void",
-            "Title": "ini",
+            "Title": "initialize",
             "Element": [
                 "Add_Volume-*",
                 "Add_Volume_Ok",
@@ -100,6 +103,14 @@
                             "@inputtype": "ind",
                             "@caption": "Pressure",
                             "@type": "ind"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "SE1-expansion_prepaired",
+                        "Replace": {
+                            "@expansion": "unprepaired"
                         }
                     }
                 ],
@@ -226,25 +237,6 @@
             ]
         },
         {
-            "Description": "Prepair",
-            "Ctrl": "void",
-            "Title": "prepair expansions",
-            "Element": [
-                "Expansion",
-                "Filling_Pressure"
-            ],
-            "Definition": [
-                [
-                    {
-                        "TaskName": "Commons-select_definition",
-                        "Replace": {
-                            "@definitionclass": "prepair_meas"
-                        }
-                    }
-                ]
-            ]
-        },
-        {
             "Description": "Measurement",
             "Ctrl": "void",
             "Title": "measurement",
@@ -271,7 +263,9 @@
             "Description": "End measurement",
             "Ctrl": "void",
             "Title": "end sequence",
-            "Element": [],
+            "Element": [
+                "Valve_*_opened"
+            ],
             "Definition": [
                 [
                     {
@@ -317,6 +311,12 @@
                         }
                     },
                     {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V4"
+                        }
+                    },
+                    {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 1000
@@ -328,6 +328,12 @@
                         "TaskName": "VS-SE1-ctrl_valve",
                         "Use": {
                             "Values": "open_v5"
+                        }
+                    },
+                    {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V5"
                         }
                     },
                     {
@@ -367,6 +373,12 @@
                         }
                     },
                     {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V3"
+                        }
+                    },
+                    {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 1000
@@ -389,6 +401,12 @@
                         }
                     },
                     {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V1"
+                        }
+                    },
+                    {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 1000
@@ -398,64 +416,118 @@
             ]
         },
         {
-            "Description": "Calculates the measurement results",
-            "Ctrl": "void",
-            "Title": "cal",
-            "Element": [],
-            "Definition": [
-                [
-                    {
-                        "TaskName": "SE1-cal_pcal"
-                    }
-                ]
-            ]
-        },
-      {
             "Description": "Measurement of the outgasing rate",
             "Ctrl": "void",
             "Title": "outgas",
             "Element": [
-              "OutGasRate"
+                "OutGasRate"
             ],
             "Definition": [
-              [
-                {
-                  "TaskName": "VS-SE1-ctrl_valve",
-                  "Use": {
-                    "Values": "close_v4"
-                  }
-                },
-                {
-                  "TaskName": "VS-SE1-status_closed",
-                  "Replace": {
-                    "@valve": "V4"
-                  }
-                }
-              ],
-              [
-                {
-                  "TaskName": "Common-wait",
-                  "Replace": {
-                    "@waittime": 5000
+                [
+                    {
+                        "TaskName": "VS-SE1-ctrl_valve",
+                        "Use": {
+                            "Values": "close_v4"
                         }
-                }
-
-              ],
-              [
-                {
-                  "TaskName": "SE1_ATMION-outgas_exec"
-                }
-              ],
-              [
-                {
-                  "TaskName": "VS-SE1-ctrl_valve",
-                  "Use": {
-                    "Values": "open_v4"
-                  }
-                }
-              ]
+                    },
+                    {
+                        "TaskName": "VS-SE1-status_closed",
+                        "Replace": {
+                            "@valve": "V4"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Common-wait",
+                        "Replace": {
+                            "@waittime": 5000
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "SE1_ATMION-outgas_exec"
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "VS-SE1-ctrl_valve",
+                        "Use": {
+                            "Values": "open_v4"
+                        }
+                    },
+                    {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V4"
+                        }
+                    }
+                ]
             ]
-      }
+        },
+        {
+            "Description": "This container is just for the latest indications of the temperatures and filling pressures.",
+            "Ctrl": "void",
+            "Title": "indications",
+            "Element": [
+                "CDG_*",
+                "Temperature_*"
+            ],
+            "Definition": [
+                [
+                    {
+                        "TaskName": "VM212-ini",
+                        "Use": {
+                            "Values": "frequency"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "VM212-frequency"
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "VM212-ini",
+                        "Use": {
+                            "Values": "pressure"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-wait",
+                        "Replace": {
+                            "@waittime": 12000
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-get_time",
+                        "Replace": {
+                            "@docpath": "Calibration.Measurement.Values.Time",
+                            "@type": "amt"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "VM212-pressure"
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-wait",
+                        "Replace": {
+                            "@waittime": 300000
+                        }
+                    }
+                ]
+            ]
+        }
     ],
     "Date": [
         {
@@ -878,6 +950,12 @@
                         }
                     },
                     {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V4"
+                        }
+                    },
+                    {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 2000
@@ -892,6 +970,12 @@
                         }
                     },
                     {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V5"
+                        }
+                    },
+                    {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 2000
@@ -902,7 +986,7 @@
                     {
                         "TaskName": "Commons-select_definition",
                         "Replace": {
-                            "@definitionclass": "start_meas"
+                            "@definitionclass": "analyse_meas"
                         }
                     }
                 ]
@@ -947,6 +1031,12 @@
                         }
                     },
                     {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V4"
+                        }
+                    },
+                    {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 2000
@@ -961,6 +1051,12 @@
                         }
                     },
                     {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V5"
+                        }
+                    },
+                    {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 2000
@@ -972,6 +1068,12 @@
                         "TaskName": "VS-SE1-ctrl_valve",
                         "Use": {
                             "Values": "open_v3"
+                        }
+                    },
+                    {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V3"
                         }
                     },
                     {
@@ -1009,6 +1111,12 @@
                         }
                     },
                     {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V1"
+                        }
+                    },
+                    {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 2000
@@ -1019,7 +1127,7 @@
                     {
                         "TaskName": "Commons-select_definition",
                         "Replace": {
-                            "@definitionclass": "start_meas"
+                            "@definitionclass": "analyse_meas"
                         }
                     }
                 ]
@@ -1036,6 +1144,16 @@
                 }
             ],
             "Definition": [
+                [
+                    {
+                        "TaskName": "Common-get_time",
+                        "Replace": {
+                            "@type": "amt_before",
+                            "@docpath": "Calibration.Measurement.Values.Time",
+                            "@timepath": "Before_Expansion_Time"
+                        }
+                    }
+                ],
                 [
                     {
                         "TaskName": "VS-SE1-ctrl_valve",
@@ -1058,19 +1176,15 @@
                 ],
                 [
                     {
-                        "TaskName": "Common-get_time",
-                        "Replace": {
-                            "@type": "amt_before",
-                            "@docpath": "Calibration.Measurement.Values.Time",
-                            "@timepath": "Before_Expansion_Time"
-                        }
-                    }
-                ],
-                [
-                    {
                         "TaskName": "VS-SE1-ctrl_valve",
                         "Use": {
                             "Values": "open_v6"
+                        }
+                    },
+                    {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V6"
                         }
                     },
                     {
@@ -1129,6 +1243,12 @@
                         }
                     },
                     {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V2"
+                        }
+                    },
+                    {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 20000
@@ -1157,6 +1277,16 @@
                 ],
                 [
                     {
+                        "TaskName": "Common-get_time",
+                        "Replace": {
+                            "@type": "amt_before",
+                            "@docpath": "Calibration.Measurement.Values.Time",
+                            "@timepath": "Before_Expansion_Time"
+                        }
+                    }
+                ],
+                [
+                    {
                         "TaskName": "VS-SE1-ctrl_valve",
                         "Use": {
                             "Values": "close_v4"
@@ -1175,21 +1305,17 @@
                         }
                     }
                 ],
-               [
-                    {
-                        "TaskName": "Common-get_time",
-                        "Replace": {
-                            "@type": "amt_before",
-                            "@docpath": "Calibration.Measurement.Values.Time",
-                            "@timepath": "Before_Expansion_Time"
-                        }
-                    }
-                ],
                 [
                     {
                         "TaskName": "VS-SE1-ctrl_valve",
                         "Use": {
                             "Values": "open_v6"
+                        }
+                    },
+                    {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V6"
                         }
                     },
                     {
@@ -1292,6 +1418,32 @@
             ]
         },
         {
+            "DefinitionClass": "analyse_meas",
+            "ShortDescr": "runs calculations\n",
+            "Condition": [
+                {
+                    "ExchangePath": "run_time.Value",
+                    "Methode": "gt",
+                    "Value": 0
+                }
+            ],
+            "Definition": [
+                [
+                    {
+                        "TaskName": "SE1-cal_pcal"
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "start_meas"
+                        }
+                    }
+                ]
+            ]
+        },
+        {
             "DefinitionClass": "start_meas",
             "ShortDescr": "select target pressure, cal filling pressure\n",
             "Condition": [
@@ -1315,25 +1467,28 @@
                         }
                     }
                 ],
+                [],
                 [
                     {
-                        "TaskName": "Common-message",
+                        "TaskName": "Commons-select_definition",
                         "Replace": {
-                            "@message": "Voreinstellungen ok? Offset bestätigen;\n danach wird Fülldruck wird eingestellt"
+                            "@definitionclass": "prepair_meas"
                         }
                     }
-                ],
-                [
-                    {
-                        "TaskName": "read_element",
-                        "Customer": true,
-                        "Replace": {
-                            "@docpath": "Calibration.Measurement.Values.Pressure",
-                            "@elemtype": "ind_offset",
-                            "@runif": "ind_offset.Ready"
-                        }
-                    }
-                ],
+                ]
+            ]
+        },
+        {
+            "DefinitionClass": "expansion_param",
+            "ShortDescr": "Reads and saves expansion params\n",
+            "Condition": [
+                {
+                    "ExchangePath": "run_time.Value",
+                    "Methode": "gt",
+                    "Value": 0
+                }
+            ],
+            "Definition": [
                 [
                     {
                         "TaskName": "SE1-read_aux_element",
@@ -1362,12 +1517,109 @@
             ]
         },
         {
+            "DefinitionClass": "customer_read_offset",
+            "ShortDescr": "Reads the Customer Offset\n",
+            "Condition": [
+                {
+                    "ExchangePath": "run_time.Value",
+                    "Methode": "gt",
+                    "Value": 0
+                }
+            ],
+            "Definition": [
+                [
+                    {
+                        "TaskName": "Common-message",
+                        "Replace": {
+                            "@message": "Voreinstellungen ok? Offset der Prüflinge eingeben und bestätigen;\n danach wird Fülldruck wird eingestellt"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "read_element",
+                        "Customer": true,
+                        "Replace": {
+                            "@docpath": "Calibration.Measurement.Values.Pressure",
+                            "@elemtype": "ind_offset",
+                            "@runif": "ind_offset.Ready"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "expansion_param"
+                        }
+                    }
+                ]
+            ]
+        },
+        {
+            "DefinitionClass": "prepair_meas",
+            "ShortDescr": "Nothing todo if last expansion euqal new expansion\n",
+            "Condition": [
+                {
+                    "ExchangePath": "Expansion.Value",
+                    "Methode": "eq",
+                    "Value": "Expansion_B"
+                },
+                {
+                    "ExchangePath": "Prepaired_Expansion.Value",
+                    "Methode": "eq",
+                    "Value": "Expansion_B"
+                }
+            ],
+            "Definition": [
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "customer_read_offset"
+                        }
+                    }
+                ]
+            ]
+        },
+        {
+            "DefinitionClass": "prepair_meas",
+            "ShortDescr": "Nothing todo if last expansion euqal new expansion\n",
+            "Condition": [
+                {
+                    "ExchangePath": "Expansion.Value",
+                    "Methode": "eq",
+                    "Value": "Expansion_A"
+                },
+                {
+                    "ExchangePath": "Prepaired_Expansion.Value",
+                    "Methode": "eq",
+                    "Value": "Expansion_A"
+                }
+            ],
+            "Definition": [
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "customer_read_offset"
+                        }
+                    }
+                ]
+            ]
+        },
+        {
             "DefinitionClass": "prepair_meas",
             "ShortDescr": "Prepairs the measurement for expansion B\n",
             "Condition": [
                 {
                     "ExchangePath": "Expansion.Value",
                     "Methode": "eq",
+                    "Value": "Expansion_B"
+                },
+                {
+                    "ExchangePath": "Prepaired_Expansion.Value",
+                    "Methode": "ne",
                     "Value": "Expansion_B"
                 }
             ],
@@ -1457,6 +1709,12 @@
                         }
                     },
                     {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V1"
+                        }
+                    },
+                    {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 2000
@@ -1468,6 +1726,12 @@
                         "TaskName": "VS-SE1-ctrl_valve",
                         "Use": {
                             "Values": "open_v2"
+                        }
+                    },
+                    {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V2"
                         }
                     },
                     {
@@ -1485,9 +1749,31 @@
                         }
                     },
                     {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V5"
+                        }
+                    },
+                    {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 2000
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "SE1-expansion_prepaired",
+                        "Replace": {
+                            "@expansion": "Expansion_B"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "customer_read_offset"
                         }
                     }
                 ]
@@ -1501,6 +1787,11 @@
                     "ExchangePath": "Expansion.Value",
                     "Methode": "eq",
                     "Value": "Expansion_A"
+                },
+                {
+                    "ExchangePath": "Prepaired_Expansion.Value",
+                    "Methode": "ne",
+                    "Value": "Expansion_A"
                 }
             ],
             "Definition": [
@@ -1509,6 +1800,12 @@
                         "TaskName": "VS-SE1-ctrl_valve",
                         "Use": {
                             "Values": "open_v1"
+                        }
+                    },
+                    {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V1"
                         }
                     },
                     {
@@ -1554,6 +1851,12 @@
                         }
                     },
                     {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V3"
+                        }
+                    },
+                    {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 2000
@@ -1568,6 +1871,12 @@
                         }
                     },
                     {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V4"
+                        }
+                    },
+                    {
                         "TaskName": "Common-wait",
                         "Replace": {
                             "@waittime": 2000
@@ -1579,6 +1888,12 @@
                         "TaskName": "VS-SE1-ctrl_valve",
                         "Use": {
                             "Values": "open_v5"
+                        }
+                    },
+                    {
+                        "TaskName": "VS-SE1-status_opened",
+                        "Replace": {
+                            "@valve": "V5"
                         }
                     },
                     {
@@ -1650,6 +1965,22 @@
                             "@exchangepath": "CDG_1000-Offset"
                         }
                     }
+                ],
+                [
+                    {
+                        "TaskName": "SE1-expansion_prepaired",
+                        "Replace": {
+                            "@expansion": "Expansion_A"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "Commons-select_definition",
+                        "Replace": {
+                            "@definitionclass": "customer_read_offset"
+                        }
+                    }
                 ]
             ]
         }
@@ -1658,6 +1989,16 @@
     "Name": "SE1",
     "Standard": "SE1",
     "Task": [
+        {
+            "Action": "ctrlContainer",
+            "Comment": "Starts ini Container",
+            "TaskName": "run_container",
+            "RunIf": "DocumentsOk.Ready",
+            "Value": {
+                "1": "load;run",
+                "2": "load;run"
+            }
+        },
         {
             "Action": "writeExchange",
             "Comment": "Add an element to the Exchange api",
@@ -1702,6 +2043,7 @@
                 "SdValue": null,
                 "N": null,
                 "Unit": "mbar",
+                "Comment": null,
                 "Ready": false
             }
         },
@@ -1716,6 +2058,15 @@
         },
         {
             "Action": "writeExchange",
+            "Comment": "Saves which expansion (valve setting) is prepaired ",
+            "TaskName": "expansion_prepaired",
+            "ExchangePath": "Prepaired_Expansion",
+            "Value": {
+                "Value": "@expansion"
+            }
+        },
+        {
+            "Action": "writeExchange",
             "Comment": "Add an element to the Exchange api",
             "TaskName": "meas_exchange_element",
             "ExchangePaths": {
@@ -1726,13 +2077,13 @@
             },
             "Values": {
                 "target_pfill": {
-                    "Caption": "Filling pressure",
+                    "Caption": "Filling pressure target",
                     "Type": "fill",
                     "Unit": "mbar",
                     "Value": null
                 },
                 "target_pressure": {
-                    "Caption": "Target pressure",
+                    "Caption": "Target calibration pressure",
                     "Ready": false,
                     "Selected": null,
                     "Select": [

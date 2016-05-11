@@ -28,14 +28,14 @@
         "@channel": "101",
         "@CR": "\n",
         "@Twait": "1000",
-        "@Pwait": "1000",
-        "@NT": "3",
-        "@NP": "3"
+        "@Pwait": "500",
+        "@NT": "5",
+        "@NP": "10"
     },
     "Task": [
         {
             "TaskName": "device_init",
-            "Comment": "Führt initialisierungen aus",
+            "Comment": "Führt Initialisierungen aus",
             "LogPriority": "3",
             "Action": "@acc",
             "Host": "@host",
@@ -75,9 +75,16 @@
             "DocPath": "Calibration.Measurement.Values.Temperature",
             "Value": "READ?@CR",
             "PostProcessing": [
-                "var _ro =_.extractKeithleyTempScan(_x,'@tempchan'), _res = [], k;",
+                "var _ro =_.extractKeithleyTempScan(_x,'@tempchan'), _res = [], k,",
+                "ToExchange={};",
                 "for(k in _ro){",
-                "_res.push(_.vlRes('@token' + k,_ro[k].mv,'C'))",
+                "_res.push(_.vlRes('@token' + k,_ro[k].mv,'C','',_ro[k].sd,_ro[k].N))",
+                "ToExchange['Temperature_' + k] = {}",
+                "ToExchange['Temperature_' + k].Caption='Temperature Channel ' + k;",
+                "ToExchange['Temperature_' + k].Type='@token' + k;",
+                "ToExchange['Temperature_' + k].Value = _ro[k].mv;",
+                "ToExchange['Temperature_' + k].SdValue = _ro[k].sd;",
+                "ToExchange['Temperature_' + k].Unit = 'C';",
                 "}",
                 "Result=_res;"
             ]
@@ -94,9 +101,16 @@
             "DocPath": "Calibration.Measurement.Values.Pressure",
             "Value": "READ?@CR",
             "PostProcessing": [
-                "var _ro =_.extractKeithleyPressScan(_x,'@presschan'), _res = [], k;",
+                "var _ro =_.extractKeithleyPressScan(_x,'@presschan'), _res = [], k,",
+                "ToExchange={};",
                 "for(k in _ro){",
-                "_res.push(_.vlRes('@token' + k,_ro[k].mv,'C'))",
+                "_res.push(_.vlRes('@token' + k, _ro[k].mv,'C','',_ro[k].sd,_ro[k].N));",
+                "ToExchange['@exchangepath'] = {}",
+                "ToExchange['@exchangepath'].Caption='@exchangepath';",
+                "ToExchange['@exchangepath'].Type='@token';",
+                "ToExchange['@exchangepath'].Value = _ro.mv / @CONV;",
+                "ToExchange['@exchangepath'].SdValue = _ro.sd / @CONV;",
+                "ToExchange['@exchangepath'].Unit = 'mbar';",
                 "}",
                 "Result=_res;"
             ]
