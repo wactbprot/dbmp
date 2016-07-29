@@ -18,11 +18,21 @@
       font-size: 18px; 
       background-color: lightgray;
       }
+      td {
+      margin: 20px;
+      }
     </style>
   </head>
   <body>
     <h1>measurement definitions</h1>
-    <table border="0" width="100%">
+    <select id="server">
+      <option value="http://localhost">localhost</option>
+      {{#servers}}
+      <option value="http://{{name}}">{{alias}}</option>
+      {{/servers}}
+    </select>
+
+    <table id="table" border="0" width="100%">
       <thead>
         <tr>
 	  <th align="center"><h2>mpd</h2></th>
@@ -37,30 +47,72 @@
         </tr>
       </thead>
       <tbody>
-        {{#mpds}}
+        {{#mpdocs}}
         <tr>
 	  <td><b>{{value}}</b></td>
           <td><button class="load" id='{{id}}'>load</button></td>
           <td><button class="remove" id='{{id}}'>remove</button></td>
-	  <td><a target='_blank' title='frame/state'
+
+	  <td><a class='link' target='_blank' title='frame/state'
+                 data-path='/{{id}}/0/state/frame'
+		 data-port='8002'
                  href='http://localhost:8002/{{id}}/0/state/frame'>state</a></td>
-	  <td><a target='_blank' title='frame/state'
+
+	  <td><a class='link' target='_blank' title='frame/state'
+		 data-path='/{{id}}/0/elements/frame'
+		 data-port='8002'
                  href='http://localhost:8002/{{id}}/0/elements/frame'>elements</a></td>
           
-          <td><a target='_blank' title='state'
+          <td><a class='link' target='_blank' title='state'
+		 data-path='//{{id}}/exchange'
+		 data-port='8001'
                  href='http://localhost:8001/{{id}}/exchange'>exchange</a></td>
-          <td><a target='_blank' title='state'
-                 href='http://localhost:8001/{{id}}/meta'>meta</a></td>
-          <td><a target='_blank' title='state'
-                 href='http://localhost:8001/{{id}}'>all</a></td>
 	  
-	  <td><a target='_blank' title='{{display}}'
-		 href='../../../../../_utils/document.html?vl_db/{{id}}'>{{value}}</a></td>
+          <td><a class='link' target='_blank' title='state'
+		 data-path='//{{id}}/meta'
+		 data-port='8001'
+                 href='http://localhost:8001/{{id}}/meta'>meta</a></td>
+          <td><a class='link' target='_blank' title='state'
+		 data-path='//{{id}}'
+		 data-port='8001'
+		 href='http://localhost:8001/{{id}}'>all</a></td>
+	  
+	  <td><a class='link' target='_blank' title='{{display}}'
+		  data-path='/_utils/document.html?vl_db/{{id}}'
+		 data-port='5984'
+		 href='http://localhost:5984/_utils/document.html?vl_db/{{id}}'>{{value}}</a></td>
 	</tr>
-	{{/mpds}}
+	{{/mpdocs}}
       </tbody>
     </table>
     <script>
+      $( "#server").on('change', function() {
+      var server = $(this).val()
+      alert(server)
+      $(".link").each(function(i, e){
+      (function(that){     
+      
+      url = server + ":" + that.data("port") + that.data("path");
+      that.attr("href", url);
+      
+      $.ajax( url)
+      .done(function() {
+      that.css('color', '#ff0000');
+      console.log( "success" );
+      })
+      .fail(function() {
+      that.css('color', '#000033');
+      console.log( "error" );
+      })
+      .always(function() { 
+      console.log( "complete" );
+      });
+      })($(this))
+
+      });
+      
+      
+      });
       $( "button" ).click(function() {
       
       var $this = $(this)
