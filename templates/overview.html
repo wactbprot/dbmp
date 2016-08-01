@@ -53,66 +53,69 @@
           <td><button class="load" id='{{id}}'>load</button></td>
           <td><button class="remove" id='{{id}}'>remove</button></td>
 
-	  <td><a class='link' target='_blank' title='frame/state'
+	  <td><a target='_blank' title='frame/state'
                  data-path='/{{id}}/0/state/frame'
 		 data-port='8002'
                  href='http://localhost:8002/{{id}}/0/state/frame'>state</a></td>
 
-	  <td><a class='link' target='_blank' title='frame/state'
+	  <td><a target='_blank' title='frame/state'
 		 data-path='/{{id}}/0/elements/frame'
 		 data-port='8002'
                  href='http://localhost:8002/{{id}}/0/elements/frame'>elements</a></td>
           
-          <td><a class='link' target='_blank' title='state'
-		 data-path='//{{id}}/exchange'
+          <td><a class='test-link' target='_blank' title='state'
+		 data-path='/{{id}}/exchange'
 		 data-port='8001'
                  href='http://localhost:8001/{{id}}/exchange'>exchange</a></td>
 	  
-          <td><a class='link' target='_blank' title='state'
-		 data-path='//{{id}}/meta'
+          <td><a class='test-link' target='_blank' title='state'
+		 data-path='/{{id}}/meta'
 		 data-port='8001'
                  href='http://localhost:8001/{{id}}/meta'>meta</a></td>
-          <td><a class='link' target='_blank' title='state'
-		 data-path='//{{id}}'
+          <td><a class='test-link' target='_blank' title='state'
+		 data-path='/{{id}}'
 		 data-port='8001'
 		 href='http://localhost:8001/{{id}}'>all</a></td>
 	  
-	  <td><a class='link' target='_blank' title='{{display}}'
-		  data-path='/_utils/document.html?vl_db/{{id}}'
+	  <td><a class='test-link' target='_blank' title='{{display}}'
+		  data-path='/_utils/#/database/vl_db/{{id}}'
 		 data-port='5984'
-		 href='http://localhost:5984/_utils/document.html?vl_db/{{id}}'>{{value}}</a></td>
+		 href='http://localhost:5984/_utils/#/database/vl_db/{{id}}'>{{value}}</a></td>
 	</tr>
 	{{/mpdocs}}
       </tbody>
     </table>
     <script>
       $( "#server").on('change', function() {
-      var server = $(this).val()
-      alert(server)
-      $(".link").each(function(i, e){
-      (function(that){     
+      var server = $(this).val();
+      $tl = $(".test-link");
+      $tl.each(function(i){
       
+      that = $tl.eq(i);
       url = server + ":" + that.data("port") + that.data("path");
       that.attr("href", url);
-      
-      $.ajax( url)
-      .done(function() {
-      that.css('color', '#ff0000');
-      console.log( "success" );
+
+      (function(u, t){
+      $.ajax( u)
+      .done(function(data) {
+      if(data == "object is undefined"){
+      t.css('color', '#0009ff');
+      }else{
+      t.css('color', '#00ff90');
+      }
+      console.log( data );
       })
       .fail(function() {
-      that.css('color', '#000033');
-      console.log( "error" );
+      t.css('color', '#ff0000');
+      console.log(url + ": error" );
       })
       .always(function() { 
       console.log( "complete" );
       });
-      })($(this))
-
+      })(url, that)
+      })
       });
       
-      
-      });
       $( "button" ).click(function() {
       
       var $this = $(this)
