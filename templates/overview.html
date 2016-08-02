@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <script type="text/javascript"  src="../../../../lib/js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript"  src="../../js/overview.js"></script>
     <title>mpd link overview</title><style type="text/css">
       td {
       margin: 20px;
@@ -22,8 +23,7 @@
       <thead>
         <tr>
 	  <th align="center"><h2>mpd</h2></th>
-          <th align="left"><h2>ssmp load</h2></th>
-          <th align="left"><h2>ssmp remove</h2></th>
+          <th align="left"><h2>load/remove</h2></th>
 	  <th align="left"><h2>frame state</h2></th>
 	  <th align="left"><h2>frame elements</h2></th>
 	  <th align="left"><h2>ssmp exchange</h2></th>
@@ -36,9 +36,10 @@
         {{#mpdocs}}
         <tr>
 	  <td><b>{{value}}</b></td>
-          <td><button class="load" id='{{id}}'>load</button></td>
-          <td><button class="remove" id='{{id}}'>remove</button></td>
-
+          <td><button class='test-btn' id ='{{id}}'
+		      data-path='/{{id}}'
+		      data-port='8001'>...</button></td>
+          
 	  <td><a class='test-link' target='_blank' title='frame/state'
                  data-path='/{{id}}/0/state/frame'
 		 data-port='8002'
@@ -70,55 +71,19 @@
       </tbody>
     </table>
     <script>
-      $( "#server").on('change', function() {
-      var server = $(this).val();
-      $tl = $(".test-link");
-      $tl.each(function(i){
-      
-      that = $tl.eq(i);
-      url = server + ":" + that.data("port") + that.data("path");
-      that.attr("href", url);
-
-      (function(u, t){
-      $.ajax({url: u,
-      timeout:2000})
-      .done(function(data) {
-      if(data == "object is undefined"){
-        t.css('color', '#FCFCFC');
-        t.parent().css('background-color', '#AAA039');
-      }else{
-        t.css('color', '#FCFCFC');
-        t.parent().css('background-color', '#90A437');
-      }
-     
-      })
-      .fail(function() {
-      t.css('color', '#FCFCFC');
-      t.parent().css('background-color', '#71266E');
-    
-      })
-      .always(function() { 
-    
-      });
-      })(url, that)
-      })
-      });
-      
+      $( "#server").on('change', function(){
+      links_refresh();
+      button_refresh();  
+      }); 
       $( "button" ).click(function() {
-      
-      var $this = $(this)
-      , id = $this.attr("id")
-      , conf = {type: "PUT", url: "http://localhost:8001/" + id }
-
-      if($this.hasClass("load")){
-      conf.data = "load"
-      }
-
-      if($this.hasClass("remove")){
-      conf.data = "remove"
-      }
-      $.ajax(conf);
+      button_click($(this));
+      setTimeout(function(){
+      links_refresh();
+      button_refresh(); 
+      }, 1000);
       });
+      links_refresh();
+      button_refresh();     
     </script>
   </body>
 </html>
