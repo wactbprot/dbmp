@@ -4,20 +4,6 @@
     <meta charset="utf-8">
     <script type="text/javascript"  src="../../../../lib/js/jquery-2.1.0.min.js"></script>
     <title>mpd link overview</title><style type="text/css">
-      body {
-      background-color: gray;
-      }
-      h1 {
-      color: white;
-      }
-      thead {
-      background-color: darkgray;
-      color: white;
-      }
-      tbody {
-      font-size: 18px; 
-      background-color: lightgray;
-      }
       td {
       margin: 20px;
       }
@@ -53,12 +39,12 @@
           <td><button class="load" id='{{id}}'>load</button></td>
           <td><button class="remove" id='{{id}}'>remove</button></td>
 
-	  <td><a target='_blank' title='frame/state'
+	  <td><a class='test-link' target='_blank' title='frame/state'
                  data-path='/{{id}}/0/state/frame'
 		 data-port='8002'
                  href='http://localhost:8002/{{id}}/0/state/frame'>state</a></td>
 
-	  <td><a target='_blank' title='frame/state'
+	  <td><a class='test-link' target='_blank' title='frame/state'
 		 data-path='/{{id}}/0/elements/frame'
 		 data-port='8002'
                  href='http://localhost:8002/{{id}}/0/elements/frame'>elements</a></td>
@@ -77,9 +63,7 @@
 		 data-port='8001'
 		 href='http://localhost:8001/{{id}}'>all</a></td>
 	  
-	  <td><a class='test-link' target='_blank' title='{{display}}'
-		  data-path='/_utils/#/database/vl_db/{{id}}'
-		 data-port='5984'
+	  <td><a target='_blank' title='{{display}}'
 		 href='http://localhost:5984/_utils/#/database/vl_db/{{id}}'>{{value}}</a></td>
 	</tr>
 	{{/mpdocs}}
@@ -96,21 +80,25 @@
       that.attr("href", url);
 
       (function(u, t){
-      $.ajax( u)
+      $.ajax({url: u,
+      timeout:2000})
       .done(function(data) {
       if(data == "object is undefined"){
-      t.css('color', '#0009ff');
+        t.css('color', '#FCFCFC');
+        t.parent().css('background-color', '#AAA039');
       }else{
-      t.css('color', '#00ff90');
+        t.css('color', '#FCFCFC');
+        t.parent().css('background-color', '#90A437');
       }
-      console.log( data );
+     
       })
       .fail(function() {
-      t.css('color', '#ff0000');
-      console.log(url + ": error" );
+      t.css('color', '#FCFCFC');
+      t.parent().css('background-color', '#71266E');
+    
       })
       .always(function() { 
-      console.log( "complete" );
+    
       });
       })(url, that)
       })
