@@ -4,6 +4,19 @@
     "Standard": "CE3",
     "Container": [
         {
+            "Description": "simple tests",
+            "Ctrl": "load",
+            "Title": "tests",
+            "Element": [],
+            "Definition": [
+                [
+                    {
+                        "TaskName": "Corvus_2-dvg_position"
+                    }
+                ]
+            ]
+        },
+        {
             "Description": "Choose the calibration documents belonging to the calibration devices to calibrate.",
             "Ctrl": "load",
             "Title": "select cd",
@@ -55,6 +68,14 @@
             "Ctrl": "load",
             "Title": "device ini",
             "Definition": [
+                [
+                    {
+                        "TaskName": "FM3_CE3-DMM_Agilent-device_ini",
+                        "Replace": {
+                            "@exchpath": "FM3_CE3-DMM_Agilent_ini_ok.Bool"
+                        }
+                    }
+                ],
                 [
                     {
                         "TaskName": "Commons-db_info",
@@ -156,15 +177,11 @@
                 [
                     {
                         "TaskName": [
-                            "FM3_CE3-DMM_Agilent-device_ini",
-                            "VS_CE3-device_ini",
                             "Corvus_1-is_ready",
                             "Corvus_2-is_ready"
                         ],
                         "ExpandPar": {
                             "@exchpath": [
-                                "FM3_CE3-DMM_Agilent_ini_ok.Bool",
-                                "VS_CE3_ini_ok.Bool",
                                 "Corvus_1_ini_ok.Bool",
                                 "Corvus_2_ini_ok.Bool"
                             ]
@@ -173,16 +190,20 @@
                 ],
                 [
                     {
-                        "TaskName": [
-                            "MKS_Flow_Ctrl-device_ini"
-                        ],
-                        "ExpandSeq": {
-                            "@exchpath": [
-                                "MKS_Flow_Ctrl_ini_ok.Bool"
-                            ],
-                            "Values": [
-                                "set_zero"
-                            ]
+                        "TaskName": "VS_CE3-device_ini",
+                        "Replace": {
+                            "@exchpath": "VS_CE3_ini_ok.Bool"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "TaskName": "MKS_Flow_Ctrl-device_ini",
+                        "Replace": {
+                            "@exchpath": "MKS_Flow_Ctrl_ini_ok.Bool"
+                        },
+                        "Use": {
+                            "Values": "set_zero"
                         }
                     }
                 ]
@@ -2163,6 +2184,15 @@
         },
         {
             "Action": "writeExchange",
+            "Comment": "resets a ready Element",
+            "TaskName": "reset_ready",
+            "ExchangePath": "@exchpath",
+            "Value": {
+                "Ready": false
+            }
+        },
+        {
+            "Action": "writeExchange",
             "Comment": "Add an element to the Exchange api",
             "TaskName": "std_exchange_element",
             "ExchangePath": "@devicename-@elemtype",
@@ -2255,7 +2285,7 @@
             },
             "Values": {
                 "reset_pfill_ok": {
-                    "Value": false
+                    "Ready": false
                 },
                 "target_pressure": {
                     "Caption": "Target pressure",
