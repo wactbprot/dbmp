@@ -8,6 +8,14 @@
       td {
       margin: 20px;
       }
+      thead {
+      background-color: #022D44;
+      color: white;
+      }
+      tbody {
+      font-size: 18px; 
+      background-color: #DBD8B8;
+      }
     </style>
   </head>
   <body>
@@ -23,13 +31,13 @@
       <thead>
         <tr>
 	  <th align="center"><h2>mpd</h2></th>
-          <th align="left"><h2>load/remove</h2></th>
-	  <th align="left"><h2>frame state</h2></th>
-	  <th align="left"><h2>frame elements</h2></th>
-	  <th align="left"><h2>ssmp exchange</h2></th>
-	  <th align="left"><h2>ssmp meta</h2></th>
-	  <th align="left"><h2>ssmp all</h2></th>
-          <th align="left"><h2>couchdb link</h2></th>
+          <th align="center"><h2>load/remove</h2></th>
+	  <th align="center"><h2>frame state</h2></th>
+	  <th align="center"><h2>frame elements</h2></th>
+	  <th align="center"><h2>ssmp exchange</h2></th>
+	  <th align="center"><h2>ssmp meta</h2></th>
+	  <th align="center"><h2>ssmp all</h2></th>
+          <th align="center"><h2>couchdb link</h2></th>
         </tr>
       </thead>
       <tbody>
@@ -82,8 +90,10 @@
       button_refresh(); 
       }, 1000);
       });
+      setInterval(function(){
       links_refresh();
-      button_refresh();     
+      button_refresh();
+      },1000);
     </script>
   </body>
 </html>
