@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <style type="text/css">
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+      #container {
+        width : 960px;
+        height: 600px;
+        margin: 8px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <!--[if IE]>
+    <script type="text/javascript" src="/static/lib/FlashCanvas/bin/flashcanvas.js"></script>
+    <![endif]-->
+    <script type="text/javascript"  src="../../lib/js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript"  src="js/flotr2.min.js"></script>
+    <script type="text/javascript">
+      (function () {
+
+      var container = document.getElementById('container')
+      
+      $.ajax({url:"_show/data/cal-2016-ce3-kk-75013_0001",
+      data:{x:"Analysis:Pressure:ind",
+      y:"Analysis:Error:relative"}
+      })
+      .done(function(res) {
+      var data = JSON.parse(res) 
+      
+        
+      graph = Flotr.draw(
+      container, data.data, data.options)  
+      console.log(data);
+      });
+
+    
+      
+      })();
+    </script>
+  </body>
+</html>
