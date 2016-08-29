@@ -39,3 +39,10 @@ footer {background: #aaa;color:white;}
   height: 500px;
   margin: 8px auto;
 }
+
+#calibration {
+    width:150px;   
+}
+#standard {
+    width:150px;   
+}
