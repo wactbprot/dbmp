@@ -9,14 +9,55 @@
         <h1>Calibration Results</h1>
       </header>
       <nav class="nav">
+	<h3>Standard Year</h3>
 	<p>
-	<label>standard and year: <select id="standard"></select>
-        </label>
-	</p>
+	  <select id="standard"></select>
+        </p>
+	
+        <h3>Calibration</h3>
 	<p>
-        <label>calibration: <select id="calibration"></select>
-        </label>
-	</p>
+	  <select id="calibration"></select>
+        </p>
+	
+        <h3>X-Region</h3>
+	<p>
+	  <select id="xregion">Measurement</select>
+        </p>
+	
+        <h3>X-Quantity</h3>
+	<p>
+	  <select id="xquant">Pressure</select>
+        </p>
+	
+        <h3>X-Type</h3>
+	<p>
+	  <select id="xtype">ind</select>
+        </p>
+
+	<h3>Y-Region</h3>
+	<p>
+	  <select id="yregion">Analysis</select>
+        </p>
+	
+        <h3>Y-Quantity</h3>
+	<p>
+	  <select id="yquant">Error</select>
+        </p>
+	
+        <h3>Y-Type</h3>
+	<p>
+	  <select id="ytype">relative</select>
+        </p>
+
+	<h3>Y-Type</h3>
+	<p>
+	  <select id="ytype">relative</select>
+        </p>
+	<h3>X-Region</h3>
+	<p>
+	  <select id="xregion">Measurement</select>
+        </p>
+	
       </nav>
 
       <article  class="article">
@@ -24,7 +65,12 @@
         <div id="diagramm"></div>
       </article>
 
-      <footer>footer</footer>
+      <footer>
+        <label>X-Range-Min: <input id="xmin"></label>
+	<label>X-Range-Max: <input id="xmax"></label>
+	<label>Y-Range-Min: <input id="Ymin"></label>
+	<label>Y-Range-Max: <input id="Ymax"></label>
+      </footer>
 
     </div>
     <script type="text/javascript"  src="../../lib/js/jquery-2.1.0.min.js"></script>

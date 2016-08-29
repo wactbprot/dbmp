@@ -36,13 +36,10 @@ footer {background: #aaa;color:white;}
 }
 #diagramm {
   width : 900px;
-  height: 500px;
+  height: 600px;
   margin: 8px auto;
 }
 
-#calibration {
-    width:150px;   
-}
-#standard {
-    width:150px;   
+select {
+    width : 250px;
 }

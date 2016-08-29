@@ -38,19 +38,20 @@
               + "</option>"
     }
     calstr  += "</select>"
-    $("#calibration").replaceWith(calstr)
+    $("#calibration").replaceWith(calstr);
+    $("#calibration").change(function(){
+      $.ajax({url:"../../" +  $(this).val()}).done(function(res) {
+        var cal =  JSON.parse(res)
+       console.log(cal._id );
+      });
+ });
   }
 
-
+  // initial request
   $.ajax({url:"_view/calibrations"         }).done(function(res) {
     var cals =  JSON.parse(res).rows
     mkStdMenue(cals);
     mkCalsMenue(cals);
-
-  });
-
-  $("#standard").change(function(){
-    console.log("öööööÖÖÖÖÖÖÖÖÖÖÖÖ" );
   });
 
 })();
