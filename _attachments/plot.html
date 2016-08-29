@@ -1,47 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <title>Title</title>
+  <head>
     <link href="css/main.css" rel="stylesheet" />
-    
-</head>
-<body>
-    <header>
-        <hgroup>
-            <h1>Header</h1>
-            <h2>Subheader</h2>
-        </hgroup>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#">Menu Option 1</a></li>
-            <li><a href="#">Menu Option 2</a></li>
-        </ul>
-    </nav>
-    <section>
-       <div id="container"></div>
-        <article>
-            <header>
-                <h1>Article #1</h1>
-            </header>
-            <section>
-                This is the first article.
-            </section>
-        </article>
-    </section>
-    <aside>
-        <section>
-            <h1>Links</h1>
-            <ul>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 2</a></li>
-            </ul>
-        </section>
-    </aside>
-    <footer>Footer</footer>
+  </head>
+  <body>
+    <div class="flex-container">
+      <header>
+        <h1>Calibration Results</h1>
+      </header>
+      <nav class="nav">
+	<p>
+	<label>standard and year: <select id="standard"></select>
+        </label>
+	</p>
+	<p>
+        <label>calibration: <select id="calibration"></select>
+        </label>
+	</p>
+      </nav>
+
+      <article  class="article">
+        <h1>Diagramm</h1>
+        <div id="diagramm"></div>
+      </article>
+
+      <footer>footer</footer>
+
+    </div>
     <script type="text/javascript"  src="../../lib/js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript"  src="js/flotr2.min.js"></script>
     <script type="text/javascript"  src="js/plot.js"></script>
-</body>
+    <script type="text/javascript"  src="js/select.js"></script>
+  </body>
 </html>
