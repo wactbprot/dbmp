@@ -9,55 +9,61 @@
         <h1>Calibration Results</h1>
       </header>
       <nav class="nav">
-	<h3>Standard Year</h3>
-	<p>
-	  <select id="standard"></select>
-        </p>
-	
-        <h3>Calibration</h3>
-	<p>
-	  <select id="calibration"></select>
-        </p>
-	
-        <h3>X-Region</h3>
-	<p>
-	  <select id="xregion">Measurement</select>
-        </p>
-	
-        <h3>X-Quantity</h3>
-	<p>
-	  <select id="xquant">Pressure</select>
-        </p>
-	
-        <h3>X-Type</h3>
-	<p>
-	  <select id="xtype">ind</select>
-        </p>
+        <section class="border">
+          <h4>Standard Year</h4>
+          <p>
+            <select id="standard"></select>
+          </p>
 
-	<h3>Y-Region</h3>
-	<p>
-	  <select id="yregion">Analysis</select>
-        </p>
-	
-        <h3>Y-Quantity</h3>
-	<p>
-	  <select id="yquant">Error</select>
-        </p>
-	
-        <h3>Y-Type</h3>
-	<p>
-	  <select id="ytype">relative</select>
-        </p>
+          <h4>Calibration</h4>
+          <p>
+            <select id="calibration"></select>
+          </p>
+        </section>
+        <section class="border">
+          <h4>X-Region</h4>
+          <p>
+            <select id="xregion">
+              <option value="Analysis">Analysis</option>
+              <option value="Measurement">Measurement</option>
+            </select>
+          </p>
 
-	<h3>Y-Type</h3>
-	<p>
-	  <select id="ytype">relative</select>
-        </p>
-	<h3>X-Region</h3>
-	<p>
-	  <select id="xregion">Measurement</select>
-        </p>
-	
+          <h4>X-Quantity</h4>
+          <p>
+            <select id="xquant">Pressure</select>
+          </p>
+          <h4>X-Type</h4>
+          <p>
+            <select id="xtype">ind</select>
+          </p>
+        </section>
+
+        <section class="border">
+          <h4>Y-Region</h4>
+          <p>
+            <select id="yregion">
+              <option value="Analysis">Analysis</option>
+              <option value="Measurement">Measurement</option>
+            </select>
+          </p>
+
+          <h4>Y-Quantity</h4>
+          <p>
+            <select id="yquant">Error</select>
+          </p>
+
+          <h4>Y-Type</h4>
+          <p>
+            <select id="ytype">relative</select>
+          </p>
+        </section>
+        <section class="border">
+          <p>
+            <button id="newbtn" type="button">new diagram</button>
+	    <button id="addbtn" type="button">add diagram</button>
+          </p>
+        </section>
       </nav>
 
       <article  class="article">
@@ -67,9 +73,9 @@
 
       <footer>
         <label>X-Range-Min: <input id="xmin"></label>
-	<label>X-Range-Max: <input id="xmax"></label>
-	<label>Y-Range-Min: <input id="Ymin"></label>
-	<label>Y-Range-Max: <input id="Ymax"></label>
+        <label>X-Range-Max: <input id="xmax"></label>
+        <label>Y-Range-Min: <input id="Ymin"></label>
+        <label>Y-Range-Max: <input id="Ymax"></label>
       </footer>
 
     </div>

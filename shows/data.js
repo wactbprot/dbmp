@@ -68,18 +68,15 @@ function (doc, req) {
         if(typeof RX == 'object' &&  typeof RY == 'object'){
           var N = RY.Value.length
           if(RY.Value.length == N){
-            var axis = {x:{label: "(" + xsource +")" + xquant + "[" + xtype +"]" },
-                        y:{label: "(" + ysource +")" + yquant + "[" + ytype +"]"}}
-              , d = []
+            var  d = []
             for(var j = 0; j < N; j++){
               d.push([RX.Value[j], RY.Value[j]]);
             }
-            ret =  {data:[ {data : d, label : id, points : { show : true }}],
-                   options:{legend : { position : 'se', backgroundColor : '#D2E8FF' },
-                            title : ysource + "/" + yquant + " vs. "  + xsource + "/" + xquant,
-                            xaxis:{scaling: 'logarithmic'} // => Scaling, can be 'linear' or 'logarithmic'
-                           }
-                  }
+            ret = {data : d
+                  , label : id + " x: " + xsource +"/" + xquant + "[" + xtype +"]"
+                          + " y: " + "" + ysource +"/" + yquant + "[" + ytype +"]"
+                  , points : { show : true }}
+
           }else{
             ret = { "error": "data error"
                   , "reason":"x an y values do not have the same length"}
