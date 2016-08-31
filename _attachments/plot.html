@@ -62,22 +62,34 @@
           <p>
             <button id="newbtn" type="button">new diagram</button>
 	    <button id="addbtn" type="button">add diagram</button>
+	    <button id="refbtn" type="button">db refresh</button>
           </p>
         </section>
       </nav>
 
       <article  class="article">
-        <h1>Diagramm</h1>
         <div id="diagramm"></div>
       </article>
 
       <footer>
-        <label>X-Range-Min: <input id="xmin"></label>
-        <label>X-Range-Max: <input id="xmax"></label>
-        <label>Y-Range-Min: <input id="Ymin"></label>
-        <label>Y-Range-Max: <input id="Ymax"></label>
+	<p>
+          <label>X-Range-Min: <input id="xmin"></label>
+          <label>X-Range-Max: <input id="xmax"></label>
+	  <select id="xlinlog">
+            <option value="linear">x-scale linear</option>
+            <option value="logarithmic">x-scale logarithmic</option>
+          </select>
+	</p>
+	<p>
+          <label>Y-Range-Min: <input id="ymin"></label>
+          <label>Y-Range-Max: <input id="ymax"></label>
+	  <select id="ylinlog">
+            <option value="linear">y-scale linear</option>
+            <option value="logarithmic">y-scale logarithmic</option>
+          </select>
+	</p>
       </footer>
-
+      
     </div>
     <script type="text/javascript"  src="../../lib/js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript"  src="js/flotr2.min.js"></script>
