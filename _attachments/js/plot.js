@@ -16,7 +16,7 @@
         min: null,             // => min. value to show, null means set automatically
         max: null,             // => max. value to show, null means set automatically
         autoscale: false,      // => Turns autoscaling on with true
-        autoscaleMargin: 0,    // => margin in % to add if auto-setting min/max
+        autoscaleMargin: 20,    // => margin in % to add if auto-setting min/max
         color: null,           // => color of the ticks
         mode: 'normal',        // => can be 'time' or 'normal'
         timeFormat: null,
@@ -42,7 +42,7 @@
         min: null,             // => min. value to show, null means set automatically
         max: null,             // => max. value to show, null means set automatically
         autoscale: false,      // => Turns autoscaling on with true
-        autoscaleMargin: 0,    // => margin in % to add if auto-setting min/max
+        autoscaleMargin: 20,    // => margin in % to add if auto-setting min/max
         color: null,           // => The color of the ticks
         scaling: 'linear',     // => Scaling, can be 'linear' or 'logarithmic'
         base: Math.E,
