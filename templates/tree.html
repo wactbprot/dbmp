@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript"  src="../../../../lib/js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript"  src="../../js/jquery.orgchart.min.js"></script>
+    <link rel="stylesheet" href="../../css/jquery.orgchart.css">
+    <title>definitions tree</title>
+    <style>
+      body {
+      background-color: lightblue;
+      }
+      div.orgChart div.node {
+      width                 : 300px;
+      height                : 100%;
+      }
+      div.orgChart {
+      border: 1px solid lightblue;
+      background-color: lightblue;
+      margin: 10px;
+      padding: 20px;
+      }
+      .hide {
+      display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Definition Tree</h1>
+    <div id="chart"></div>
+
+    <ul id="source"  class="hide">
+      <li> Standard
+        <ul>
+
+          {{#Data}}
+          <li>
+            <a href='http://localhost:5984/vl_db/_design/dbmp/_list/tree/definitions?key="{{Standard}}"'>{{Standard}}</a>
+            <ul>
+              {{#Definitions}}
+              <li> <a href='http://localhost:5984/vl_db/_design/dbmp/_list/tree/subdefinitions?key="{{Standard}}_{{Class}}"'>{{Class}}</a>
+                <ul>
+                  {{#DefStruct}}
+
+                  <li>
+                    <h3>description</h3>
+                    <p>
+                      {{ShortDescr}}
+                    </p>
+                    <ul>
+                      <li>
+                        <h3>condition</h3>
+                        {{#Condition}}
+                        <p>
+                          <b>{{ExchangePath}}</b>
+                          <i>{{Methode}}</i>
+                          <b>{{Value}}</b>
+                        </p>
+                        {{/Condition}}
+                        <ul>
+                          <li>
+                            <h2>definition</h2>
+                            <pre>{{PreDef}}</pre>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+
+                  {{/DefStruct}}
+                </ul>
+              </li>
+              {{/Definitions}}
+            </ul>
+          </li>
+          {{/Data}}
+	  </ul>
+          </li>  
+	</ul>
+
+        <script type="text/javascript">
+          $(function() {
+          $("#source").orgChart({container: $("#chart"),
+          stack    : true,
+          depth    : 5
+	 });
+          });
+        </script>
+  </body>
+</html>
