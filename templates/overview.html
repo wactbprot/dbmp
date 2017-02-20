@@ -5,6 +5,9 @@
     <script type="text/javascript"  src="../../../../lib/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript"  src="../../js/overview.js"></script>
     <title>mpd link overview</title><style type="text/css">
+      body {
+      background-color:#DBD8B8;
+      }
       td {
       margin: 20px;
       }
@@ -19,7 +22,6 @@
     </style>
   </head>
   <body>
-    <h1>measurement definitions</h1>
     <select id="server">
       <option value="http://localhost">localhost</option>
       {{#servers}}
@@ -32,32 +34,32 @@
         <tr>
 	  <th align="center"><h2>mpd</h2></th>
           <th align="center"><h2>load/remove</h2></th>
-	  <th align="center"><h2>frame state</h2></th>
-	  <th align="center"><h2>frame elements</h2></th>
+	  <th align="center"><h2>frame elements[0]</h2></th>
+	  <th align="center"><h2>frame state[0]</h2></th>
 	  <th align="center"><h2>ssmp exchange</h2></th>
 	  <th align="center"><h2>ssmp meta</h2></th>
 	  <th align="center"><h2>ssmp all</h2></th>
-          <th align="center"><h2>couchdb link</h2></th>
         </tr>
       </thead>
       <tbody>
         {{#mpdocs}}
         <tr>
-	  <td><b>{{value}}</b></td>
+	  <td><a target='_blank' title='{{display}}'
+		 href='http://localhost:5984/_utils/#database/vl_db/{{id}}'>{{value}}</a></td>
           <td><button class='test-btn' id ='{{id}}'
 		      data-path='/{{id}}'
 		      data-port='8001'>...</button></td>
-          
-	  <td><a class='test-link' target='_blank' title='frame/state'
-                 data-path='/{{id}}/0/state/frame'
-		 data-port='8002'
-                 href='http://localhost:8002/{{id}}/0/state/frame'>state</a></td>
-
+         
 	  <td><a class='test-link' target='_blank' title='frame/state'
 		 data-path='/{{id}}/0/elements/frame'
 		 data-port='8002'
                  href='http://localhost:8002/{{id}}/0/elements/frame'>elements</a></td>
           
+	  <td><a class='test-link' target='_blank' title='frame/state'
+                 data-path='/{{id}}/0/state/frame'
+		 data-port='8002'
+                 href='http://localhost:8002/{{id}}/0/state/frame'>state</a></td>
+ 
           <td><a class='test-link' target='_blank' title='state'
 		 data-path='/{{id}}/exchange'
 		 data-port='8001'
@@ -72,8 +74,6 @@
 		 data-port='8001'
 		 href='http://localhost:8001/{{id}}'>all</a></td>
 	  
-	  <td><a target='_blank' title='{{display}}'
-		 href='http://localhost:5984/_utils/#database/vl_db/{{id}}'>{{value}}</a></td>
 	</tr>
 	{{/mpdocs}}
       </tbody>
