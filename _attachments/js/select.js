@@ -2,9 +2,8 @@
   var diagramm = document.getElementById('diagramm');
 
   var mkStdMenue = function(cals){
-    var stdstr = "<select id='standard'>"
-    stdstr += "<option></option>"
-                                         , a = {}
+    var stdstr = "<select id='standard'>" + "<option></option>"
+      , a = {}
       , N = cals.length
     for(var i = 0; i <  N; i++){
       var cal = cals[i]
@@ -19,7 +18,7 @@
     $("#standard").change(function(){
       $.ajax({url:"_view/calibrations",
               data:{key:'"' + $(this).val() + '"'} }).done(function(res) {
-        var cals =  JSON.parse(res).rows
+        var cals =  res.rows
         mkCalsMenue(cals);
       });
     });
@@ -45,7 +44,7 @@
     $("#calibration").replaceWith(calstr);
     $("#calibration").change(function(){
       $.ajax({url:"../../" +  $(this).val()}).done(function(res) {
-        var cal =JSON.parse(res)
+        var cal = res
           , calc = cal.Calibration
         if(calc.Measurement && !calc.Analysis ){
           $("#xregion").replaceWith(
@@ -89,11 +88,8 @@
 
 
   var mkQuantMenue = function(cal, region, dim){
-    console.log(cal.Calibration[region]);
     if(cal.Calibration[region]){
-
       var  quantid = dim + "quant";
-
       var R = cal.Calibration[region].Values;
       var rstr =  "<select id='" + quantid + "'>"
       rstr += "<option></option>"
@@ -131,10 +127,9 @@
     }
   }
 
-
   // initial request
-  $.ajax({url:"_view/calibrations"         }).done(function(res) {
-    var cals =  JSON.parse(res).rows
+  $.ajax({url:"_view/calibrations"}).done(function(res) {
+    var cals = res.rows
     mkStdMenue(cals);
     mkCalsMenue(cals);
   });
