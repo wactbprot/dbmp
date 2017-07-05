@@ -13,17 +13,13 @@ var links_refresh = function() {
       .done(function(data) {
 
         if(data == "object is undefined" || data ==  "mp not available"){
-          t.css('color', '#FCFCFC');
-          t.parent().css('background-color', '#04496E'); // maybe
+          t.css('color', '#04496E');
         }else{
-          t.css('color', '#FCFCFC');
-          t.parent().css('background-color', '#AE9E00'); // ok
+          t.css('color', '#AE9E00');
         }
       })
       .fail(function() {
-        t.css('color', '#FCFCFC');
-        t.parent().css('background-color', '#A00025'); // error
-
+        t.css('color', '#A00025');
       })
       .always(function() {
       });
