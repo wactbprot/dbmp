@@ -1,6 +1,7 @@
 function(head, req) {
 
-  var oktask, mptask, cmtask, row, i, j, task, mptn, cmtn, butn, def, mparr, cmarr,
+  var share      = require("lib/vl/share") ,
+      oktask, mptask, cmtask, row, i, j, task, mptn, cmtn, butn, def, mparr, cmarr,
       tr      = (req.body === "undefined") ? false : true,// try replace
       b       = tr ? JSON.parse(req.body) : {}, // body
       tn      = b.TaskName, //
@@ -60,10 +61,10 @@ function(head, req) {
     def["@standard"]   = std;
     def["@mpname"]     = mp;
     def["@devicename"] = dn;
-    def["@hour"]       = d.getHours() + 1;
-    def["@minute"]     = d.getMinutes() + 1;
-    def["@month"]      = d.getMonth() + 1;
-    def["@second"]     = d.getSeconds() + 1;
+    def["@hour"]       = share.pad0(d.getHours());
+    def["@minute"]     = share.pad0(d.getMinutes());
+    def["@month"]      = share.pad0(d.getMonth() + 1);
+    def["@second"]     = share.pad0(d.getSeconds() + 1);
     def["@day"]        = d.getDate();
     def["@year"]       = d.getFullYear();
     def["@cdids"]      = idArr;
