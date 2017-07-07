@@ -60,6 +60,11 @@ function(head, req) {
     def["@standard"]   = std;
     def["@mpname"]     = mp;
     def["@devicename"] = dn;
+    def["@hour"]       = d.getHours() + 1;
+    def["@minute"]     = d.getMinutes() + 1;
+    def["@month"]      = d.getMonth() + 1;
+    def["@second"]     = d.getSeconds() + 1;
+    def["@day"]        = d.getDate();
     def["@year"]       = d.getFullYear();
     def["@cdids"]      = idArr;
 
