@@ -43,7 +43,7 @@ var button_refresh  = function() {
           that.removeClass("remove");
           that.addClass("load");
         }else{
-          that.html("remove");
+          that.html("unload");
           that.removeClass("load");
           that.addClass("remove");
         }
