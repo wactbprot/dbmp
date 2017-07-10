@@ -61,6 +61,7 @@ function(head, req) {
     def["@standard"]   = std;
     def["@mpname"]     = mp;
     def["@devicename"] = dn;
+    def["@time"]       = d.getTime();
     def["@hour"]       = share.pad0(d.getHours());
     def["@minute"]     = share.pad0(d.getMinutes());
     def["@month"]      = share.pad0(d.getMonth() + 1);
