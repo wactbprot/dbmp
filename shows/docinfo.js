@@ -35,6 +35,14 @@ function (doc, req) {
   }
 
   if(doc && doc.Measurement){
+    res.ToDoType = "measurement";
+    res.Customer = "internal";
+    res.Device   = "internal"
+
+    res.Certificate  = "-";
+    res.Issue        = "-";
+    res.Year         = "-";
+
     valid   = true;
     res.Id  = doc._id;
   }
