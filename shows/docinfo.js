@@ -3,7 +3,7 @@ function (doc, req) {
   var valid = false;
 
   if(doc && doc.Calibration){
-    var  dc    = doc.Calibration
+    var  dc   = doc.Calibration
       , dct   = dc.ToDo
       , dcc   = dc.Customer
       , dccu  = dc.CustomerObject
@@ -47,8 +47,13 @@ function (doc, req) {
     res.Id  = doc._id;
   }
 
+  if(doc && doc.Comissioning){
+    valid   = true;
+    res.Id  = doc._id;
+  }
+
   if(!valid){
-    res.error  = "not a Calibration";
+    res.error  = "not a calibration-, measurement or commissioning document";
   }
   return toJSON(res);
 };
