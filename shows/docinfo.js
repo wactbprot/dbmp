@@ -1,3 +1,4 @@
+
 function (doc, req) {
   var res = {DocInfo:true}
   var valid = false;
@@ -35,21 +36,15 @@ function (doc, req) {
   }
 
   if(doc && doc.Measurement){
-    res.ToDoType = "measurement";
-    res.Customer = "internal";
-    res.Device   = "internal"
-
-    res.Certificate  = "-";
-    res.Issue        = "-";
-    res.Year         = "-";
-
-    valid   = true;
-    res.Id  = doc._id;
+    res.Id          = doc._id;
+    res.Measurement = true;
+    valid           = true;
   }
 
-  if(doc && doc.Comissioning){
-    valid   = true;
-    res.Id  = doc._id;
+  if(doc && doc.Commissioning){
+    res.Id            = doc._id;
+    res.Commissioning = true;
+    valid             = true;
   }
 
   if(!valid){
