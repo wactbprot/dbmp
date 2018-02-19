@@ -59,14 +59,17 @@ var button_refresh  = function() {
 var button_click = function(that){
   var id     = that.attr("id")
     , server = $("#server").val()
-    , conf   = {type: "PUT", url: server + ":8001/" + id }
+    , conf   = {type: "PUT"
+              , "processData": false
+              , "contentType": "application/json" 
+              , url: server + ":8001/" + id }
 
   if(that.hasClass("load")){
-    conf.data = "load"
+    conf.data = JSON.stringify({cmd:"load"})
   }
 
   if(that.hasClass("remove")){
-    conf.data = "remove"
+    conf.data =  JSON.stringify({cmd:"remove"})
   }
   $.ajax(conf)
   .done(function(data) {

@@ -5,26 +5,13 @@
     <script type="text/javascript"  src="../../../../lib/js/jquery3.js"></script>
     <script type="text/javascript"  src="../../js/overview.js"></script>
     <title>mpd link overview</title>
-    <style type="text/css">
-      body {background-color:#DBD8B8;}
-      tr:nth-child(even) {background-color: #C5C1A1;}
-      td {
-      padding-top:2px;
-      padding-bottom:2px;
-      padding-left:20px;
-      padding-right:10px;
-      }
-      table {
-      margin: auto;
-      }
-      
-    </style>
+
   </head>
   <body>
 <header>
    <h1>measurent definition overview</h1>
 </header>
-  
+
     <select id="server">
       <option value="http://localhost">localhost</option>
       {{#servers}}
@@ -54,29 +41,12 @@
                         data-path='/{{id}}'
                         data-port='8001'>...</button></td>
 
-            <td><a class='test-link' target='_blank' title='elements'
-                   data-path='/{{id}}/0/elements/frame'
-                   data-port='8002'
-                   href='http://localhost:8002/{{id}}/0/elements/frame'>0/<b>elements</b>/frame</a></td>
 
             <td><a class='test-link' target='_blank' title='frame/state'
                    data-path='/{{id}}/0/state/frame'
                    data-port='8002'
                    href='http://localhost:8002/{{id}}/0/state/frame'>0/<b>state</b>/frame</a></td>
 
-            <td><a class='test-link' target='_blank' title='exchange'
-                   data-path='/{{id}}/exchange'
-                   data-port='8001'
-                   href='http://localhost:8001/{{id}}/exchange'><b>exchange</b></a></td>
-
-            <td><a class='test-link' target='_blank' title='meta'
-                   data-path='/{{id}}/meta'
-                   data-port='8001'
-                   href='http://localhost:8001/{{id}}/meta'><b>meta</b></a></td>
-            <td><a class='test-link' target='_blank' title='meta'
-                   data-path='/{{id}}'
-                   data-port='8001'
-                   href='http://localhost:8001/{{id}}'>all</a></td>
 
           </tr>
           {{/mpdocs}}
@@ -88,6 +58,7 @@
       links_refresh();
       button_refresh();
       });
+
       $( "button" ).click(function() {
       button_click($(this));
       setTimeout(function(){
@@ -96,8 +67,8 @@
       }, 1000);
       });
       //setInterval(function(){
-      links_refresh();
-      button_refresh();
+    //  links_refresh();
+    //  button_refresh();
       //},1000);
     </script>
   </body>
