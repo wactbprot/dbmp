@@ -9,6 +9,7 @@ var links_refresh = function() {
 
     (function(u, t){
       $.ajax({url: u,
+              dataType: 'jsonp',
               timeout:2000})
       .done(function(data) {
 
@@ -35,6 +36,7 @@ var button_refresh  = function() {
     that.attr("href", url);
     (function(u, t){
       $.ajax({url: u,
+              dataType: 'jsonp',
               timeout:2000})
       .done(function(data) {
 
@@ -61,7 +63,7 @@ var button_click = function(that){
     , server = $("#server").val()
     , conf   = {type: "PUT"
               , "processData": false
-              , "contentType": "application/json" 
+              , "contentType": "application/json"
               , url: server + ":8001/" + id }
 
   if(that.hasClass("load")){
